@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>Refer a Friend — DripWeb</title>
+	<style>
+		body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;margin:0;padding:24px;background:#f7f9fb;color:#111}
+		.container{max-width:760px;margin:0 auto;background:#fff;padding:20px;border-radius:8px;box-shadow:0 6px 18px rgba(20,30,50,.08)}
+		h1{margin-top:0;font-size:1.6rem}
+		label{display:block;margin:12px 0 6px;font-weight:600}
+		input[type=text],input[type=email],textarea{width:100%;padding:10px;border:1px solid #d7dbe0;border-radius:6px}
+		button{background:#0b74ff;color:#fff;border:none;padding:10px 14px;border-radius:6px;cursor:pointer}
+		.muted{color:#667085;font-size:.95rem}
+		.row{display:flex;gap:12px}
+		.col{flex:1}
+		.card{border:1px dashed #e6e9ef;padding:12px;border-radius:8px;margin-top:12px}
+		.success{background:#e6ffef;border-color:#9de7c6}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Refer a friend</h1>
+		<p class="muted">Recommend The Plugs website to a friend. If the person you refer purchases a service, you get one free cap.</p>
+
+		<form id="referForm">
+			<label for="yourName">Your name</label>
+			<input id="yourName" type="text" placeholder="Your full name" required />
+
+			<label for="friendName">Friend's name</label>
+			<input id="friendName" type="text" placeholder="Friend's full name" required />
+
+			<label for="friendEmail">Friend's email</label>
+			<input id="friendEmail" type="email" placeholder="friend@example.com" required />
+
+			<label for="message">Personal message (optional)</label>
+			<textarea id="message" rows="4" placeholder="Add a note to your friend"></textarea>
+
+			<div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+				<button type="submit">Send referral</button>
+				<div class="muted">or copy referral link below</div>
+			</div>
+		</form>
+
+		<div class="card" id="linkCard" style="display:none">
+			<div><strong>Your referral link</strong></div>
+			<div style="margin-top:8px;word-break:break-all"><input id="refLink" type="text" readonly style="border:none;background:transparent;font-weight:600;width:100%" /></div>
+			<div style="margin-top:8px;display:flex;gap:8px">
+				<button id="copyBtn">Copy link</button>
+				<button id="emailBtn">Open email</button>
+				<div class="muted">Share this link; when your friend buys using it, you qualify for one free cap.</div>
+			</div>
+		</div>
+
+		<h2 style="margin-top:20px">Claim free cap</h2>
+		<p class="muted">If your friend already purchased, they can enter the referral code below to mark the purchase.</p>
+
+		<form id="claimForm">
+			<label for="refCode">Referral code</label>
+			<input id="refCode" type="text" placeholder="REF-XXXX-XXXX" required />
+			<label for="buyerEmail">Buyer's email</label>
+			<input id="buyerEmail" type="email" placeholder="buyer@example.com" required />
+			<div style="margin-top:12px"><button type="submit">Claim free cap</button></div>
+		</form>
+
+		<div id="status" style="margin-top:12px"></div>
+	</div>
+
+	<script>
+		function makeCode() {
+			return 'REF-' + Math.random().toString(36).substring(2,6).toUpperCase() + '-' + Math.random().toString(36).substring(2,6).toUpperCase();
+		}
+
+		const referForm = document.getElementById('referForm');
+		const linkCard = document.getElementById('linkCard');
+		const refLinkInput = document.getElementById('refLink');
+		const copyBtn = document.getElementById('copyBtn');
+		const emailBtn = document.getElementById('emailBtn');
+		const status = document.getElementById('status');
+
+		referForm.addEventListener('submit', function(e){
+			e.preventDefault();
+			const yourName = document.getElementById('yourName').value.trim();
+			const friendName = document.getElementById('friendName').value.trim();
+			const friendEmail = document.getElementById('friendEmail').value.trim();
+			const message = document.getElementById('message').value.trim();
+			const code = makeCode();
+			const link = location.origin + location.pathname + '?ref=' + code;
+
+			// store referral locally (demo). Replace with server call in real app.
+			const referrals = JSON.parse(localStorage.getItem('drip_referrals') || '[]');
+			referrals.push({code, yourName, friendName, friendEmail, message, created:Date.now()});
+			localStorage.setItem('drip_referrals', JSON.stringify(referrals));
+
+			refLinkInput.value = link;
+			linkCard.style.display = 'block';
+			status.innerHTML = '<div class="card success">Referral created. Code: ' + code + '</div>';
+			// prepare mailto
+			const subject = encodeURIComponent(yourName + ' recommended The Plugs');
+			const body = encodeURIComponent('Hi ' + friendName + ',\n\n' + (message || 'I thought you might like The Plugs.') + '\n\nUse this link to check it out: ' + link + '\n\nIf you purchase through the link, I get a free cap.');
+			emailBtn.onclick = function(){ location.href = 'mailto:' + friendEmail + '?subject=' + subject + '&body=' + body; };
+		});
+
+		copyBtn.addEventListener('click', function(){ refLinkInput.select(); document.execCommand('copy'); copyBtn.textContent='Copied'; setTimeout(()=>copyBtn.textContent='Copy link',1500); });
+
+		const claimForm = document.getElementById('claimForm');
+		claimForm.addEventListener('submit', function(e){
+			e.preventDefault();
+			const refCode = document.getElementById('refCode').value.trim();
+			const buyerEmail = document.getElementById('buyerEmail').value.trim();
+			const referrals = JSON.parse(localStorage.getItem('drip_referrals') || '[]');
+			const found = referrals.find(r=>r.code===refCode);
+			if(!found){ status.innerHTML = '<div class="card">Referral code not found.</div>'; return; }
+			// mark as redeemed (demo)
+			found.redeemed = {by:buyerEmail, at:Date.now()};
+			localStorage.setItem('drip_referrals', JSON.stringify(referrals));
+			status.innerHTML = '<div class="card success">Purchase recorded. ' + found.yourName + ' is eligible for one free cap.</div>';
+		});
+	</script>
+</body>
+</html>

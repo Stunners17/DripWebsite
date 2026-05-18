@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLUGSA - From the Streets to Your Closet</title>
+</head>
+<body>
+    <div id="header">
+        <h1>THE PLUGS</h1>
+    </div>
+
+<!--Hamburger Menu-->
+    <div class="menu-icon" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+<!--Menu-->
+    <div class="menu" id="menu">
+        <a href="refer.html">Refer A Friend</a>
+        <a href="code.html">Scan Codes</a>
+    </div>
+
+    <!-- Products -->
+     <section class="products" id="products">
+        <div class="card" onclick="window.location.href='graphic-tees.html'">
+            <img src="#" alt="#">
+            <h3>GRAPHIC TEES></h3>
+            <p>Clean oversized drip. </p> 
+        </div>
+
+        <div class="card" onclick="window.location.href='hoodies.html'">
+            <img src="#" alt="#">
+            <h3>Hoodies</h3>
+            <p>Warm and stylish hoodies </p> 
+        </div>
+
+       <div class="card" onclick="window.location.href='sneakers.html'">
+            <img src="#" alt="#">
+            <h3>SNEAKERS</h3>
+            <p>Fresh and streetwear sneakers </p> 
+        </div>
+
+       <div class="card" onclick="window.location.href='fitted caps.html'">
+            <img src="images/fitted.jpg" alt="fitted caps">
+            <h3>FITTED CAPS</h3>
+            <p>Classic fitted caps </p>
+        </div>
+
+       <div class="card" onclick="window.location.href='trackpants.html'">
+            <img src="#" alt="#">
+            <h3>TRACKPANTS</h3>
+            <p>Warm and stylish pants </p> 
+        </div>
+
+       <div class="card" onclick="window.location.href='fitted caps.html'">
+            <img src="#" alt="#">
+            <h3>SOCKS</h3>
+            <p>Comfortable and durable socks </p>
+        </div>
+
+    <!--Request an item-->
+        <section class="request" id="request">
+        <h2>Can't Find What You're Looking For?</h2>
+
+        <form 
+        action="https://formspree.io/f/mlgvezbq"
+        method="POST">
+            <p>Let us know what you're looking for!</p>
+
+            <input 
+            type="text" 
+            name="item"
+            placeholder="Enter the item you want" 
+            required
+            >
+
+            <br><br>
+
+            <input 
+            type="text"
+            name="whatapp"
+            placeholder="Enter your WhatsApp number"
+            required
+            >
+
+            <textarea
+            id="details"
+            placeholder="Any specific details? (optional)"
+            name="details"
+             >
+            </textarea>
+
+            <br><br>
+
+            <button type="submit" class="btn primary">
+                Send Request
+            </button>
+
+        </form>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 THE PLUGS. All rights reserved.</p>
+        </footer>
+
+
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("menu");
+
+            if (menu.style.display === "block") {
+                menu.style.display = "none";
+            } else {
+                menu.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
