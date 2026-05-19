@@ -1,11 +1,17 @@
 #header {
-            background-image: url('images/cover.jpg');
-            background-size: cover;
-            background-position: center;
+            background: #667eea;
             color: white;
             padding: 60px 20px;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#header img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
 }
 
 body{
