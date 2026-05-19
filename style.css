@@ -1,5 +1,6 @@
 #header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-image: url('images/cover.jpg');
             color: white;
             padding: 60px 20px;
             text-align: center;
