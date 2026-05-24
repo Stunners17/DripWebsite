@@ -4,7 +4,136 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Graphic Tees | DripWebsite</title>
-  <link rel="stylesheet" href="styles.css">
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+
+      body {
+          font-family: 'Arial', sans-serif;
+          background-color: #f9f9f9;
+          color: #222;
+          line-height: 1.6;
+      }
+
+      .site-header {
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+          padding: 25px 20px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 20px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      }
+
+      .brand a {
+          color: white;
+          font-size: 1.35rem;
+          font-weight: 700;
+          text-decoration: none;
+          letter-spacing: 1px;
+      }
+
+      .site-nav {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          flex-wrap: wrap;
+      }
+
+      .site-nav a {
+          color: white;
+          text-decoration: none;
+          padding: 10px 16px;
+          border-radius: 8px;
+          transition: background-color 0.25s ease;
+      }
+
+      .site-nav a:hover,
+      .site-nav a.active {
+          background: rgba(255, 255, 255, 0.16);
+      }
+
+      .page-hero {
+          padding: 80px 20px;
+          text-align: center;
+          max-width: 1000px;
+          margin: 0 auto;
+      }
+
+      .page-hero h1 {
+          font-size: clamp(2.4rem, 5vw, 4rem);
+          margin-bottom: 20px;
+      }
+
+      .page-hero p {
+          font-size: 1.05rem;
+          color: #4b5563;
+          max-width: 780px;
+          margin: 0 auto;
+      }
+
+      .product-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+          gap: 24px;
+          padding: 40px 20px 60px;
+          max-width: 1200px;
+          margin: 0 auto;
+      }
+
+      .product-card {
+          background: white;
+          border-radius: 16px;
+          overflow: hidden;
+          box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .product-card:hover {
+          transform: translateY(-6px);
+          box-shadow: 0 24px 50px rgba(15, 23, 42, 0.14);
+      }
+
+      .product-image {
+          background: #f0f3ff;
+          min-height: 250px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 24px;
+      }
+
+      .product-image img {
+          max-width: 100%;
+          max-height: 100%;
+          object-fit: contain;
+          display: block;
+      }
+
+      .product-card h2 {
+          font-size: 1.35rem;
+          margin: 18px 20px 10px;
+          color: #111827;
+      }
+
+      .product-card p {
+          margin: 0 20px 20px;
+          color: #5b6470;
+          font-size: 0.98rem;
+      }
+
+      .site-footer {
+          text-align: center;
+          padding: 24px 20px;
+          background: #222;
+          color: white;
+      }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -13,9 +142,9 @@
     </div>
     <nav class="site-nav">
       <a href="index.html">Home</a>
-      <a href="graphic-tees.html" class="active">Graphic Tees</a>
       <a href="hoodies.html">Hoodies</a>
-      <a href="accessories.html">Accessories</a>
+      <a href="trackpants.html">Trackpants & Jeans</a>
+      <a href="sneakers.html">Sneakers & Socks</a>
     </nav>
   </header>
 
@@ -28,7 +157,7 @@
     <section class="product-grid">
       <article class="product-card">
         <div class="product-image">
-          <img src="images/graphic-tee-01.jpg" alt="Graphic tee 1">
+          <img src="images/7362a08d-47ff-4cf2-b15c-15ad1587644b.jpg" alt="Graphic tee 1">
         </div>
         <h2>Urban Script Tee</h2>
         <p>Soft cotton tee with a classic streetwear graphic.</p>
@@ -36,7 +165,7 @@
 
       <article class="product-card">
         <div class="product-image">
-          <img src="images/graphic-tee-02.jpg" alt="Graphic tee 2">
+          <img src="images/6932e2556a3c399383bfffc789d4ffc3.jpg" alt="Graphic tee 2">
         </div>
         <h2>Core Logo Tee</h2>
         <p>Minimalist design with premium fit.</p>
@@ -44,7 +173,7 @@
 
       <article class="product-card">
         <div class="product-image">
-          <img src="images/graphic-tee-03.jpg" alt="Graphic tee 3">
+          <img src="images/caf8aaaccc89b5f7c5334756a68e08fa.jpg" alt="Graphic tee 3">
         </div>
         <h2>Retro Fade Tee</h2>
         <p>Vibrant colors and comfortable styling.</p>
@@ -52,7 +181,7 @@
 
       <article class="product-card">
         <div class="product-image">
-          <img src="images/graphic-tee-04.jpg" alt="Graphic tee 4">
+          <img src="images/e4e235cb-931e-4a7d-932e-8f234e8a7e00.jpg" alt="Graphic tee 4">
         </div>
         <h2>Signature Print Tee</h2>
         <p>Everyday essential with a bold front graphic.</p>
