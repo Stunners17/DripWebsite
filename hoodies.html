@@ -322,49 +322,85 @@
             <div class="products">
                 <div class="product-card">
                     <div class="product-image">
+					<div class="sneaker-image" onclick="sendToWhatsApp('Trapstar Hoodie - R4999.99')">
+						<img src="images/24e630191975313e1d9bde9afb6decbb.jpg" alt="Trapstar Hoodie">
+					</div>
                         <p>#</p>
                     </div>
                     <div class="product-info">
-                        <h3>Classic Hoodie</h3>
+                        <h3>Trapstar Hoodie</h3>
                         <p>Timeless design perfect for any occasion</p>
-                        <div class="price">R450.00</div>
-                        <button class="btn">Add to Cart</button>
+                        <div class="price">R4999.99</div>
+						<button class="whatsapp-btn" onclick="sendToWhatsApp('Trapstar Hoodie - R4999.99')">Order on WhatsApp</button>
                     </div>
                 </div>
 
                 <div class="product-card">
                     <div class="product-image">
-                        <p>#</p>
+					<div class="sneaker-image" onclick="sendToWhatsApp('Hellstar (2) - R1499.99')">
+						 <img src="images/79466ac8b45b7423096b4f84ddc2d87c.jpg" alt="Hellstar Hoodie">
+					</div>
+                        <p>Available in multiple sizes and colors</p>
                     </div>
                     <div class="product-info">
-                        <h3>Sport Hoodie</h3>
+                        <h3>Hellstar Hoodie</h3>
                         <p>Breathable design ideal for active wear</p>
-                        <div class="price">R500.00</div>
-                        <button class="btn">Add to Cart</button>
+                        <div class="price">R4999.99</div>
+                    <button class="whatsapp-btn" onclick="sendToWhatsApp('Hellstar (2) - R1499.99')">Order on WhatsApp</button>
                     </div>
                 </div>
 
                 <div class="product-card">
                     <div class="product-image">
-                        <p>#</p>
+					<div class="sneaker-image" onclick="sendToWhatsApp('Grey Hellstar (2) - R1499.99')">
+						 <img src="images/d662acc7ab0a06c03c1f71cd05ab274a.jpg" alt="Grey Hellstar Hoodie">
+					</div>
+                        <p>Available in multiple sizes and colors</p>
                     </div>
                     <div class="product-info">
-                        <h3>Premium Hoodie</h3>
-                        <p>High-end materials with superior comfort</p>
-                        <div class="price">R550.00</div>
-                        <button class="btn">Add to Cart</button>
+                        <h3>Grey Hellstar Hoodie</h3>
+                        <p>Breathable design ideal for active wear</p>
+                        <div class="price">R4999.99</div>
+                    <button class="whatsapp-btn" onclick="sendToWhatsApp('Grey Hellstar (2) - R1499.99')">Order on WhatsApp</button>
                     </div>
                 </div>
 
                 <div class="product-card">
                     <div class="product-image">
-                        <p>#</p>
+					<div class="sneaker-image" onclick="sendToWhatsApp('Nike jersey (2) - R799.99')">
+						 <img src="images/6632f71e78fe82049a19796cb76058eb.jpg" alt="Grey Hellstar Hoodie">
+					</div>
+                        <p>Available in multiple sizes and colors</p>
                     </div>
                     <div class="product-info">
+                        <h3>Nike Jersey</h3>
+                        <div class="price">R799.99</div>
+                    <button class="whatsapp-btn" onclick="sendToWhatsApp('Nike Jersey (2) - R799.99')">Order on WhatsApp</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                    <div class="sneaker-image" onclick="sendToWhatsApp('Blue Hellstar (2) - R1499.99')">
+						 <img src="images/400dd5d00fd2826ce8c4b6635d36e9d2.jpg" alt="Blue Hellstar Hoodie">
+					</div>
+                        <p>Available in multiple sizes and colors</p>
+                    </div>
+                    <div class="product-info">
+                        <h3>Blue Hellstar Hoodie</h3>
+                        <p>Breathable design ideal for active wear</p>
+                        <div class="price">R4999.99</div>
+                    <button class="whatsapp-btn" onclick="sendToWhatsApp('Blue Hellstar (2) - R1499.99')">Order on WhatsApp</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                    <div class="sneaker-image" onclick="sendToWhatsApp('Urban Hoodie (2) - R1499.99')">
                         <h3>Urban Hoodie</h3>
                         <p>Modern style for the contemporary look</p>
-                        <div class="price">R500.00</div>
-                        <button class="btn">Add to Cart</button>
+                        <div class="price">R4999.99</div>
+					<button class="whatsapp-btn" onclick="sendToWhatsApp('Urban Hoodie (2) - R1499.99')">Order on WhatsApp</button>
                     </div>
                 </div>
             </div>
@@ -376,10 +412,18 @@
             <p>Have questions about our hoodies? Contact us anytime!</p>
             <p><strong>Email:</strong> info@plugs.com</p>
             <p><strong>Phone:</strong> ----------------</p>
-            <p><strong>Address:</strong> 70 Street, Pretoria, Gauteng</p>
-            <button class="btn">Send Message</button>
+            <button class="whatsapp-btn" onclick="sendToWhatsApp('Dunk (2) - R1499.99')">Send Message on WhatsApp</button>
         </div>
     </div>
+
+    <script>
+        function sendToWhatsApp(product) {
+            const phone = '+27761872761';
+            const message = `Hi! I'm interested in: ${product}`;
+            const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_https://wa.me/+27761872761?text=Hi!%20I%27m%20interested%20in%3A%20${encodeURIComponent(product)}');
+        }
+    </script>
 
     <footer>
         <p>&copy; 2026 THE PLUGS - Hoodies Collection. All rights reserved.</p>
