@@ -1,181 +1,145 @@
+/* Global reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-#header{
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: rgb(10, 8, 8);
-        padding: 60px 20px;
-        text-align: center;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        background-image: url('images/cover.jpg');
-        background-size:cover;
-        background-position: center;
-        }
+html,
+body {
+    min-height: 100%;
+}
 
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background: #f4f6fb;
+    color: #1d2330;
+}
+
+img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Navigation */
 nav {
-    background-color: #333;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    background: #222;
     padding: 15px 20px;
     position: sticky;
     top: 0;
     z-index: 100;
-    }
+}
 
 nav a {
-    color: white;
-    text-decoration: none;
-    padding: 10px 20px;
-    display: inline-block;
-    transition: background-color 0.3s;
-  }
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 8px;
+    transition: background 0.25s ease, transform 0.25s ease;
+}
 
 nav a:hover {
-        background-color: #667eea;
-        border-radius: 5px;
-    }
-
-
-body{
-    font-family: Arial, sans-serif;
+    background: #667eea;
+    transform: translateY(-1px);
 }
 
-/* Hamburger icon */
-.menu-icon {
-           width: 30px;
-           cursor: pointer;
-           position: absolute;
-           top: 20px;
-           right: 20px;
-        }
-
-        .menu-icon div{
-           height: 5px;
-           background-color: white;
-           margin: 6px 0;
-           border-radius: 2px;
-        }
-
-/* Hidden menu */
-        .menu {
-           display: none;
-           position: absolute;
-           top: 60px;
-           right: 20px;
-           background: #667eea;
-           width: 200px;
-           padding: 15px;
-           border-radius: 10px;
-        }
-
-       .menu a {
-           display: block;
-           text-decoration: none;
-           color: rgb(248, 245, 245);
-           padding: 10px 0;
-        }
-
-/* Hero Section */
-.hero{
-    height: 90vh;
-    background-size: cover;
-    display:flex;
-    justify-content: center;
+/* Hero section */
+.hero {
+    min-height: 55vh;
+    display: flex;
     align-items: center;
-    color: white;
-    padding: 20px;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9)),
+                url('images/hoodie-cover.jpg') center/cover no-repeat;
+    color: #fff;
+    position: relative;
 }
 
-.hero-content{
-    font-size: 55px;
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+}
+
+.hero-content h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    letter-spacing: 1px;
     margin-bottom: 20px;
 }
 
-.hero-content p{
-    font-size: 20px;
-    margin-bottom: 25px;
-}
-
-.hero-content button{
-    padding: 10px 20px;
-    border: none;
-    background: black;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 30px;
+.hero-content p {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    opacity: 0.95;
 }
 
 /* Products */
-.products{
+.products {
     padding: 60px 20px;
-    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.products h2{
-    font-size: 35px;
-    margin-bottom: 40px;
+.products h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 30px;
+    color: #1c2541;
 }
 
-.product-grid{
+.product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    gap: 24px;
 }
 
-.card{
-    background: rgb(249, 249, 253);
-    border-radius: 15px;
+.card {
+    background: #ffffff;
+    border-radius: 18px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: 0.3s;
+    border: 1px solid rgba(100, 116, 139, 0.15);
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.card:hover{
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-    background-color: #667eea;
 
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 50px rgba(15, 23, 42, 0.14);
 }
-.card img{
+
+.card img {
     width: 100%;
     height: 250px;
     object-fit: cover;
-}
-.card h3{
-    margin: 15px 0 10px;
-}
-.card p{
-    margin-bottom: 15px;
+    background: #e9edf8;
 }
 
-/* Request section */
-.request{
-    background: black;
-    color: white;
-    padding: 60px 20px;
-    text-align: center;
-}
-.request h2{
-    font-size: 35px;
-    margin-bottom: 20px;
-}
-.request p{
-    margin-bottom: 30px;
+.card h3 {
+    margin: 18px 20px 10px;
+    font-size: 1.2rem;
+    color: #111827;
 }
 
-.request button{
-    padding: 15px 35px;
-    border: none;
-    background: white;
-    color: black;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 30px;
-    margin-top: 10px;
+.card p {
+    margin: 0 20px 22px;
+    color: #4b5563;
+    font-size: 0.98rem;
 }
-.request input,
-.request textarea{
-    width: 100%;
-    max-width: 500px;
-    padding: 15px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 10px;
-}
-    

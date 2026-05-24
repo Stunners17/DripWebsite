@@ -1,73 +1,50 @@
-
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width,initial-scale=1" />
-	<title>DripWeb — Coming Soon</title>
-	<style>
-		:root{--accent:#ff6b6b;--bg:#0f1720;--muted:#9aa4b2}
-		*{box-sizing:border-box}
-		html,body{height:100%}
-		body{
-			margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-			background:linear-gradient(120deg,#071027 0%, #0f1720 40%), url('') center/cover no-repeat;
-			color:#e6eef6;display:flex;align-items:center;justify-content:center;padding:2rem;
-		}
-		.card{
-			width:100%;max-width:920px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-			border:1px solid rgba(255,255,255,0.04);padding:3rem;border-radius:14px;backdrop-filter: blur(6px);
-			box-shadow:0 10px 30px rgba(2,6,23,0.6);display:grid;grid-template-columns:1fr 360px;gap:2rem;align-items:center
-		}
-		.left h1{margin:0 0 .5rem;font-size:2.2rem;letter-spacing:-0.5px}
-		.tag{color:var(--accent);font-weight:600;margin-bottom:1rem;display:inline-block}
-		.lead{color:var(--muted);line-height:1.5;margin-bottom:1.25rem}
-		.count{
-			display:flex;gap:.75rem;margin-bottom:1.5rem
-		}
-		.count > div{background:rgba(255,255,255,0.03);padding:.6rem .9rem;border-radius:10px;min-width:64px;text-align:center}
-		.count .num{font-weight:700;font-size:1.1rem}
-		.subscribe{display:flex;gap:.5rem}
-		.subscribe input{flex:1;padding:.75rem 1rem;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit}
-		.subscribe button{padding:.75rem 1rem;border-radius:10px;border:none;background:var(--accent);color:#081016;font-weight:700;cursor:pointer}
-		.right{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:1.5rem;border-radius:10px;text-align:center}
-		.logo{width:86px;height:86px;border-radius:14px;background:linear-gradient(135deg,#fff1 0%, #fff0 40%);display:inline-flex;align-items:center;justify-content:center;font-weight:800;color:var(--accent);font-size:1.15rem;margin-bottom:.75rem}
-		.socials{display:flex;gap:.5rem;justify-content:center;margin-top:1rem}
-		.socials a{width:40px;height:40px;border-radius:8px;background:rgba(255,255,255,0.03);display:inline-flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none}
-		@media (max-width:820px){.card{grid-template-columns:1fr;max-width:720px}.right{order:-1}}
-	</style>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoodies | PLUGSA</title>
 </head>
 <body>
-	<main class="card" role="main">
-		<section class="left">
-			<div class="tag">COMING SOON</div>
-			<h1> Hoodies — Launching Shortly</h1>
-			<p class="lead">We're crafting something cozy and stylish. Sign up to get early access, launch news and special offers.</p>
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Hoodies Collection</h1>
+            <p>Street-ready hoodies for every season and style.</p>
+        </div>
+    </header>
 
-			<div class="count" aria-hidden>
-				<div><div class="num">12</div><div style="font-size:.75rem;color:var(--muted)">Days</div></div>
-				<div><div class="num">08</div><div style="font-size:.75rem;color:var(--muted)">Hours</div></div>
-				<div><div class="num">23</div><div style="font-size:.75rem;color:var(--muted)">Mins</div></div>
-				<div><div class="num">42</div><div style="font-size:.75rem;color:var(--muted)">Secs</div></div>
-			</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="hoodies.html">Hoodies</a>
+        <a href="fitted caps.html">Caps</a>
+        <a href="sneakers.html">Sneakers</a>
+    </nav>
 
-			<form class="subscribe" onsubmit="event.preventDefault();alert('Thanks — we will notify you!')">
-				<input type="email" placeholder="Enter your email" aria-label="Email address" required />
-				<button type="submit">Notify Me</button>
-			</form>
-		</section>
-
-		<aside class="right">
-			<div class="logo">DRIP</div>
-			<h3 style="margin:.5rem 0 0">Hoodies Collection</h3>
-			<p style="color:var(--muted);font-size:.95rem;margin:.5rem 0 0">Limited drops, premium materials, designed for comfort.</p>
-
-			<div class="socials">
-				<a href="#" aria-label="Instagram">IG</a>
-				<a href="#" aria-label="Twitter">TW</a>
-				<a href="#" aria-label="Facebook">FB</a>
-			</div>
-		</aside>
-	</main>
+    <section class="products">
+        <h2>Featured Hoodies</h2>
+        <div class="product-grid">
+            <div class="card">
+                <img src="#" alt="Classic Hoodie">
+                <h3>Classic Hoodie</h3>
+                <p>Soft and comfortable streetwear staple.</p>
+            </div>
+            <div class="card">
+                <img src="#" alt="Sport Hoodie">
+                <h3>Sport Hoodie</h3>
+                <p>Lightweight design built for active days.</p>
+            </div>
+            <div class="card">
+                <img src="#" alt="Premium Hoodie">
+                <h3>Premium Hoodie</h3>
+                <p>Premium materials with a relaxed fit.</p>
+            </div>
+            <div class="card">
+                <img src="#" alt="Urban Hoodie">
+                <h3>Urban Hoodie</h3>
+                <p>Bold graphics for the modern street look.</p>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
