@@ -10,6 +10,28 @@
         background-position: center;
         }
 
+nav {
+    background-color: #333;
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    }
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: inline-block;
+    transition: background-color 0.3s;
+  }
+
+nav a:hover {
+        background-color: #667eea;
+        border-radius: 5px;
+    }
+
+
 body{
     font-family: Arial, sans-serif;
 }
