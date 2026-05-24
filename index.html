@@ -2,121 +2,305 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PLUGSA - From the Streets to Your Closet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #667eea;
+            border-radius: 5px;
+        }
+
+/* Hamburger icon */
+       .menu-icon {
+           width: 30px;
+           cursor: pointer;
+           position: absolute;
+           top: 20px;
+           right: 20px;
+        }
+
+        .menu-icon div{
+           height: 5px;
+           background-color: white;
+           margin: 6px 0;
+           border-radius: 2px;
+        }
+
+/* Hidden menu */
+        .menu {
+           display: none;
+           position: absolute;
+           top: 60px;
+           right: 20px;
+           background: #667eea;
+           width: 200px;
+           padding: 15px;
+           border-radius: 10px;
+        }
+
+       .menu a {
+           display: block;
+           text-decoration: none;
+           color: rgb(248, 245, 245);
+           padding: 10px 0;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            border-color: #667eea;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background-color: #f0f0f0;
+        }
+
+        .card h3 {
+            margin: 15px 20px 10px;
+            font-size: 1.3em;
+            color: #333;
+        }
+
+        .card p {
+            margin: 0 20px 20px;
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .request {
+            background: #333;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .request h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+        }
+
+        .request p {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+
+        .request input,
+        .request textarea {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: Arial, sans-serif;
+        }
+
+        .request textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: opacity 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
+
 <body>
-    <div id="header">
+    <header>
         <h1>THE PLUGS</h1>
-    </div>
+        <p>From the Streets to Your Closet</p>
+    </header>
 
     <nav>
         <a href="index.html">Home</a>
         <a href="fitted caps.html">Products</a>
         <a href="#gallery">Gallery</a>
 
-<!--Hamburger Menu-->
-    <div class="menu-icon" onclick="toggleMenu()">
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-<!--Menu-->
-    <div class="menu" id="menu">
-        <a href="refer.html">Refer A Friend</a>
-        <a href="code.html">Codes</a>
-        <a href="services.html">Services</a>
-        <a href="contact.html">Contact</a>
-    </div>
+        <!--Hamburger Menu-->
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <!--Menu-->
+        <div class="menu" id="menu">
+            <a href="refer.html">Refer A Friend</a>
+            <a href="code.html">Codes</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+        </div>
     </nav>
 
-
-
     <!-- Products -->
-     <section class="products" id="products">
+    <section class="products" id="products">
         <div class="card" onclick="window.location.href='graphic-tees.html'">
-            <img src="#" alt="#">
-            <h3>GRAPHIC TEES></h3>
-            <p>Clean oversized drip. </p> 
+            <img src="#" alt="Graphic Tees">
+            <h3>GRAPHIC TEES</h3>
+            <p>Clean oversized drip.</p>
         </div>
 
         <div class="card" onclick="window.location.href='hoodies.html'">
             <img src="images/cover.jpg" alt="Hoodies">
-            <h3>Hoodies</h3>
-            <p>Warm and stylish hoodies </p> 
+            <h3>HOODIES</h3>
+            <p>Warm and stylish hoodies</p>
         </div>
 
-       <div class="card" onclick="window.location.href='sneakers.html'">
+        <div class="card" onclick="window.location.href='sneakers.html'">
             <img src="images/Graphic t cover.jpg" alt="Sneakers">
             <h3>SNEAKERS</h3>
-            <p>Fresh and streetwear sneakers </p> 
+            <p>Fresh and streetwear sneakers</p>
         </div>
 
-       <div class="card" onclick="window.location.href='fitted caps.html'">
-            <img src="images/fitted.jpg" alt="fitted caps">
+        <div class="card" onclick="window.location.href='fitted caps.html'">
+            <img src="images/fitted.jpg" alt="Fitted Caps">
             <h3>FITTED CAPS</h3>
-            <p>Classic fitted caps </p>
+            <p>Classic fitted caps</p>
         </div>
 
-       <div class="card" onclick="window.location.href='trackpants.html'">
-            <img src="#" alt="#">
+        <div class="card" onclick="window.location.href='trackpants.html'">
+            <img src="#" alt="Track Pants">
             <h3>TRACKPANTS</h3>
-            <p>Warm and stylish pants </p> 
+            <p>Warm and stylish pants</p>
         </div>
 
-       <div class="card" onclick="window.location.href='fitted caps.html'">
-            <img src="#" alt="#">
+        <div class="card" onclick="window.location.href='socks.html'">
+            <img src="#" alt="Socks">
             <h3>SOCKS</h3>
-            <p>Comfortable and durable socks </p>
+            <p>Comfortable and durable socks</p>
         </div>
+    </section>
 
     <!--Request an item-->
-        <section class="request" id="request">
+    <section class="request" id="request">
         <h2>Can't Find What You're Looking For?</h2>
 
-        <form 
-        action="https://formspree.io/f/mlgvezbq"
-        method="POST">
+        <form action="https://formspree.io/f/mlgvezbq" method="POST">
             <p>Let us know what you're looking for!</p>
 
-            <input 
-            type="text" 
-            name="item"
-            placeholder="Enter the item you want" 
-            required
+            <input
+                type="text"
+                name="item"
+                placeholder="Enter the item you want"
+                required
             >
 
-            <br><br>
-
-            <input 
-            type="text"
-            name="whatapp"
-            placeholder="Enter your WhatsApp number"
-            required
+            <input
+                type="text"
+                name="whatapp"
+                placeholder="Enter your WhatsApp number"
+                required
             >
 
             <textarea
-            id="details"
-            placeholder="Any specific details? (optional)"
-            name="details"
-             >
-            </textarea>
+                id="details"
+                placeholder="Any specific details? (optional)"
+                name="details"
+            ></textarea>
 
             <br><br>
 
-            <button type="submit" class="btn primary">
+            <button type="submit" class="btn">
                 Send Request
             </button>
-
         </form>
-        </section>
+    </section>
 
-        <footer>
-            <p>&copy; 2026 THE PLUGS. All rights reserved.</p>
-        </footer>
-
+    <footer>
+        <p>&copy; 2026 THE PLUGS. All rights reserved.</p>
+    </footer>
 
     <script>
         function toggleMenu() {
@@ -130,4 +314,5 @@
         }
     </script>
 </body>
+
 </html>
