@@ -219,6 +219,15 @@
     </section>
   </main>
 
+      <script>
+        function sendToWhatsApp(product) {
+            const phone = '+27761872761';
+            const message = `Hi! I'm interested in: ${product}`;
+            const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_https://wa.me/+27761872761?text=Hi!%20I%27m%20interested%20in%3A%20${encodeURIComponent(product)}');
+        }
+    </script>
+
   <footer class="site-footer">
         <p>&copy; 2026 THE PLUGS. All rights reserved.</p>
         <p>Designed and Developed by THE PLUGS Team</p>
