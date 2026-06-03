@@ -4,208 +4,857 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sneakers</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 40px;
-            color: #333;
-        }
-
-        .sneakers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .sneaker-card {
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .sneaker-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        .sneaker-image {
-            width: 100%;
-            height: 250px;
-            background-color: #e0e0e0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 60px;
-        }
-
-        .sneaker-info {
-            padding: 20px;
-        }
-
-		.sneaker-info p {
-			margin-bottom: 15px;
-			color: #666;
-			font-size: 0.95em;
-		}
-
-        .sneaker-name {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        .sneaker-price {
-            font-size: 16px;
-            color: #007bff;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .whatsapp-btn {
-            width: 100%;
-            padding: 10px;
-            background-color: #25d366;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 14px;
-            transition: background-color 0.3s ease;
-        }
-
-        .whatsapp-btn:hover {
-            background-color: #20ba5a;
-        }
-    </style>
 </head>
+<style>
+    /* Hamburger icon */
+.menu-icon {
+    width: 30px;
+    cursor: pointer;
+    position: absolute;
+    top: -20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 30px;
+
+}
+
+.menu-icon div {
+    height: 4px;
+    background-color: white;
+    border-radius: 2px;
+}
+
+/* Hidden menu */
+.menu {
+    position: fixed;
+    top: 0;
+    left: -280px; /* Hidden off-screen */
+    background-image: url("images/Jordan 1 Cover.jpg");
+    background-size: cover;
+    background-position: center;
+    width: 250px;
+    height: 100vh;
+    transition: left 0.4s ease;
+    padding-top: 50px;
+    z-index: 99999;
+}
+
+.menu a {
+    display: block;
+    text-decoration: none;
+    color: rgb(244, 243, 248);
+    padding: 30px 0;
+    box-shadow: 0 4px 6px rgba(174, 1, 1, 0.881);
+    border-radius: 5px;
+}
+.menu a:hover {
+    background: rgba(255, 255, 255, 0.8);
+    color: black;
+}
+
+.menu.active {
+    left: 0; /*Slide in the menu*/
+}
+
+nav {
+    position: relative;
+    z-index: 99999;
+
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-image: url("images/Red And White J4 Cover.jpg");
+    background-size: cover;
+    position: relative;
+}
+
+.header {
+    background: none;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    margin: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-top: 3px solid #ccc;
+}
+
+.header h1 {
+    font-size: 28px;
+}
+
+.products {
+    margin-bottom: 70px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 30px;
+    border-top: 1px solid #ccc;
+}
+
+.product {
+    margin-bottom: 20px;
+    width: 250px;
+    height: 350px;
+
+}
+
+.product img {
+    width: 100%;
+    height: 250px;
+    aspect-ratio: 1/1.2;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.product .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.product:hover .overlay {
+    opacity: 10;
+}
+
+
+.name {
+    font-size: 14px;
+    margin-top: 8px;
+    line-height: 1.3;
+}
+
+.price {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 4px;
+}
+
+.details {
+    font-size: 25px;
+    font-weight: bold;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 10px;
+    text-align:left;
+    color: #fff;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+
+/* Request section */
+.request{
+    background: black;
+    color: white;
+    padding: 15px 10px;
+    text-align: center;
+    margin-top: 750px;
+}
+.request h2{
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+.request p{
+    margin-bottom: 30px;
+}
+
+.request button{
+    padding: 15px 35px;
+    border: none;
+    background: white;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 30px;
+    margin-top: 10px;
+}
+.request input,
+.request textarea{
+    width: 100%;
+    max-width: 500px;
+    padding: 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 10px;
+}
+
+filter-btn {
+    display:content;
+    flex-direction: column;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    width: 100px;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+}
+
+filter-btn svg{
+    width: 30px;
+    height: 30px;
+
+}
+
+.span {
+    font-size: 20px;
+    font-weight: 600;
+    background: white;
+    padding: 15px 20px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.details-b h2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 20px;
+    font-weight: 600;
+    background: white;
+    padding: 15px 20px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+
+}
+
+.details-b{
+    width: 100%;
+    height: 100vh;
+    font-size: 25px;
+    font-weight: bold;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 10px;
+    text-align:left;
+    color: #fff;
+    border-top: 1px solid #ccc;
+    position: relative;
+    margin-bottom: 200px;
+}
+
+.details-b img{
+    width: 100%;
+    aspect-ratio: 1/1.2;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.details-b .product{
+    margin-bottom: 500px;
+    display: grid;
+    grid-template-columns: repeat(1, 2fr,);
+    gap: 15px;
+    padding: 30px;
+    border-top: 1px solid #ccc;
+}
+
+.product button,
+.details button {
+    display: inline-block;
+    padding: 12px 18px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #f8f7f6;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product button:hover,
+.details button:hover {
+    background: #9d0000;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+    color: chartreuse;
+}
+
+.product button:active,
+.details button:active {
+    transform: translateY(0);
+}
+
+</style>
 <body>
-    <div class="container">
-        <h1>Our Sneakers Collection</h1>
-        
-        <div class="sneakers-grid">
-            <!-- Sneaker 1 -->
-            <div class="sneaker-card">
-                <div class="sneaker-image" onclick="sendToWhatsApp('Sneaker 1 - Air Force 1')">
-                    <img src="images/Airforce 1.jpg" alt="Sneaker 1" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <div class="sneaker-info">
-                    <div class="sneaker-name">Air Force 1</div>
-					<p>Available in all colours and sizes</p>
-                    <button class="whatsapp-btn" onclick="sendToWhatsApp('Air Force 1')">Order</button>
-                </div>
-            </div>
+    <div class="header">
+        <h1>SNEAKER COLLECTION</h1>
 
-            <!-- Sneaker 2 -->
-            <div class="sneaker-card">
-                <div class="sneaker-image" onclick="sendToWhatsApp('Sneaker 2 - Dunk (2)')">
-                    <img src="images/dunk (2).jpg" alt="Sneaker 2" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <div class="sneaker-info">
-                    <div class="sneaker-name">Dunk (2)</div>
-					<strong><p>Available in all colours and sizes</p></strong>
-                    <button class="whatsapp-btn" onclick="sendToWhatsApp('Dunk (2)')">Order</button>
-                </div>
-            </div>
+        <!--Hamburger Menu-->
+    <nav>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <!--Menu-->
+        <div class="menu" id="menu">
+            <a href="index.html">Home</a>
+            <a href="Hoodies.html">Hoddies</a>
+            <a href="fitted caps.html">Fitted Caps</a>
+            <a href="graphic-tee.html">Refer A Friend</a>
+            <a href="refer.html">Refer A Friend</a>
+            <a href="code.html">Codes</a>
+            
+        </div>
+    </nav>
+    </div>
 
-            <!-- Sneaker 3 -->
-            <div class="sneaker-card">
-                <div class="sneaker-image" onclick="sendToWhatsApp('Sneaker 3 - Dunk')">
-                    <img src="images/dunk.jpg" alt="Sneaker 3" style="width: 100%; height: 100%; object-fit: cover;">
+    <div class="products">
+        <div class="product">
+            <img src="images/Adidas Cumpus (2).jpg" alt="Adidas Campus">
+                <div class="details">
+                    <p class="name">
+                        Adidas Campus 00S BLACK/WHITE
+                    </p>
+                    <p class="price">
+                    </p>
+                    <button onclick="addToCart(
+                        'Adidas Campus 00S SHOES BLACK/WHITE',
+                        999.99 ,
+                        'images/Adidas Cumpus (2).jpg'
+                        )">
+                         🛒R999.99
+                    </button>
                 </div>
-                <div class="sneaker-info">
-                    <div class="sneaker-name">Dunk</div>
-					<strong><p>Available in all colours and sizes</p></strong>
-                    <button class="whatsapp-btn" onclick="sendToWhatsApp('Dunk ')">Order</button>
-                </div>
-            </div>
+        </div>
 
-            <!-- Sneaker 4 -->
-            <div class="sneaker-card">
-                <div class="sneaker-image" onclick="sendToWhatsApp('Sneaker 4 - JORDAN 4')">
-                    <img src="images/IMG-20260518-WA0018_edit_92767639438969.jpg" alt="Sneaker 4" style="width: 100%; height: 100%; object-fit: cover;">
+        <div class="product">
+            <img src="images/Black Nike Shox (3).jpg" alt="Black Nike Shox">
+                <div class="details">
+                    <p class="name">
+                        NIKE SHOX TL BLACK/WHITE
+                    </p>
+                    <p class="price">
+                    </p>
+                    <button onclick="addToCart(
+                        'NIKE SHOX TL BLACK/WHITE',
+                        1499.99 ,
+                        'images/Black Nike Shox (3).jpg'
+                        )">
+                         🛒 R1499.99
+                    </button>
                 </div>
-                <div class="sneaker-info">
-                    <div class="sneaker-name">JORDAN 4</div>
-					<strong><p>Available in all colours and sizes</p></strong>
-                    <button class="whatsapp-btn" onclick="sendToWhatsApp('JORDAN 4 ')">Order</button>
-                </div>
-            </div>
+        </div>
 
-            <!-- Sneaker 5 -->
-            <div class="sneaker-card">
-                <div class="sneaker-image" onclick="sendToWhatsApp('Sneaker 5 - JORDAN 1')">
-                    <img src="images/jordans.jpg" alt="Sneaker 5" style="width: 100%; height: 100%; object-fit: cover;">
+        <div class="product">
+            <img src="images/Black And White J1.jpg" alt="Black And White J1">
+                <div class="details">
+                    <p class="name">
+                        JORDAN 1 RETRO HIGH 85 BLACK/WHITE
+                    </p>
+                    <p class="price">
+                    </p>
+                    <button onclick="addToCart(
+                        'JORDAN 1 RETRO HIGH 85 BLACK/WHITE',
+                        1499.99 ,
+                        'images/Black And White J1.jpg'
+                        )">
+                         🛒 R1499.99
+                    </button>
                 </div>
-                <div class="sneaker-info">
-                    <div class="sneaker-name">JORDAN 1</div>
-					<strong><p>Available in all colours and sizes</p></strong>
-                    <button class="whatsapp-btn" onclick="sendToWhatsApp('JORDAN 1')">Order </button>
-                </div>
-            </div>
+        </div>
 
-            <!-- Socks -->
-            <div class="sneaker-card">
-                <div class="sneaker-image" onclick="sendToWhatsApp('Socks - R49.99')">
-                    <img src="images/48eb56f631405a7ed501650762a4fabf.jpg" alt="Socks" style="width: 100%; height: 100%; object-fit: cover;">
+        <div class="product">
+            <img src="images/Black And white dunk.jpg" alt="Black And White Dunk">
+                <div class="details">
+                    <p class="name">
+                        NIKE DUNK LOW BLACK/WHITE
+                    </p>
+                    <p class="price">
+                    </p>
+                    <button onclick="addToCart(
+                        'NIKE DUNK LOW BLACK/WHITE',
+                        1199.99 ,
+                        'images/Black And White Dunk.jpg'
+                        )">
+                         🛒 1199.99
+                    </button>
                 </div>
-                <div class="sneaker-info">
-                    <div class="sneaker-name">Nike Socks</div>
-                    <button class="whatsapp-btn" onclick="sendToWhatsApp('Socks - R199.99')">Order</button>
+        </div>
+    
+        <div class="product">
+            <img src="images/Blue And White Uptempo (2).jpg" alt="Blue And White Uptempo">
+                <div class="details">
+                    <p class="name">
+                        AIR MORE UPTEMPO 96 WHITE/BLUE
+                    </p>
+                    <p class="price">
+                    </p>
+                    <button onclick="addToCart(
+                        'AIR MORE UPTEMPO 96 WHITE/BLUE',
+                        1899.99 ,
+                        'images/Blue And White Uptempo (2).jpg'
+                        )">
+                         🛒 R1899.99
+                    </button>
                 </div>
-            </div>
-			<div class="sneaker-card">
-                <div class="sneaker-image" onclick="sendToWhatsApp('Socks - R199.99')">
-                    <img src="images/71eff82b794ca6e0a3ac219f713b1427.jpg" alt="Socks" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+
+        <div class="product">
+            <img src="images/Green And White Airforce 1.jpg" alt="Green And White Airforce 1">
+                <div class="details">
+                    <p class="name">
+                        NIKE AIR FORCE 1 '07 WHITE/GREEN
+                    </p>
+                    <p class="price">
+                    </p>
+                    <button onclick="addToCart(
+                        'NIKE AIR FORCE 1 \'07 WHITE/GREEN',
+                        1899.99 ,
+                        'images/Green And White Airforce 1.jpg'
+                        )">
+                         🛒 R1899.99
+                    </button>
                 </div>
-                <div class="sneaker-info">
-                    <div class="sneaker-name"> Jordan Socks</div>
-                    <div class="sneaker-price">R199.99</div>
-                    <button class="whatsapp-btn" onclick="sendToWhatsApp('Socks - R199.99')">Order</button>
+        </div>
+
+        <div class="product">
+            <img src="images/Jaritos Dunk (2).jpg" alt="Jaritos Dunk">
+                <div class="details">
+                    <p class="name">
+                        NIKE SB DUNK LOW PRO ISO JARITOS
+                    </p>
+                    <p class="price">
+                    </p>
+                    <button onclick="addToCart(
+                        'NIKE SB DUNK LOW PRO ISO JARITOS',
+                        3999.99 ,
+                        'images/Jaritos Dunk (2).jpg'
+                        )">
+                         🛒 3999.99
+                    </button>
                 </div>
-            </div>
-            <div class="sneaker-card">
-                <div class="sneaker-image" onclick="sendToWhatsApp('Socks - R49.99')">
-                    <img src="images/132c5e3c4dbd8053c6f415c4f134f1db.jpg" alt="Socks" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+
+        <div class="product">
+            <img src="images/Nike Shox (2).jpg" alt="Nike Shox">
+                <div class="details">
+                    <p class="name">
+                        NIKE SHOX TL WHITE
+                    </p>
+                    <p class="price">
+                    </p>
+                    <button onclick="addToCart(
+                        'NIKE SHOX TL WHITE',
+                        1499.99 ,
+                        'images/Nike Shox (2).jpg'
+                        )">
+                         🛒 R1699.99
+                    </button>
                 </div>
-                <div class="sneaker-info">
-                    <div class="sneaker-name">Socks</div>
-                    <div class="sneaker-price">R49.99</div>
-                    <button class="whatsapp-btn" onclick="sendToWhatsApp('Socks - R49.99')">Order</button>
+        </div>
+
+        <div class="product">
+            <img src="images/Red And White J1.jpg" alt="Red And White J1">
+                <div class="details">
+                    <p class="name">
+                        JORDAN 1 RETRO HIGH 85 RED/WHITE
+                    </p>
+                    <p class="price">
+                    </p>
+                    <button onclick="addToCart(
+                        'JORDAN 1 RETRO HIGH 85 RED/WHITE',
+                        1499.99 ,
+                        'images/Red And White J1.jpg'
+                        )">
+                         🛒 R1499.99
+                    </button>
                 </div>
-            </div>
+        </div>
+
+        <div class="product">
+            <img src="images/Red And White J4.jpg" alt="Red And White J4">
+                <div class="details">
+                    <p class="name">
+                        JORDAN 4 RETRO FIRE RED
+                    </p>
+                    <p>
+                    </p>
+                    <p class="price">
+                    </p>
+                    <button onclick="addToCart(
+                        'JORDAN 4 RETRO FIRE RED',
+                        1999.99 ,
+                        'images/Red And White J4.jpg'
+                        )">
+                         🛒 R1999.99
+                    </button>
+                </div>
+        </div>
+
+        <div class="product">
+            <img src="images/Three colour J4 (2).jpg" alt="Three colour J4">
+                <div class="details">
+                    <p class="name">
+                        AIR JORDAN 4 RETRO SB PINE GREEN
+                    </p>
+                    <p class="price">
+                    </p>
+                    <button onclick="addToCart(
+                        'AIR JORDAN 4 RETRO SB PINE GREEN',
+                        2500 ,
+                        'images/Three colour J4 (2).jpg'
+                        )">
+                         🛒 R2499.99
+                    </button>
+                </div>
+        </div>
+
+        <div class="product">
+            <img src="images/Black And Red UpTempo.jpg" alt="Black And Red UpTempo">
+                <div class="details">
+                    <p class="name">
+                        NIKE MORE UPTEMPO 96 BLACK/RED
+                    </p>
+                    <p class="price">
+                    </p>
+                    <button onclick="addToCart(
+                        'NIKE MORE UPTEMPO 96 BLACK/RED',
+                        1899.99 ,
+                        'images/Black And Red UpTempo.jpg'
+                        )">
+                         🛒 R1899.99
+                    </button>
+                </div>
+        </div>
+
+        <div class="product">
+            <img src="images/White Airforce 1.jpg" alt="White Airforce 1">
+                <div class="details">
+                    <p class="name">
+                        NIKE AIR FORCE 1LOW '07 WHITE
+                    </p>
+                    <p class="price">
+                    </p>
+                    <button onclick="addToCart(
+                        'NIKE AIR FORCE 1LOW \'07 WHITE',
+                        1499.99 ,
+                        'images/White Airforce 1.jpg'
+                        )">
+                         🛒 1499.99
+                    </button>
+                </div>
+        </div>
+
+        <div class="product">
+            <img src="images/Screenshot_20260531_093443_com.bash.prod_edit_8255157547177.jpg" alt="Adidas samba">
+                <div class="details">
+                    <p class="name">
+                     ADIDAS WOMEN'S SAMBA WHITE/ALUMINA
+                    </p>
+                    <p class="price">
+                    </p>
+                    <button onclick="addToCart(
+                        'ADIDAS WOMEN\'S SAMBA WHITE/ALUMINA',
+                        999.99 ,
+                        'images/Screenshot_20260531_093443_com.bash.prod_edit_8255157547177.jpg'
+                        )">
+                         🛒R999.99
+                    </button>
+                </div>
+        </div>
+
+        <div class="product">
+            <img src="images/Black And White J4 (2).jpg" alt="Black And White J4">
+                <div class="details">
+                    <p class="name">
+                        AIR JORDAN 4 RETRO "MILITARY BLACK"
+                    </p>
+                    <p class="price">
+                    </p>
+                    <button onclick="addToCart(
+                        'AIR JORDAN 4 RETRO \'MiLITARY BLACK',
+                        1999.99 ,
+                        'images/Black And White J4 (2).jpg'
+                        )">
+                         🛒R1999.99
+                    </button>
+                </div>
+        </div>
+
+        <div class="product">
+            <img src="images/Red And White Dunk.jpg" alt="Red And White Dunk">
+                <div class="details">
+                    <p class="name">
+                        NIKE DUNK LOW SP RED/WHITE
+                    </p>
+                    <p class="price">
+                    </p>
+                    <button onclick="addToCart(
+                        'NIKE DUNK LOW SP SR.JOHN\'S RED/WHITE',
+                        1499.99 ,
+                        'images/Red And White Dunk.jpg'
+                        )">
+                         🛒1499.99
+                    </button>
+                </div>
+        </div>
+
+        <div class="product">
+            <img src="images/Purple And White J1.jpg" alt="Purple And White J1">
+                <div class="details">
+                    <p class="name">
+                        JORDAN 1 RETRO HIGH OG COURT PURPLE
+                    </p>
+                    <p class="price">
+                    </p>
+                    <button onclick="addToCart(
+                        'JORDAN 1 RETRO HIGH OG COURT PURPLE',
+                        1999.99 ,
+                        'images/Purple And White J1.jpg'
+                        )">
+                         🛒R1999.99
+                    </button>
+                </div>
+        </div>
+
+        <div class="product">
+            <img src="images/Screenshot_20260531_093041_com.bash.prod_edit_8145303090423.jpg" alt="white nike sneakers">
+                <div class="details">
+                    <p class="name">
+                        NIKE MEN'S SHOX WHITE/METALLIC SILVER
+                    </p>
+                    <p class="price">
+                    </p>
+                    <button onclick="addToCart(
+                        'NIKE MEN\'S SHOX R4 WHITE/METALLIC SILVER',
+                        1699.99 ,
+                        'images/Screenshot_20260531_093041_com.bash.prod_edit_8145303090423.jpg'
+                        )">
+                         🛒1699.99
+                    </button>
+                </div>
+        </div>
+
+        <div class="product">
+            <img src="images/Screenshot_20260601_184817_com.bash.prod_edit_27198509936995.jpg" alt="white nike sneakers">
+                <div class="details">
+                    <p class="name">
+                        NEW BALANCE 9060 MEN'S SNEAKER BLACK 
+                    </p>
+                    <p class="price">
+                    </p>
+                    <button onclick="addToCart(
+                        'NEW BALANCE 9060 MEN\'S SNEAKER BLACK',
+                        1699.99 ,
+                        'images/Screenshot_20260601_184817_com.bash.prod_edit_27198509936995.jpg'
+                        )">
+                         🛒1699.99
+                    </button>
+                </div>
+        </div>
+
+        <div class="product">
+            <img src="images/Screenshot_20260601_184801_com.android.chrome_edit_27206222430744.jpg" alt="white nike sneakers">
+                <div class="details">
+                    <p class="name">
+                        NEW BALANCE 327 SNEAKER WHITE/BLACK
+                    </p>
+                    <p class="price">
+                    </p>
+                    <button onclick="addToCart(
+                        'NEW BALANCE 327 SNEAKER WHITE/BLACK',
+                        999.99 ,
+                        'images/Screenshot_20260601_184801_com.android.chrome_edit_27206222430744.jpg'
+                        )">
+                         🛒R999.99
+                    </button>
+                </div>
+        </div>
+
+        <div class="product">
+            <img src="images/Screenshot_20260603_131215_com.bash.prod_edit_59878916524716.jpg" alt="white nike sneakers">
+                <div class="details">
+                    <p class="name">
+                        BLACK AND WHITE DIESEL S-UKIYO SNEAKER
+                    </p>
+                    <p class="price">
+                    </p>
+                    <button onclick="addToCart(
+                        'BLACK AND WHITE DIESEL S-UKIYO SNEAKER',
+                        1999.99 ,
+                        'images/Screenshot_20260603_131215_com.bash.prod_edit_59878916524716.jpg'
+                        )">
+                         🛒R1999.99
+                    </button>
+                </div>
+        </div>
+
+        <div class="product">
+            <img src="images/Screenshot_20260531_093243_com.bash.prod_edit_8167830652920.jpg" alt="white nike sneakers">
+                <div class="details">
+                    <p class="name">
+                        NIKE AIRMAX 90 SNEAKERS
+                    </p>
+                    <p class="price">
+                    </p>
+                    <button onclick="addToCart(
+                        'NIKE AIR MAX 90 SNEAKERS',
+                        2499.99 ,
+                        'images/Screenshot_20260531_093243_com.bash.prod_edit_8167830652920.jpg'
+                        )">
+                         🛒R2499.99
+                    </button>
+                </div>
+        </div>
+
+        <div class="product">
+            <img src="images/Screenshot_20260603_131306_com.android.chrome_edit_59895494162214.jpg" alt="white nike sneakers">
+                <div class="details">
+                    <p class="name">
+                        LACOSTE MEN'S SNEAKERS
+                    </p>
+                    <p class="price">
+                    </p>
+                    <button onclick="addToCart(
+                        'NIKE AIR MAX 90 SNEAKERS',
+                        2499.99 ,
+                        'images/Screenshot_20260603_131306_com.android.chrome_edit_59895494162214.jpg'
+                        )">
+                         🛒R2499.99
+                    </button>
+                </div>
+        </div>
+
+    </div>
+
+    <div class="header">
+        <h1>SOCKS</h1>
+    </div>
+    <div class="details-b">
+        <div class="product">
+            <img src="images/48eb56f631405a7ed501650762a4fabf.jpg" alt="socks">
+                <div class="details">
+                    <p class="name">
+                        Nike Socks
+                    </p>
+                    <p class="price">
+                    </p>
+                    <button onclick="addToCart(
+                        'Nike Socks',
+                        199.99 ,
+                        'images/48eb56f631405a7ed501650762a4fabf.jpg'
+                        )">
+                         🛒R199.99
+                    </button>
+                </div>
+
+            <img src="images/71eff82b794ca6e0a3ac219f713b1427.jpg" alt="socks">
+                <div class="details">
+                    <p class="name">
+                        Jordan Socks
+                    </p>
+                    <p class="price">
+                    </p>
+                    <button onclick="addToCart(
+                        'Jordan Socks',
+                        199.99 ,
+                        'images/71eff82b794ca6e0a3ac219f713b1427.jpg'
+                        )">
+                         🛒199.99
+                    </button>
+                </div>
+            <img src="images/132c5e3c4dbd8053c6f415c4f134f1db.jpg" alt="socks">
+                <div class="details">
+                    <p class="name">
+                        NO Name Socks
+                    </p>
+                    <p class="price">
+                    </p>
+                    <button onclick="addToCart(
+                        'Jordan Socks',
+                        49.99 ,
+                        'images/71eff82b794ca6e0a3ac219f713b1427.jpg'
+                        )">
+                         🛒R49.99
+                    </button>
+                </div>
         </div>
     </div>
 
+    <!--Request an item-->
+    <section class="request" id="request">
+        <h2>Can't Find What You're Looking For?</h2>
 
+        <form action="https://formspree.io/f/mlgvezbq" method="POST">
+            <p>Let us know what you're looking for!</p>
+
+            <input
+                type="text"
+                name="item"
+                placeholder="Enter the item you want"
+                required
+            >
+
+            <input
+                type="text"
+                name="whatapp"
+                placeholder="Enter your WhatsApp number"
+                required
+            >
+
+            <textarea
+                id="details"
+                placeholder="Any specific details? (optional)"
+                name="details"
+            ></textarea>
+
+            <br><br>
+
+            <button type="submit" class="btn">
+                Send Request
+            </button>
+        </form>
+    </section>
 
     <script>
-        function sendToWhatsApp(product) {
-            const phone = '+27761872761';
-            const message = `Hi! I'm interested in: ${product}`;
-            const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-            window.open(url, '_https://wa.me/+27761872761?text=Hi!%20I%27m%20interested%20in%3A%20${encodeURIComponent(product)}');
+        function toggleMenu() {
+            document.getElementById("menu").classList.toggle("active");
+        }
+
+        // Close the menu when clicking outside
+        document.addEventListener("click", function(event) {
+            const menu = document.getElementById("menu");
+            const menuIcon = document.querySelector(".menu-icon");
+
+            if (
+                !menu.contains(event.target) &&
+                 !menuIcon.contains(event.target)
+                ) {
+                menu.classList.remove("active");
+            }
+        });
+
+        function addToCart(name, price, image) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({
+                name: name,
+                price: price,
+                image: image,
+                quantity: 1
+            });
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+                alert(name + " has been added to your cart!");
+                updateCartCount();
         }
     </script>
 </body>
