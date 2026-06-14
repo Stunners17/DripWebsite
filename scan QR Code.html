@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Coming Soon</title>
     <style>
+      html {
+        min-height: 100%;
+        overflow-x: hidden;
+        text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+      }
       body {
         margin: 0;
         padding: 0;
@@ -15,6 +21,17 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      img, picture, video, canvas, svg, iframe {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+      button, input, select, textarea {
+        max-width: 100%;
       }
 
       .container {

@@ -2,13 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Hoodies - DripWeb</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html {
+            min-height: 100%;
+            overflow-x: hidden;
+            text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        img, picture, video, canvas, svg, iframe {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        button, input, select, textarea {
+            max-width: 100%;
+        }
+
+        .container,
+        .products,
+        .product-grid,
+        .section,
+        .image-section,
+        .feature-card,
+        .product-card,
+        .cart-items,
+        .summary,
+        .request,
+        .card,
+        .content {
+            width: 100%;
         }
 
         body {
