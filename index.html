@@ -27,17 +27,31 @@
             align-items:center;
             text-align:center;
             padding:60px 20px;
-
-            background:
-            linear-gradient(rgba(0,0,0,.6),
-            rgba(0,0,0,.6)),
-            url(images/cover\ photo\ .jpg);
-
-            background-size:cover;
-            background-position:center;
-            border-bottom: 1px solid #ccc;;
+            position:relative;
+            overflow:hidden;
         }
 
+        header::before{
+           content:"";
+           position:absolute;
+           inset:0;
+
+           background:
+           linear-gradient(rgba(0,0,0,.6),
+         rgba(0,0,0,.6)),
+           url(images/cover\ photo\ .jpg);
+
+          background-size:cover;
+          background-position:center;
+
+          filter:blur(8px);
+          transform:scale(1.1);
+        }
+
+        header *{
+            position:relative;
+            z-index:1;
+        }
         
 
         header h1{
