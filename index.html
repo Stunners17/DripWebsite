@@ -6,6 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PLUGSA - From the Streets to Your Closet</title>
     <style>
+        :root {
+            color-scheme: dark;
+            --bg: #080808;
+            --surface: rgba(22, 22, 22, 0.94);
+            --surface-strong: #111;
+            --text: #f7f7f7;
+            --muted: #c7c7c7;
+            --accent: #f7ff00;
+            --accent-dark: #e2b800;
+            --danger: #ff1f3a;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,296 +26,313 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: black;
+            color: var(--text);
+            background: radial-gradient(circle at top, rgba(247, 255, 0, 0.1), transparent 25%),
+                        linear-gradient(180deg, #050505 0%, #0f0f0f 100%);
+            min-height: 100vh;
         }
 
-        header{
-            min-height:100vh;
-            display:flex;
-            flex-direction:column;
-            justify-content:center;
-            align-items:center;
-            text-align:center;
-            padding:60px 20px;
-            position:relative;
-            overflow:hidden;
-            color: aliceblue;
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+            color: var(--text);
         }
 
-        header::before{
-           content:"";
-           position:absolute;
-           inset:0;
-
-           background:
-           linear-gradient(rgba(0,0,0,.6),
-         rgba(0,0,0,.6)),
-           url(images/cover\ photo\ .jpg);
-
-          background-size:cover;
-          background-position:center;
-
-          filter:blur(8px);
-          transform:scale(1.1);
+        header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(180deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)),
+                url(images/cover\ photo\ .jpg) center/cover no-repeat;
+            filter: brightness(0.7) contrast(1.1);
+            transform: scale(1.05);
+            z-index: 0;
         }
 
-        header *{
-            position:relative;
-            z-index:1;
+        header * {
+            position: relative;
+            z-index: 1;
         }
-        
 
-        header h1{
-            font-size: clamp(3rem,10vw,6.5rem);
-            margin:0;
-            letter-spacing:8px;
+        header h1 {
+            font-size: clamp(3.5rem, 9vw, 6.5rem);
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--muted);
+            margin-bottom: 2rem;
         }
 
         nav {
-            background-color: #333;
-            padding: 15px 20px;
+            background: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 18px 24px;
             position: sticky;
             top: 0;
             z-index: 100;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
         }
 
         nav a {
-            color: white;
+            color: var(--text);
             text-decoration: none;
-            padding: 10px 20px;
-            display: inline-block;
-            transition: background-color 0.3s;
+            padding: 10px 16px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            transition: transform 0.2s ease, color 0.2s ease, background 0.2s ease;
         }
 
         nav a:hover {
-            background-color: #667eea;
-            border-radius: 5px;
+            color: var(--accent);
+            transform: translateY(-1px);
         }
 
-/* Hamburger icon */
-       .menu-icon {
-           width: 30px;
-           cursor: pointer;
-           position: absolute;
-           top: 20px;
-           right: 20px;
-        }
-
-        .menu-icon div{
-           height: 5px;
-           background-color: white;
-           margin: 6px 0;
-           border-radius: 2px;
-        }
-
-/* Hidden menu */
-        .menu {
-           display: none;
-           position: absolute;
-           top: 60px;
-           right: 20px;
-           background: #667eea;
-           width: 200px;
-           padding: 15px;
-           border-radius: 10px;
-        }
-
-       .menu a {
-           display: block;
-           text-decoration: none;
-           color: rgb(248, 245, 245);
-           padding: 10px 0;
-        }
-
-
-        .products{
-            display:grid;
-            grid-template-columns:repeat(2,1fr);
-            gap:15px;
-            padding:20px;
-        }
-
-
-        .card {
-            background: white;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            overflow: hidden;
-            transition:.2s;
+        .menu-icon {
+            width: 32px;
             cursor: pointer;
+            position: absolute;
+            top: 18px;
+            right: 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 24px;
         }
 
-        .card:active{
-            transform: scale(.98);
+        .menu-icon div {
+            height: 3px;
+            background-color: var(--text);
+            border-radius: 2px;
         }
 
-        .card:hover {
-            border-color: #667eea;
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
+        .menu {
+            display: none;
+            position: absolute;
+            top: 62px;
+            right: 20px;
+            background: #111;
+            width: 220px;
+            padding: 18px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: var(--shadow);
         }
 
-        .card img{
-            width:100%;
-            height:180px;
-            object-fit:cover;
+        .menu a {
+            display: block;
+            text-decoration: none;
+            color: var(--text);
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
 
-        .card h3 {
-            margin: 15px 20px 10px;
-            font-size: 1.3em;
-            color: #333;
+        .menu a:last-child {
+            border-bottom: none;
         }
 
-        .card p {
-            margin: 0 20px 20px;
-            color: #666;
-            font-size: 0.95em;
+        .article {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.06));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.38);
+            border-radius: 28px;
+            padding: 40px;
+            margin: 40px 20px;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 36px;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .article img {
+            width: 100%;
+            height: 360px;
+            object-fit: cover;
+            border-radius: 18px;
+            filter: saturate(1.05) contrast(1.05);
+        }
+
+        .article button {
+            width: auto;
+            padding: 18px 36px;
+            margin-top: 24px;
+            background: transparent;
+            color: var(--text);
+            border: 2px solid var(--accent);
+            border-radius: 999px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            font-weight: 800;
+            transition: background 0.25s ease, transform 0.25s ease, color 0.25s ease;
+            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.25);
+        }
+
+        .article button:hover {
+            background: rgba(247, 255, 0, 0.12);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .article h2 {
+            font-size: clamp(2.4rem, 4vw, 3.6rem);
+            margin-bottom: 1rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text);
+        }
+
+        .article p {
+            font-size: 1rem;
+            line-height: 1.9;
+            color: var(--muted);
+            max-width: 38rem;
         }
 
         .request {
-            background: #333;
-            color: white;
-            padding: 60px 20px;
+            background: #090909;
+            color: var(--text);
+            padding: 60px 24px;
             text-align: center;
-            margin-top: 40px;
+            margin: 40px 20px 60px;
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 26px;
         }
 
         .request h2 {
-            font-size: 2em;
-            margin-bottom: 30px;
+            font-size: clamp(2rem, 3vw, 2.8rem);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
         }
 
         .request p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
+            margin-bottom: 24px;
+            font-size: 1.05rem;
+            color: var(--muted);
         }
 
         .request input,
         .request textarea {
             width: 100%;
-            max-width: 500px;
-            padding: 15px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 8px;
-            font-size: 1em;
-            font-family: Arial, sans-serif;
+            max-width: 520px;
+            padding: 16px 18px;
+            margin: 10px auto;
+            display: block;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            font-size: 1rem;
         }
 
         .request textarea {
             resize: vertical;
-            min-height: 100px;
+            min-height: 130px;
         }
 
+        button,
         .btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 12px 35px;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            font-weight: 800;
+            background: linear-gradient(135deg, rgba(247, 255, 0, 0.9), rgba(255, 31, 58, 0.95));
+            color: #080808;
             border: none;
-            border-radius: 5px;
+            border-radius: 999px;
+            padding: 16px 32px;
             cursor: pointer;
-            font-size: 1em;
-            font-weight: bold;
-            transition: opacity 0.3s;
-            margin-top: 10px;
+            box-shadow: 0 18px 35px rgba(255, 31, 58, 0.22);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
         }
 
+        button:hover,
         .btn:hover {
-            opacity: 0.9;
+            transform: translateY(-2px);
+            opacity: 0.95;
         }
 
-        button{
-            background:white;
-            color:black;
-            border:none;
-            padding:15px 30px;
-            width:auto;
-            cursor:pointer;
-            font-weight:bold;
-            max-width: 100%;
-            box-shadow: 5px 3px 4px rgba(8, 228, 8, 0.943);
+        html {
+            scroll-behavior: smooth;
         }
 
-        button:hover{
-            background:#ddd;
-            color:black;
-        }
-
-        html{
-            scroll-behavior:smooth;
-        }
-
-        .article{
-            background: red;
-            border-radius:20px;
-            padding:40px;
-            margin:40px 0;
-
-            display:grid;
-            grid-template-columns:1fr 1fr;
-            gap:40px;
-            align-items:center;
-            overflow: hidden;
-        }
-
-        .reverse{
-            grid-template-columns:1fr 1fr;
-        }
-
-        .article img{
-            width:100%;
-            height:350px;
-            object-fit:cover;
-            border-radius:15px;
-        }
-
-        .article h2{
-            font-size:3rem;
-            margin-bottom:20px;
-        }
-
-        .article p{
-            font-size:1.1rem;
-            line-height:1.8;
-        }
-
-        img{
+        img {
             max-width: 100%;
             height: auto;
+            display: block;
         }
-
-        .article button{
-            width:auto;
-            padding:20px 35px;
-            margin-top:20px;
-            background:rgb(116, 3, 3);
-            color:white;
-            border:none;
-            border-radius:50px;
-            cursor:pointer;
-            box-shadow: 2px 2px 4px rgba(192, 15, 9, 0.943);
-        }
-
-        .article button:hover{
-            background: greenyellow;
-            color:#080808;
-
-        }
-
 
         footer {
-            background-color: #333;
-            color: white;
+            background: #0b0b0b;
+            color: var(--muted);
             text-align: center;
-            padding: 30px 20px;
-            margin-top: 50px;
+            padding: 28px 20px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
         }
 
         footer p {
             margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 900px) {
+            .article {
+                grid-template-columns: 1fr;
+                padding: 28px;
+            }
+
+            .article img {
+                height: 280px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            nav {
+                justify-content: center;
+                padding: 14px 18px;
+            }
+
+            header h1 {
+                font-size: 4rem;
+            }
+
+            .menu-icon {
+                top: 14px;
+                right: 18px;
+            }
+
+            .article {
+                margin: 24px 14px;
+                gap: 24px;
+            }
+
+            .request {
+                margin: 24px 14px 48px;
+            }
         }
     </style>
 </head>
