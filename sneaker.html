@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sneakers</title>
-</head>
-<style>
+    <style>
     * {
     margin: 0;
     padding: 0;
@@ -106,10 +105,10 @@ body {
 }
 
 .product {
+    position: relative;
     margin-bottom: 20px;
     width: 250px;
-    height: 350px;
-
+    min-height: 350px;
 }
 
 .product img {
@@ -137,7 +136,7 @@ body {
 }
 
 .product:hover .overlay {
-    opacity: 10;
+    opacity: 1;
 }
 
 
@@ -202,8 +201,8 @@ body {
     border-radius: 10px;
 }
 
-filter-btn {
-    display:content;
+.filter-btn {
+    display: flex;
     flex-direction: column;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     align-items: center;
@@ -217,10 +216,9 @@ filter-btn {
     color: white;
 }
 
-filter-btn svg{
+.filter-btn svg {
     width: 30px;
     height: 30px;
-
 }
 
 .span {
@@ -266,13 +264,17 @@ filter-btn svg{
     border-radius: 8px;
 }
 
-.details-b .product{
-    margin-bottom: 500px;
+.details-b {
     display: grid;
-    grid-template-columns: repeat(1, 2fr,);
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
     padding: 30px;
     border-top: 1px solid #ccc;
+}
+
+.details-b .product {
+    margin-bottom: 0;
+    display: block;
 }
 
 .product button,
@@ -753,51 +755,41 @@ filter-btn svg{
     <div class="details-b">
         <div class="product">
             <img src="images/48eb56f631405a7ed501650762a4fabf.jpg" alt="socks">
-                <div class="details">
-                    <p class="name">
-                        Nike Socks
-                    </p>
-                    <p class="price">
-                    </p>
-                    <button onclick="addToCart(
-                        'Nike Socks',
-                        199.99 ,
-                        'images/48eb56f631405a7ed501650762a4fabf.jpg'
-                        )">
-                         🛒R199.99
-                    </button>
-                </div>
+            <div class="details">
+                <p class="name">Nike Socks</p>
+                <p class="price"></p>
+                <button onclick="addToCart(
+                    'Nike Socks',
+                    199.99,
+                    'images/48eb56f631405a7ed501650762a4fabf.jpg'
+                )">🛒R199.99</button>
+            </div>
+        </div>
 
+        <div class="product">
             <img src="images/71eff82b794ca6e0a3ac219f713b1427.jpg" alt="socks">
-                <div class="details">
-                    <p class="name">
-                        Jordan Socks
-                    </p>
-                    <p class="price">
-                    </p>
-                    <button onclick="addToCart(
-                        'Jordan Socks',
-                        199.99 ,
-                        'images/71eff82b794ca6e0a3ac219f713b1427.jpg'
-                        )">
-                         🛒199.99
-                    </button>
-                </div>
+            <div class="details">
+                <p class="name">Jordan Socks</p>
+                <p class="price"></p>
+                <button onclick="addToCart(
+                    'Jordan Socks',
+                    199.99,
+                    'images/71eff82b794ca6e0a3ac219f713b1427.jpg'
+                )">🛒R199.99</button>
+            </div>
+        </div>
+
+        <div class="product">
             <img src="images/132c5e3c4dbd8053c6f415c4f134f1db.jpg" alt="socks">
-                <div class="details">
-                    <p class="name">
-                        NO Name Socks
-                    </p>
-                    <p class="price">
-                    </p>
-                    <button onclick="addToCart(
-                        'Jordan Socks',
-                        49.99 ,
-                        'images/71eff82b794ca6e0a3ac219f713b1427.jpg'
-                        )">
-                         🛒R49.99
-                    </button>
-                </div>
+            <div class="details">
+                <p class="name">NO Name Socks</p>
+                <p class="price"></p>
+                <button onclick="addToCart(
+                    'Jordan Socks',
+                    49.99,
+                    'images/71eff82b794ca6e0a3ac219f713b1427.jpg'
+                )">🛒R49.99</button>
+            </div>
         </div>
     </div>
 
