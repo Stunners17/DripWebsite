@@ -16,7 +16,7 @@
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
             color: #333;
-            background:none;
+            background: black;
         }
 
         header{
@@ -231,6 +231,64 @@
             color:black;
         }
 
+        .article{
+            background:rgb(73, 62, 15);
+            border-radius:20px;
+            padding:40px;
+            margin:40px 0;
+
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:40px;
+            align-items:center;
+            overflow: hidden;
+        }
+
+        .reverse{
+            grid-template-columns:1fr 1fr;
+        }
+
+        .article img{
+            width:100%;
+            height:500px;
+            object-fit:cover;
+            border-radius:15px;
+        }
+
+        .article h2{
+            font-size:3rem;
+            margin-bottom:20px;
+        }
+
+        .article p{
+            font-size:1.1rem;
+            line-height:1.8;
+        }
+
+        img{
+            max-width: 100%;
+            height: auto;
+        }
+
+        .article button{
+            width:auto;
+            padding:20px 35px;
+            margin-top:20px;
+            background:black;
+            color:white;
+            border:none;
+            border-radius:50px;
+            cursor:pointer;
+            box-shadow: 2px 2px 4px rgba(8, 228, 8, 0.943);
+        }
+
+        .article button:hover{
+            background: greenyellow;
+            color:#080808;
+
+        }
+
+
         footer {
             background-color: #333;
             color: white;
@@ -280,25 +338,47 @@
         </div>
     </nav>
 
-    <!-- Products -->
-    <section class="products" id="products">
-        <div class="card" onclick="window.location.href='graphic-tees.html'">
-            <img src="images/78f0cad318e2049f5730f15d43c1f6cb.jpg" alt="Graphic Tees">
-            <h3>GRAPHIC TEES</h3>
-            <p>Clean oversized drip.</p>
-        </div>
+    <section class="article">
 
-        <div class="card" onclick="window.location.href='hoodies.html'">
-            <img src="images/cover.jpg" alt="Hoodies">
-            <h3>HOODIES</h3>
-            <p>Warm and stylish hoodies</p>
-        </div>
+    <img src="images/Blaack And White J4.jpg" alt="SNEAKERS">
 
-        <div class="card" onclick="window.location.href='sneaker.html'">
-            <img src="images/IMG-20260518-WA0018_edit_92767639438969.jpg" alt="Sneakers">
-            <h3>SNEAKERS & SOCKS</h3>
-            <p>Fresh and streetwear sneakers</p>
-        </div>
+    <div>
+        <h2>BUILT FOR THE HUSTLE</h2>
+
+        <p>
+            Every TUFF piece is designed for those who move with
+            confidence. Inspired by South African street culture
+            and the drive to stand out.
+        </p>
+        <strong><p>[YOUR OWN WORDS ABOUT YOUR BRAND]</p></strong>
+
+        <button onclick="window.location.href='sneaker.html'">
+            OUR SNEAKER COLLECTION
+        </button>
+    </div>
+
+    </section>
+
+    <section class="article">
+
+    <img src="images/Blaack And White J4.jpg" alt="SNEAKERS">
+
+    <div>
+        <h2>BUILT FOR THE HUSTLE</h2>
+
+        <p>
+            Every TUFF piece is designed for those who move with
+            confidence. Inspired by South African street culture
+            and the drive to stand out.
+        </p>
+        <strong><p>[YOUR OWN WORDS ABOUT YOUR BRAND]</p></strong>
+
+        <button onclick="window.location.href='fitted caps.html'">
+            OUR CAPS COLLECTION
+        </button>
+    </div>
+
+    </section>
 
         <div class="card" onclick="window.location.href='fitted caps.html'">
             <img src="images/fitted.jpg" alt="Fitted Caps">
