@@ -304,6 +304,60 @@
             filter: brightness(1.05);
         }
 
+        .product-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .add-cart-btn {
+            flex: 1 1 160px;
+            padding: 14px 18px;
+            background: #111;
+            color: #f7ff00;
+            border: 1px solid rgba(247, 255, 0, 0.35);
+            border-radius: 16px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 800;
+            transition: transform 0.2s ease, filter 0.2s ease, background 0.2s ease;
+        }
+
+        .add-cart-btn:hover {
+            background: #202020;
+            transform: translateY(-2px);
+            filter: brightness(1.03);
+        }
+
+        .cart-link {
+            color: #f7f7f7;
+            text-decoration: none;
+            font-weight: 700;
+            border: 1px solid rgba(247, 255, 0, 0.25);
+            padding: 10px 16px;
+            border-radius: 999px;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .cart-link:hover {
+            background: rgba(247, 255, 0, 0.16);
+            color: #f7ff00;
+        }
+
+        #cart-count {
+            min-width: 28px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background: #f7ff00;
+            color: #111;
+            border-radius: 999px;
+            padding: 0 10px;
+            margin-left: 8px;
+            font-weight: 800;
+        }
+
         footer {
             background: #080808;
             color: #c7c7c7;
@@ -346,6 +400,7 @@
         <a href="index.html">Home</a>
         <a href="fitted caps.html">Products</a>
         <a href="#gallery">Gallery</a>
+        <a href="cart.html" class="cart-link">Cart <span id="cart-count">0</span></a>
 
         <!--Hamburger Menu-->
     <div class="menu-icon" onclick="toggleMenu()">
@@ -415,8 +470,10 @@
                         <h3>Classic Fitted Cap</h3>
                         <p>Timeless design perfect for any occasion</p>
                         <div class="price">R650.00</div>
-						<button class="whatsapp-btn" onclick="sendToWhatsApp('Trapstar Hoodie - R4999.99')">Order on WhatsApp</button>
-                    </div>
+                        <div class="product-actions">
+                            <button class="add-cart-btn" onclick="addToCart('Classic Fitted Cap', 650, 'images/7ac4352886ff3ca5b86a4f6766888a2b.jpg')">Add to Cart</button>
+                            <button class="whatsapp-btn" onclick="sendToWhatsApp('Classic Fitted Cap - R650.00')">Order on WhatsApp</button>
+                        </div>
                 </div>
 
                 <div class="product-card">
@@ -427,8 +484,10 @@
                         <h3>Sport Fitted Cap</h3>
                         <p>Breathable design ideal for active wear</p>
                         <div class="price">R700.00</div>
-						<button class="whatsapp-btn" onclick="sendToWhatsApp('Sport Fitted Cap - R700.00')">Order on WhatsApp</button>
-                    </div>
+                        <div class="product-actions">
+                            <button class="add-cart-btn" onclick="addToCart('Sport Fitted Cap', 700, 'images/d13fd1b5e577eedc9bc729649f1cd0eb.jpg')">Add to Cart</button>
+                            <button class="whatsapp-btn" onclick="sendToWhatsApp('Sport Fitted Cap - R700.00')">Order on WhatsApp</button>
+                        </div>
                 </div>
 
                 <div class="product-card">
@@ -439,8 +498,10 @@
                         <h3>Premium Fitted Cap</h3>
                         <p>High-end materials with superior comfort</p>
                         <div class="price">R700.00</div>
-						<button class="whatsapp-btn" onclick="sendToWhatsApp('Premium Fitted Cap - R700.00')">Order on WhatsApp</button>
-                    </div>
+                        <div class="product-actions">
+                            <button class="add-cart-btn" onclick="addToCart('Premium Fitted Cap', 700, 'images/f7f58491ca7d93a59aa023311abca.jpg')">Add to Cart</button>
+                            <button class="whatsapp-btn" onclick="sendToWhatsApp('Premium Fitted Cap - R700.00')">Order on WhatsApp</button>
+                        </div>
                 </div>
 
                 <div class="product-card">
@@ -451,8 +512,10 @@
                         <h3>Urban Fitted Cap</h3>
                         <p>Modern style for the contemporary look</p>
                         <div class="price">R700.00</div>
-						<button class="whatsapp-btn" onclick="sendToWhatsApp('Urban Fitted Cap - R700.00')">Order on WhatsApp</button>
-                    </div>
+                        <div class="product-actions">
+                            <button class="add-cart-btn" onclick="addToCart('Urban Fitted Cap', 700, 'images/b8b657954c3b733ccaf3a51f29d7dbdc.jpg')">Add to Cart</button>
+                            <button class="whatsapp-btn" onclick="sendToWhatsApp('Urban Fitted Cap - R700.00')">Order on WhatsApp</button>
+                        </div>
                 </div>
 
 
@@ -464,7 +527,10 @@
                         <h3>New Era Fitted Cap</h3>
                         <p>Classic design with a modern twist</p>
                         <div class="price">R700.00</div>
-						<button class="whatsapp-btn" onclick="sendToWhatsApp('New Era Fitted Cap - R700.00')">Order on WhatsApp</button>
+                        <div class="product-actions">
+                            <button class="add-cart-btn" onclick="addToCart('New Era Fitted Cap', 700, 'images/703ea93d94ad2baafcf41ce333f3cc19.jpg')">Add to Cart</button>
+                            <button class="whatsapp-btn" onclick="sendToWhatsApp('New Era Fitted Cap - R700.00')">Order on WhatsApp</button>
+                        </div>
                     </div>
                 </div>
 
@@ -476,7 +542,10 @@
                         <h3>New Era Fitted Cap</h3>
                         <p>Classic design with a modern twist</p>
                         <div class="price">R700.00</div>
-						<button class="whatsapp-btn" onclick="sendToWhatsApp('New Era Fitted Cap - R700.00')">Order on WhatsApp</button>
+                        <div class="product-actions">
+                            <button class="add-cart-btn" onclick="addToCart('New Era Fitted Cap', 700, 'images/b15807452ca6fec2ee43e94eb0e720b1.jpg')">Add to Cart</button>
+                            <button class="whatsapp-btn" onclick="sendToWhatsApp('New Era Fitted Cap - R700.00')">Order on WhatsApp</button>
+                        </div>
                     </div>
                 </div>
 
@@ -488,19 +557,13 @@
                         <h3>New Era Fitted Cap</h3>
                         <p>Classic design with a modern twist</p>
                         <div class="price">R700.00</div>
-						<button class="whatsapp-btn" onclick="sendToWhatsApp('New Era Fitted Cap - R700.00')">Order on WhatsApp</button>
+                        <div class="product-actions">
+                            <button class="add-cart-btn" onclick="addToCart('New Era Fitted Cap', 700, 'images/c77d95260fe11857e57030b061c947df.jpg')">Add to Cart</button>
+                            <button class="whatsapp-btn" onclick="sendToWhatsApp('New Era Fitted Cap - R700.00')">Order on WhatsApp</button>
+                        </div>
                     </div>
-                
-                </div>
-            </div>
-        </div>
-
-        <!-- Contact Section -->
-        <div class="section">
-            <h2>Get In Touch</h2>
-            <p>Have questions about our fitted caps? Contact us anytime!</p>
             <p><strong>Email:</strong> info@plugs.com</p>
-            <p><strong>Phone:</strong> ----------------</p>
+            <p><strong>Phone:</strong> +27 68 471 3183</p>
             <p><strong>Address:</strong> 70 Street, Pretoria, Gauteng</p>
             <button class="whatsapp-btn" onclick="sendToWhatsApp('Inquiry about Fitted Caps')">Contact on WhatsApp</button>
         </div>
@@ -530,6 +593,48 @@
             const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
         }
+
+        const CART_STORAGE_KEY = 'cart';
+
+        function getCart() {
+            const stored = localStorage.getItem(CART_STORAGE_KEY);
+            if (!stored) return [];
+
+            try {
+                return JSON.parse(stored);
+            } catch (error) {
+                localStorage.removeItem(CART_STORAGE_KEY);
+                return [];
+            }
+        }
+
+        function saveCart(cart) {
+            localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+        }
+
+        function updateCartCount() {
+            const cartCount = document.getElementById('cart-count');
+            if (!cartCount) return;
+            const count = getCart().reduce((total, item) => total + (item.quantity || 1), 0);
+            cartCount.textContent = count;
+        }
+
+        function addToCart(name, price, image) {
+            const cart = getCart();
+            const existing = cart.find(item => item.name === name);
+
+            if (existing) {
+                existing.quantity = (existing.quantity || 1) + 1;
+            } else {
+                cart.push({ name, price, image, quantity: 1 });
+            }
+
+            saveCart(cart);
+            updateCartCount();
+            alert(`${name} added to cart.`);
+        }
+
+        document.addEventListener('DOMContentLoaded', updateCartCount);
     </script>
 </body>
 </html>
