@@ -171,6 +171,35 @@ body {
     opacity: 1;
 }
 
+.item-options {
+    display: grid;
+    gap: 0.85rem;
+    margin: 0.9rem 0 0;
+    color: #ddd;
+}
+
+.item-options label {
+    display: block;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #eee;
+}
+
+.item-options select {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(12,12,12,0.9);
+    color: #fff;
+}
+
+.item-options option {
+    background: #101010;
+    color: #fff;
+}
 
 .name {
     font-size: 14px;
@@ -366,7 +395,7 @@ body {
     </div>
 
     <div class="products">
-        <div class="product">
+        <div class="product" data-size-options="6,7,8,9,10,11,12,13" data-color-options="Black/White,Grey,Multi">
             <img src="images/Adidas Cumpus (2).jpg" alt="Adidas Campus">
                 <div class="details">
                     <p class="name">
@@ -374,7 +403,7 @@ body {
                     </p>
                     <p class="price">
                     </p>
-                    <button onclick="addToCart(
+                    <button onclick="addToCart(this,
                         'Adidas Campus 00S SHOES BLACK/WHITE',
                         999.99 ,
                         'images/Adidas Cumpus (2).jpg'
@@ -392,7 +421,7 @@ body {
                     </p>
                     <p class="price">
                     </p>
-                    <button onclick="addToCart(
+                    <button onclick="addToCart(this,
                         'NIKE SHOX TL BLACK/WHITE',
                         1499.99 ,
                         'images/Black Nike Shox (3).jpg'
@@ -410,7 +439,7 @@ body {
                     </p>
                     <p class="price">
                     </p>
-                    <button onclick="addToCart(
+                    <button onclick="addToCart(this,
                         'JORDAN 1 RETRO HIGH 85 BLACK/WHITE',
                         1499.99 ,
                         'images/Black And White J1.jpg'
@@ -428,7 +457,7 @@ body {
                     </p>
                     <p class="price">
                     </p>
-                    <button onclick="addToCart(
+                    <button onclick="addToCart(this,
                         'NIKE DUNK LOW BLACK/WHITE',
                         1199.99 ,
                         'images/Black And White Dunk.jpg'
@@ -446,7 +475,7 @@ body {
                     </p>
                     <p class="price">
                     </p>
-                    <button onclick="addToCart(
+                    <button onclick="addToCart(this,
                         'AIR MORE UPTEMPO 96 WHITE/BLUE',
                         1899.99 ,
                         'images/Blue And White Uptempo (2).jpg'
@@ -464,7 +493,7 @@ body {
                     </p>
                     <p class="price">
                     </p>
-                    <button onclick="addToCart(
+                    <button onclick="addToCart(this,
                         'NIKE AIR FORCE 1 \'07 WHITE/GREEN',
                         1899.99 ,
                         'images/Green And White Airforce 1.jpg'
@@ -482,7 +511,7 @@ body {
                     </p>
                     <p class="price">
                     </p>
-                    <button onclick="addToCart(
+                    <button onclick="addToCart(this,
                         'NIKE SB DUNK LOW PRO ISO JARITOS',
                         3999.99 ,
                         'images/Jaritos Dunk (2).jpg'
@@ -492,7 +521,7 @@ body {
                 </div>
         </div>
 
-        <div class="product">
+        <div class="product" data-size-options="7,8,9,10,11,12" data-color-options="White,Black,Red/White">
             <img src="images/Nike Shox (2).jpg" alt="Nike Shox">
                 <div class="details">
                     <p class="name">
@@ -500,7 +529,7 @@ body {
                     </p>
                     <p class="price">
                     </p>
-                    <button onclick="addToCart(
+                    <button onclick="addToCart(this,
                         'NIKE SHOX TL WHITE',
                         1499.99 ,
                         'images/Nike Shox (2).jpg'
@@ -510,7 +539,7 @@ body {
                 </div>
         </div>
 
-        <div class="product">
+        <div class="product" data-size-options="8,9,10,11,12,13" data-color-options="Red/White,Black/White,Blue/White">
             <img src="images/Red And White J1.jpg" alt="Red And White J1">
                 <div class="details">
                     <p class="name">
@@ -518,7 +547,7 @@ body {
                     </p>
                     <p class="price">
                     </p>
-                    <button onclick="addToCart(
+                    <button onclick="addToCart(this,
                         'JORDAN 1 RETRO HIGH 85 RED/WHITE',
                         1499.99 ,
                         'images/Red And White J1.jpg'
@@ -538,7 +567,7 @@ body {
                     </p>
                     <p class="price">
                     </p>
-                    <button onclick="addToCart(
+                    <button onclick="addToCart(this,
                         'JORDAN 4 RETRO FIRE RED',
                         1999.99 ,
                         'images/Red And White J4.jpg'
@@ -556,7 +585,7 @@ body {
                     </p>
                     <p class="price">
                     </p>
-                    <button onclick="addToCart(
+                    <button onclick="addToCart(this,
                         'AIR JORDAN 4 RETRO SB PINE GREEN',
                         2500 ,
                         'images/Three colour J4 (2).jpg'
@@ -574,7 +603,7 @@ body {
                     </p>
                     <p class="price">
                     </p>
-                    <button onclick="addToCart(
+                    <button onclick="addToCart(this,
                         'NIKE MORE UPTEMPO 96 BLACK/RED',
                         1899.99 ,
                         'images/Black And Red UpTempo.jpg'
@@ -592,7 +621,7 @@ body {
                     </p>
                     <p class="price">
                     </p>
-                    <button onclick="addToCart(
+                    <button onclick="addToCart(this,
                         'NIKE AIR FORCE 1LOW \'07 WHITE',
                         1499.99 ,
                         'images/White Airforce 1.jpg'
@@ -610,7 +639,7 @@ body {
                     </p>
                     <p class="price">
                     </p>
-                    <button onclick="addToCart(
+                    <button onclick="addToCart(this,
                         'ADIDAS WOMEN\'S SAMBA WHITE/ALUMINA',
                         999.99 ,
                         'images/Screenshot_20260531_093443_com.bash.prod_edit_8255157547177.jpg'
@@ -628,7 +657,7 @@ body {
                     </p>
                     <p class="price">
                     </p>
-                    <button onclick="addToCart(
+                    <button onclick="addToCart(this,
                         'AIR JORDAN 4 RETRO \'MiLITARY BLACK',
                         1999.99 ,
                         'images/Black And White J4 (2).jpg'
@@ -646,7 +675,7 @@ body {
                     </p>
                     <p class="price">
                     </p>
-                    <button onclick="addToCart(
+                    <button onclick="addToCart(this,
                         'NIKE DUNK LOW SP SR.JOHN\'S RED/WHITE',
                         1499.99 ,
                         'images/Red And White Dunk.jpg'
@@ -664,7 +693,7 @@ body {
                     </p>
                     <p class="price">
                     </p>
-                    <button onclick="addToCart(
+                    <button onclick="addToCart(this,
                         'JORDAN 1 RETRO HIGH OG COURT PURPLE',
                         1999.99 ,
                         'images/Purple And White J1.jpg'
@@ -682,7 +711,7 @@ body {
                     </p>
                     <p class="price">
                     </p>
-                    <button onclick="addToCart(
+                    <button onclick="addToCart(this,
                         'NIKE MEN\'S SHOX R4 WHITE/METALLIC SILVER',
                         1699.99 ,
                         'images/Screenshot_20260531_093041_com.bash.prod_edit_8145303090423.jpg'
@@ -700,7 +729,7 @@ body {
                     </p>
                     <p class="price">
                     </p>
-                    <button onclick="addToCart(
+                    <button onclick="addToCart(this,
                         'NEW BALANCE 9060 MEN\'S SNEAKER BLACK',
                         1699.99 ,
                         'images/Screenshot_20260601_184817_com.bash.prod_edit_27198509936995.jpg'
@@ -718,7 +747,7 @@ body {
                     </p>
                     <p class="price">
                     </p>
-                    <button onclick="addToCart(
+                    <button onclick="addToCart(this,
                         'NEW BALANCE 327 SNEAKER WHITE/BLACK',
                         999.99 ,
                         'images/Screenshot_20260601_184801_com.android.chrome_edit_27206222430744.jpg'
@@ -736,7 +765,7 @@ body {
                     </p>
                     <p class="price">
                     </p>
-                    <button onclick="addToCart(
+                    <button onclick="addToCart(this,
                         'BLACK AND WHITE DIESEL S-UKIYO SNEAKER',
                         1999.99 ,
                         'images/Screenshot_20260603_131215_com.bash.prod_edit_59878916524716.jpg'
@@ -754,7 +783,7 @@ body {
                     </p>
                     <p class="price">
                     </p>
-                    <button onclick="addToCart(
+                    <button onclick="addToCart(this,
                         'NIKE AIR MAX 90 SNEAKERS',
                         2499.99 ,
                         'images/Screenshot_20260531_093243_com.bash.prod_edit_8167830652920.jpg'
@@ -772,7 +801,7 @@ body {
                     </p>
                     <p class="price">
                     </p>
-                    <button onclick="addToCart(
+                    <button onclick="addToCart(this,
                         'NIKE AIR MAX 90 SNEAKERS',
                         2499.99 ,
                         'images/Screenshot_20260603_131306_com.android.chrome_edit_59895494162214.jpg'
@@ -788,12 +817,12 @@ body {
         <h1>SOCKS</h1>
     </div>
     <div class="details-b">
-        <div class="product">
+        <div class="product" data-size-options="S/M,L/XL,One Size" data-color-options="Black,White,Grey">
             <img src="images/48eb56f631405a7ed501650762a4fabf.jpg" alt="socks">
             <div class="details">
                 <p class="name">Nike Socks</p>
                 <p class="price"></p>
-                <button onclick="addToCart(
+                <button onclick="addToCart(this,
                     'Nike Socks',
                     199.99,
                     'images/48eb56f631405a7ed501650762a4fabf.jpg'
@@ -801,12 +830,12 @@ body {
             </div>
         </div>
 
-        <div class="product">
+        <div class="product" data-size-options="S/M,L/XL,One Size" data-color-options="Black,White,Grey">
             <img src="images/71eff82b794ca6e0a3ac219f713b1427.jpg" alt="socks">
             <div class="details">
                 <p class="name">Jordan Socks</p>
                 <p class="price"></p>
-                <button onclick="addToCart(
+                <button onclick="addToCart(this,
                     'Jordan Socks',
                     199.99,
                     'images/71eff82b794ca6e0a3ac219f713b1427.jpg'
@@ -814,12 +843,12 @@ body {
             </div>
         </div>
 
-        <div class="product">
+        <div class="product" data-size-options="S/M,L/XL,One Size" data-color-options="Black,White,Grey">
             <img src="images/132c5e3c4dbd8053c6f415c4f134f1db.jpg" alt="socks">
             <div class="details">
                 <p class="name">NO Name Socks</p>
                 <p class="price"></p>
-                <button onclick="addToCart(
+                <button onclick="addToCart(this,
                     'Jordan Socks',
                     49.99,
                     'images/71eff82b794ca6e0a3ac219f713b1427.jpg'
@@ -905,9 +934,14 @@ body {
             }
         }
 
-        function addToCart(name, price, image) {
+        function addToCart(button, name, price, image) {
+            const productCard = button.closest('.product');
+            const sizeSelect = productCard ? productCard.querySelector('.item-size') : null;
+            const colorSelect = productCard ? productCard.querySelector('.item-color') : null;
+            const size = sizeSelect ? sizeSelect.value : 'One Size';
+            const color = colorSelect ? colorSelect.value : 'Default';
             const cart = getCart();
-            const existingIndex = cart.findIndex(item => item.name === name);
+            const existingIndex = cart.findIndex(item => item.name === name && item.size === size && item.color === color);
 
             if (existingIndex >= 0) {
                 cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
@@ -916,16 +950,48 @@ body {
                     name: name,
                     price: price,
                     image: image,
+                    size: size,
+                    color: color,
                     quantity: 1
                 });
             }
 
             saveCart(cart);
             updateCartCount();
-            alert(name + ' has been added to your cart!');
+            alert(name + ' (' + size + ', ' + color + ') has been added to your cart!');
         }
 
-        document.addEventListener('DOMContentLoaded', updateCartCount);
+        function optionListFromDataset(product, key, fallback) {
+            if (!product || !product.dataset) return fallback;
+            const raw = product.dataset[key];
+            if (!raw) return fallback;
+            const list = raw.split(',').map(value => value.trim()).filter(Boolean);
+            return list.length ? list : fallback;
+        }
+
+        function addProductOptions() {
+            const defaultSizeOptions = ['6', '7', '8', '9', '10', '11', '12', '13'];
+            const defaultColorOptions = ['Black/White', 'Red/White', 'Black/Red', 'Blue/White', 'Grey', 'Multi'];
+            document.querySelectorAll('.product').forEach(product => {
+                const details = product.querySelector('.details');
+                if (!details || details.querySelector('.item-options')) return;
+                const sizeOptions = optionListFromDataset(product, 'sizeOptions', defaultSizeOptions);
+                const colorOptions = optionListFromDataset(product, 'colorOptions', defaultColorOptions);
+                const wrapper = document.createElement('div');
+                wrapper.className = 'item-options';
+                wrapper.innerHTML = `
+                    <label>Size<select class="item-size">${sizeOptions.map(size => `<option value="${size}">${size}</option>`).join('')}</select></label>
+                    <label>Color<select class="item-color">${colorOptions.map(color => `<option value="${color}">${color}</option>`).join('')}</select></label>
+                `;
+                const button = details.querySelector('button');
+                details.insertBefore(wrapper, button);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            addProductOptions();
+            updateCartCount();
+        });
         window.addEventListener('storage', updateCartCount);
     </script>
 </body>

@@ -155,6 +155,71 @@
             text-align: center;
         }
 
+        .checkout {
+            margin-top: 42px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            padding: 30px;
+        }
+
+        .checkout h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .checkout p {
+            margin: 0 0 24px;
+            color: #c7c7c7;
+        }
+
+        .checkout-fields {
+            display: grid;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .checkout-fields label {
+            display: grid;
+            gap: 8px;
+            color: #ddd;
+            font-size: 0.95rem;
+        }
+
+        .checkout-fields input {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.14);
+            background: rgba(255,255,255,0.05);
+            color: #f7f7f7;
+        }
+
+        .checkout-fields input::placeholder {
+            color: rgba(255,255,255,0.55);
+        }
+
+        #checkout-submit {
+            width: 100%;
+            border-radius: 999px;
+            background: #f7ff00;
+            color: #080808;
+            border: none;
+            padding: 16px 24px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        #checkout-submit:hover {
+            transform: translateY(-2px);
+            opacity: 0.95;
+        }
+
+        .checkout.hidden {
+            display: none;
+        }
+
         .empty-state p {
             margin: 0;
             color: #c7c7c7;
@@ -190,11 +255,32 @@
             <p id="cart-summary">Loading cart items...</p>
             <div class="button-group">
                 <a href="sneaker.html">Continue Shopping</a>
+                <button id="checkout-btn" type="button">Checkout</button>
                 <button id="clear-cart">Clear Cart</button>
             </div>
         </div>
 
         <div class="cart-items" id="cart-items"></div>
+
+        <section class="checkout" id="checkout-section">
+            <h2>Checkout</h2>
+            <p>Complete your order details below. The form action can be added later.</p>
+            <form id="checkout-form" action="https://formspree.io/f/mlgvezbq" method="POST">
+                <input type="hidden" name="cartData" id="cart-data" value="">
+                <div class="checkout-fields">
+                    <label>Full name
+                        <input type="text" name="name" placeholder="Your name" required>
+                    </label>
+                    <label>Email
+                        <input type="email" name="email" placeholder="you@example.com" required>
+                    </label>
+                    <label>Phone
+                        <input type="tel" name="phone" placeholder="+27 71 123 4567" required>
+                    </label>
+                </div>
+                <button type="submit" id="checkout-submit">Submit Order</button>
+            </form>
+        </section>
     </main>
 
     <script>
@@ -217,6 +303,22 @@
             return 'R' + Number(value).toFixed(2);
         }
 
+        function updateCheckoutSection(cart) {
+            const section = document.getElementById('checkout-section');
+            const cartInput = document.getElementById('cart-data');
+            const submitBtn = document.getElementById('checkout-submit');
+            if (!section || !cartInput || !submitBtn) return;
+            if (cart.length === 0) {
+                section.classList.add('hidden');
+                cartInput.value = '';
+                submitBtn.disabled = true;
+            } else {
+                section.classList.remove('hidden');
+                cartInput.value = JSON.stringify(cart);
+                submitBtn.disabled = false;
+            }
+        }
+
         function renderCart() {
             const cart = getCart();
             const container = document.getElementById('cart-items');
@@ -229,6 +331,7 @@
             if (cart.length === 0) {
                 summary.textContent = 'Your cart is empty.';
                 container.innerHTML = '<div class="empty-state"><p>You have no items in your cart yet. Add something from the shop to save it in your browser.</p></div>';
+                updateCheckoutSection(cart);
                 return;
             }
 
@@ -244,20 +347,22 @@
                     <img src="${item.image}" alt="${item.name}">
                     <div class="cart-item-details">
                         <h2>${item.name}</h2>
+                        <p>Size: ${item.size || 'One Size'}</p>
+                        <p>Color: ${item.color || 'Default'}</p>
                         <p>Quantity: ${item.quantity || 1}</p>
                         <p>${formatPrice(item.price)}</p>
                     </div>
                     <div class="cart-item-meta">
                         <p>${formatPrice((item.price || 0) * (item.quantity || 1))}</p>
-                        <button data-index="${index}">Remove</button>
+                        <button type="button">Remove</button>
                     </div>
                 `;
-
                 const removeBtn = card.querySelector('button');
                 removeBtn.addEventListener('click', () => removeItem(index));
-
                 container.appendChild(card);
             });
+
+            updateCheckoutSection(cart);
         }
 
         function removeItem(index) {
@@ -273,6 +378,12 @@
         }
 
         document.getElementById('clear-cart').addEventListener('click', clearCart);
+        document.getElementById('checkout-btn').addEventListener('click', function() {
+            const section = document.getElementById('checkout-section');
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
         window.addEventListener('storage', renderCart);
         document.addEventListener('DOMContentLoaded', renderCart);
     </script>
