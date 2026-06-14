@@ -156,6 +156,15 @@
             margin-bottom: 18px;
         }
 
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
         .section p {
             color: #d1d1d1;
             line-height: 1.8;
@@ -224,84 +233,106 @@
 
         .products {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px;
             margin-top: 24px;
         }
 
         .product-card {
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 24px;
+            border-radius: 28px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
         }
 
         .product-card:hover {
             transform: translateY(-6px);
-            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.24);
+            box-shadow: 0 28px 90px rgba(0, 0, 0, 0.28);
+            border-color: rgba(247, 255, 0, 0.35);
         }
 
         .product-image {
-            background: #121212;
-            padding: 30px;
+            position: relative;
+            background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+            padding: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 200px;
+            min-height: 260px;
         }
 
         .product-image img {
             max-width: 100%;
-            max-height: 220px;
-            border-radius: 18px;
-            object-fit: contain;
+            max-height: 260px;
+            border-radius: 22px;
+            object-fit: cover;
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 18px;
+            left: 18px;
+            background: #f7ff00;
+            color: #0a0a0a;
+            padding: 8px 12px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            border-radius: 999px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
         }
 
         .product-info {
-            padding: 24px;
+            padding: 22px 22px 26px;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 12px;
             flex: 1;
         }
 
         .product-info h3 {
             margin: 0;
-            font-size: 1.35rem;
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
         }
 
         .product-info p {
             margin: 0;
-            color: #c7c7c7;
-            line-height: 1.75;
+            color: #d7d7d7;
+            line-height: 1.7;
+            font-size: 0.96rem;
         }
 
-        .price {
+        .price-group {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .old-price {
+            color: rgba(255, 255, 255, 0.55);
+            text-decoration: line-through;
+            font-size: 0.95rem;
+        }
+
+        .new-price {
             color: #f7ff00;
-            font-size: 1.45rem;
-            font-weight: 800;
+            font-size: 1.5rem;
+            font-weight: 900;
         }
 
-        .whatsapp-btn {
-            width: 100%;
-            padding: 14px 18px;
-            background: #f7ff00;
-            color: #111;
-            border: none;
-            border-radius: 16px;
-            cursor: pointer;
+        .sale-note {
+            color: #f7ff00;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-weight: 800;
-            transition: transform 0.2s ease, filter 0.2s ease;
-        }
-
-        .whatsapp-btn:hover {
-            transform: translateY(-2px);
-            filter: brightness(1.05);
+            font-size: 0.8rem;
+            letter-spacing: 0.16em;
+            font-weight: 700;
         }
 
         .product-actions {
@@ -460,114 +491,273 @@
 
         <!-- Products Section -->
         <div class="section">
-            <h2>Featured Products</h2>
+            <div class="section-header">
+                <h2>Featured Products</h2>
+                <span class="sale-note">50% OFF on all caps</span>
+            </div>
             <div class="products">
                 <div class="product-card">
                     <div class="product-image">
+                        <span class="discount-badge">50% OFF</span>
                         <img src="images/7ac4352886ff3ca5b86a4f6766888a2b.jpg" alt="Classic Fitted Cap">
                     </div>
                     <div class="product-info">
                         <h3>Classic Fitted Cap</h3>
-                        <p>Timeless design perfect for any occasion</p>
-                        <div class="price">R650.00</div>
-                        <div class="product-actions">
-                            <button class="add-cart-btn" onclick="addToCart('Classic Fitted Cap', 650, 'images/7ac4352886ff3ca5b86a4f6766888a2b.jpg')">Add to Cart</button>
-                            <button class="whatsapp-btn" onclick="sendToWhatsApp('Classic Fitted Cap - R650.00')">Order on WhatsApp</button>
+                        <p>Timeless design perfect for any occasion.</p>
+                        <div class="price-group">
+                            <span class="old-price">R650.00</span>
+                            <span class="new-price">R325.00</span>
                         </div>
+                        <div class="item-options">
+                            <label>Size
+                                <select class="variant-select" id="size-classic">
+                                    <option>Small</option>
+                                    <option selected>Medium</option>
+                                    <option>Large</option>
+                                    <option>XL</option>
+                                </select>
+                            </label>
+                            <label>Color
+                                <select class="variant-select" id="color-classic">
+                                    <option selected>Black</option>
+                                    <option>White</option>
+                                    <option>Grey</option>
+                                    <option>Navy</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-cart-btn" onclick="addToCart('Classic Fitted Cap', 325, 'images/7ac4352886ff3ca5b86a4f6766888a2b.jpg', document.getElementById('size-classic').value, document.getElementById('color-classic').value)">Add to Cart</button>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="product-card">
                     <div class="product-image">
+                        <span class="discount-badge">50% OFF</span>
                         <img src="images/d13fd1b5e577eedc9bc729649f1cd0eb.jpg" alt="Sport Fitted Cap">
                     </div>
                     <div class="product-info">
                         <h3>Sport Fitted Cap</h3>
-                        <p>Breathable design ideal for active wear</p>
-                        <div class="price">R700.00</div>
-                        <div class="product-actions">
-                            <button class="add-cart-btn" onclick="addToCart('Sport Fitted Cap', 700, 'images/d13fd1b5e577eedc9bc729649f1cd0eb.jpg')">Add to Cart</button>
-                            <button class="whatsapp-btn" onclick="sendToWhatsApp('Sport Fitted Cap - R700.00')">Order on WhatsApp</button>
+                        <p>Breathable design ideal for active wear.</p>
+                        <div class="price-group">
+                            <span class="old-price">R700.00</span>
+                            <span class="new-price">R350.00</span>
                         </div>
+                        <div class="item-options">
+                            <label>Size
+                                <select class="variant-select" id="size-sport">
+                                    <option>Small</option>
+                                    <option selected>Medium</option>
+                                    <option>Large</option>
+                                    <option>XL</option>
+                                </select>
+                            </label>
+                            <label>Color
+                                <select class="variant-select" id="color-sport">
+                                    <option selected>Black</option>
+                                    <option>White</option>
+                                    <option>Red</option>
+                                    <option>Blue</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-cart-btn" onclick="addToCart('Sport Fitted Cap', 350, 'images/d13fd1b5e577eedc9bc729649f1cd0eb.jpg', document.getElementById('size-sport').value, document.getElementById('color-sport').value)">Add to Cart</button>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="product-card">
                     <div class="product-image">
+                        <span class="discount-badge">50% OFF</span>
                         <img src="images/f7f58491ca7d93a59aa023311abca.jpg" alt="Premium Fitted Cap">
                     </div>
                     <div class="product-info">
                         <h3>Premium Fitted Cap</h3>
-                        <p>High-end materials with superior comfort</p>
-                        <div class="price">R700.00</div>
-                        <div class="product-actions">
-                            <button class="add-cart-btn" onclick="addToCart('Premium Fitted Cap', 700, 'images/f7f58491ca7d93a59aa023311abca.jpg')">Add to Cart</button>
-                            <button class="whatsapp-btn" onclick="sendToWhatsApp('Premium Fitted Cap - R700.00')">Order on WhatsApp</button>
+                        <p>High-end materials with superior comfort.</p>
+                        <div class="price-group">
+                            <span class="old-price">R700.00</span>
+                            <span class="new-price">R350.00</span>
                         </div>
+                        <div class="item-options">
+                            <label>Size
+                                <select class="variant-select" id="size-premium">
+                                    <option>Small</option>
+                                    <option selected>Medium</option>
+                                    <option>Large</option>
+                                    <option>XL</option>
+                                </select>
+                            </label>
+                            <label>Color
+                                <select class="variant-select" id="color-premium">
+                                    <option selected>Black</option>
+                                    <option>White</option>
+                                    <option>Grey</option>
+                                    <option>Tan</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-cart-btn" onclick="addToCart('Premium Fitted Cap', 350, 'images/f7f58491ca7d93a59aa023311abca.jpg', document.getElementById('size-premium').value, document.getElementById('color-premium').value)">Add to Cart</button>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="product-card">
                     <div class="product-image">
+                        <span class="discount-badge">50% OFF</span>
                         <img src="images/b8b657954c3b733ccaf3a51f29d7dbdc.jpg" alt="Urban Fitted Cap">
                     </div>
                     <div class="product-info">
                         <h3>Urban Fitted Cap</h3>
-                        <p>Modern style for the contemporary look</p>
-                        <div class="price">R700.00</div>
-                        <div class="product-actions">
-                            <button class="add-cart-btn" onclick="addToCart('Urban Fitted Cap', 700, 'images/b8b657954c3b733ccaf3a51f29d7dbdc.jpg')">Add to Cart</button>
-                            <button class="whatsapp-btn" onclick="sendToWhatsApp('Urban Fitted Cap - R700.00')">Order on WhatsApp</button>
+                        <p>Modern style for the contemporary look.</p>
+                        <div class="price-group">
+                            <span class="old-price">R700.00</span>
+                            <span class="new-price">R350.00</span>
                         </div>
+                        <div class="item-options">
+                            <label>Size
+                                <select class="variant-select" id="size-urban">
+                                    <option>Small</option>
+                                    <option selected>Medium</option>
+                                    <option>Large</option>
+                                    <option>XL</option>
+                                </select>
+                            </label>
+                            <label>Color
+                                <select class="variant-select" id="color-urban">
+                                    <option selected>Black</option>
+                                    <option>White</option>
+                                    <option>Olive</option>
+                                    <option>Navy</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-cart-btn" onclick="addToCart('Urban Fitted Cap', 350, 'images/b8b657954c3b733ccaf3a51f29d7dbdc.jpg', document.getElementById('size-urban').value, document.getElementById('color-urban').value)">Add to Cart</button>
+                        </div>
+                    </div>
                 </div>
-
 
                 <div class="product-card">
                     <div class="product-image">
+                        <span class="discount-badge">50% OFF</span>
                         <img src="images/703ea93d94ad2baafcf41ce333f3cc19.jpg" alt="New Era Fitted Cap">
                     </div>
                     <div class="product-info">
                         <h3>New Era Fitted Cap</h3>
-                        <p>Classic design with a modern twist</p>
-                        <div class="price">R700.00</div>
+                        <p>Classic design with a modern twist.</p>
+                        <div class="price-group">
+                            <span class="old-price">R700.00</span>
+                            <span class="new-price">R350.00</span>
+                        </div>
+                        <div class="item-options">
+                            <label>Size
+                                <select class="variant-select" id="size-newera1">
+                                    <option>Small</option>
+                                    <option selected>Medium</option>
+                                    <option>Large</option>
+                                    <option>XL</option>
+                                </select>
+                            </label>
+                            <label>Color
+                                <select class="variant-select" id="color-newera1">
+                                    <option selected>Black</option>
+                                    <option>White</option>
+                                    <option>Red</option>
+                                    <option>Grey</option>
+                                </select>
+                            </label>
+                        </div>
                         <div class="product-actions">
-                            <button class="add-cart-btn" onclick="addToCart('New Era Fitted Cap', 700, 'images/703ea93d94ad2baafcf41ce333f3cc19.jpg')">Add to Cart</button>
-                            <button class="whatsapp-btn" onclick="sendToWhatsApp('New Era Fitted Cap - R700.00')">Order on WhatsApp</button>
+                            <button class="add-cart-btn" onclick="addToCart('New Era Fitted Cap', 350, 'images/703ea93d94ad2baafcf41ce333f3cc19.jpg', document.getElementById('size-newera1').value, document.getElementById('color-newera1').value)">Add to Cart</button>
                         </div>
                     </div>
                 </div>
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="images/b15807452ca6fec2ee43e94eb0e720b1.jpg" alt="new era fitted cap">
+                        <span class="discount-badge">50% OFF</span>
+                        <img src="images/b15807452ca6fec2ee43e94eb0e720b1.jpg" alt="New Era Fitted Cap">
                     </div>
                     <div class="product-info">
                         <h3>New Era Fitted Cap</h3>
-                        <p>Classic design with a modern twist</p>
-                        <div class="price">R700.00</div>
+                        <p>Classic design with a modern twist.</p>
+                        <div class="price-group">
+                            <span class="old-price">R700.00</span>
+                            <span class="new-price">R350.00</span>
+                        </div>
+                        <div class="item-options">
+                            <label>Size
+                                <select class="variant-select" id="size-newera2">
+                                    <option>Small</option>
+                                    <option selected>Medium</option>
+                                    <option>Large</option>
+                                    <option>XL</option>
+                                </select>
+                            </label>
+                            <label>Color
+                                <select class="variant-select" id="color-newera2">
+                                    <option selected>Black</option>
+                                    <option>White</option>
+                                    <option>Brown</option>
+                                    <option>Grey</option>
+                                </select>
+                            </label>
+                        </div>
                         <div class="product-actions">
-                            <button class="add-cart-btn" onclick="addToCart('New Era Fitted Cap', 700, 'images/b15807452ca6fec2ee43e94eb0e720b1.jpg')">Add to Cart</button>
-                            <button class="whatsapp-btn" onclick="sendToWhatsApp('New Era Fitted Cap - R700.00')">Order on WhatsApp</button>
+                            <button class="add-cart-btn" onclick="addToCart('New Era Fitted Cap', 350, 'images/b15807452ca6fec2ee43e94eb0e720b1.jpg', document.getElementById('size-newera2').value, document.getElementById('color-newera2').value)">Add to Cart</button>
                         </div>
                     </div>
                 </div>
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="images/c77d95260fe11857e57030b061c947df.jpg" alt="new era fitted cap">
+                        <span class="discount-badge">50% OFF</span>
+                        <img src="images/c77d95260fe11857e57030b061c947df.jpg" alt="New Era Fitted Cap">
                     </div>
                     <div class="product-info">
                         <h3>New Era Fitted Cap</h3>
-                        <p>Classic design with a modern twist</p>
-                        <div class="price">R700.00</div>
+                        <p>Classic design with a modern twist.</p>
+                        <div class="price-group">
+                            <span class="old-price">R700.00</span>
+                            <span class="new-price">R350.00</span>
+                        </div>
+                        <div class="item-options">
+                            <label>Size
+                                <select class="variant-select" id="size-newera3">
+                                    <option>Small</option>
+                                    <option selected>Medium</option>
+                                    <option>Large</option>
+                                    <option>XL</option>
+                                </select>
+                            </label>
+                            <label>Color
+                                <select class="variant-select" id="color-newera3">
+                                    <option selected>Black</option>
+                                    <option>White</option>
+                                    <option>Grey</option>
+                                    <option>Pink</option>
+                                </select>
+                            </label>
+                        </div>
                         <div class="product-actions">
-                            <button class="add-cart-btn" onclick="addToCart('New Era Fitted Cap', 700, 'images/c77d95260fe11857e57030b061c947df.jpg')">Add to Cart</button>
-                            <button class="whatsapp-btn" onclick="sendToWhatsApp('New Era Fitted Cap - R700.00')">Order on WhatsApp</button>
+                            <button class="add-cart-btn" onclick="addToCart('New Era Fitted Cap', 350, 'images/c77d95260fe11857e57030b061c947df.jpg', document.getElementById('size-newera3').value, document.getElementById('color-newera3').value)">Add to Cart</button>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="section">
+            <h2>Get In Touch</h2>
+            <p>Have questions about our fitted caps? Contact us anytime!</p>
             <p><strong>Email:</strong> info@plugs.com</p>
             <p><strong>Phone:</strong> +27 68 471 3183</p>
             <p><strong>Address:</strong> 70 Street, Pretoria, Gauteng</p>
-            <button class="whatsapp-btn" onclick="sendToWhatsApp('Inquiry about Fitted Caps')">Contact on WhatsApp</button>
         </div>
-    </div>
 
     <footer>
         <p>&copy; 2026 THE PLUGS - Fitted Caps Collection. All rights reserved.</p>
@@ -586,13 +776,6 @@
                 menu.classList.remove('active');
             }
         });
-
-        function sendToWhatsApp(product) {
-            const phone = '27761872761';
-            const message = `Hi! I'm interested in: ${product}`;
-            const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
-        }
 
         const CART_STORAGE_KEY = 'cart';
 
@@ -619,22 +802,58 @@
             cartCount.textContent = count;
         }
 
-        function addToCart(name, price, image) {
+        function addToCart(name, price, image, size = 'One Size', color = 'Default') {
             const cart = getCart();
-            const existing = cart.find(item => item.name === name);
+            const variantKey = `${name}|${size}|${color}`;
+            const existing = cart.find(item => item.key === variantKey);
 
             if (existing) {
                 existing.quantity = (existing.quantity || 1) + 1;
             } else {
-                cart.push({ name, price, image, quantity: 1 });
+                cart.push({
+                    key: variantKey,
+                    name,
+                    price,
+                    image,
+                    size,
+                    color,
+                    quantity: 1
+                });
             }
 
             saveCart(cart);
             updateCartCount();
-            alert(`${name} added to cart.`);
+            alert(`${name} (${size}, ${color}) added to cart.`);
         }
 
-        document.addEventListener('DOMContentLoaded', updateCartCount);
+        function updateVariantLabel(card) {
+            if (!card) return;
+            const sizeSelect = card.querySelector('.variant-select[id^="size-"]');
+            const colorSelect = card.querySelector('.variant-select[id^="color-"]');
+            if (!sizeSelect || !colorSelect) return;
+            let label = card.querySelector('.selected-variant');
+            if (!label) {
+                label = document.createElement('div');
+                label.className = 'selected-variant';
+                card.querySelector('.product-info').insertBefore(label, card.querySelector('.product-actions'));
+            }
+            label.textContent = `Selected: ${sizeSelect.value} / ${colorSelect.value}`;
+        }
+
+        function initVariantLabels() {
+            document.querySelectorAll('.product-card').forEach(updateVariantLabel);
+        }
+
+        document.addEventListener('change', function(event) {
+            if (!event.target.matches('.variant-select')) return;
+            const card = event.target.closest('.product-card');
+            updateVariantLabel(card);
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            initVariantLabels();
+        });
     </script>
 </body>
 </html>
