@@ -94,7 +94,7 @@
         .menu-icon {
             width: 32px;
             cursor: pointer;
-            display: flex;
+            display: none;
             flex-direction: column;
             justify-content: space-between;
             height: 24px;
@@ -294,6 +294,30 @@
             flex: 1;
         }
 
+        .item-options {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            align-items: baseline;
+        }
+
+        .item-options label {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex: 1 1 140px;
+            min-width: 120px;
+        }
+
+        .item-options select {
+            width: 100%;
+            border-radius: 14px;
+            padding: 12px 14px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+        }
+
         .product-info h3 {
             margin: 0;
             font-size: 1.25rem;
@@ -404,7 +428,11 @@
 
         @media (max-width: 720px) {
             nav {
-                justify-content: center;
+                justify-content: space-between;
+            }
+
+            .menu-icon {
+                display: none;
             }
 
             .section {
@@ -415,8 +443,30 @@
                 padding: 50px 22px;
             }
 
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .product-image {
+                min-height: auto;
+                padding: 18px;
+            }
+
             .product-info {
                 padding: 20px;
+            }
+
+            .item-options {
+                gap: 12px;
+            }
+
+            .item-options label {
+                flex: 1 1 100%;
+            }
+
+            .cart-link {
+                width: 100%;
+                text-align: center;
             }
         }
 
@@ -497,6 +547,13 @@
             .product-info { padding: 16px; }
             .product-image { min-height: auto; padding: 18px; }
             .image-placeholder { padding: 28px 18px; }
+            .item-options {
+                gap: 10px;
+            }
+            .item-options label {
+                flex: 1 1 100%;
+                min-width: 0;
+            }
         }
     </style>
 </head>
@@ -560,7 +617,7 @@
         </div>
 
         <!-- Gallery/Image Section -->
-        <div class="image-section">
+        <div class="image-section" id="gallery">
             <h2>Gallery</h2>
             <div class="image-placeholder">
                 <h3>#</h3>
