@@ -143,16 +143,24 @@
           showMessage('No camera found on this device.', true);
           return;
         }
-        const cameraId = cameras[0].id;
+        const preferredCamera = cameras.find(cam => /rear|back|environment/i.test(cam.label)) || cameras[0];
+        const cameraId = preferredCamera.id;
+
         html5QrCode.start(
           cameraId,
-          { fps: 10, qrbox: { width: 280, height: 280 } },
+          {
+            fps: 15,
+            qrbox: 280,
+            videoConstraints: {
+              facingMode: 'environment'
+            }
+          },
           decodedText => {
             renderResult(decodedText);
             stopCamera();
           },
           errorMessage => {
-            // quietly ignore intermittent scan errors while camera is active
+            // Ignore intermittent scan errors while camera is active.
           }
         ).then(() => {
           activeScanner = true;
