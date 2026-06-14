@@ -231,6 +231,10 @@
             color:black;
         }
 
+        html{
+            scroll-behavior:smooth;
+        }
+
         .article{
             background:rgb(73, 62, 15);
             border-radius:20px;
@@ -309,8 +313,8 @@
         <h1>THE PLUGS</h1>
         <p>From the Streets to Your Closet</p>
 
-    <button onclick="window.location.href='product.html'">
-        SHOP NOW
+    <button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+    Shop Now
     </button>
     </header>
 
@@ -338,19 +342,12 @@
         </div>
     </nav>
 
-    <section class="article">
+    <section class="article" id="products">
 
     <img src="images/Blaack And White J4.jpg" alt="SNEAKERS">
 
     <div>
-        <h2>BUILT FOR THE HUSTLE</h2>
-
-        <p>
-            Every TUFF piece is designed for those who move with
-            confidence. Inspired by South African street culture
-            and the drive to stand out.
-        </p>
-        <strong><p>[YOUR OWN WORDS ABOUT YOUR BRAND]</p></strong>
+        
 
         <button onclick="window.location.href='sneaker.html'">
             OUR SNEAKER COLLECTION
@@ -364,15 +361,7 @@
     <img src="images/fitted.jpg" alt="CAPS">
 
     <div>
-        <h2>BUILT FOR THE HUSTLE</h2>
-
-        <p>
-            Every TUFF piece is designed for those who move with
-            confidence. Inspired by South African street culture
-            and the drive to stand out.
-        </p>
-        <strong><p>[YOUR OWN WORDS ABOUT YOUR BRAND]</p></strong>
-
+    
         <button onclick="window.location.href='fitted caps.html'">
             OUR CAPS COLLECTION
         </button>
@@ -380,20 +369,32 @@
 
     </section>
 
-        <div class="card" onclick="window.location.href='fitted caps.html'">
-            <img src="images/fitted.jpg" alt="Fitted Caps">
-            <h3>FITTED CAPS</h3>
-            <p>Classic fitted caps</p>
-        </div>
+    <section class="article">
 
-        <div class="card" onclick="window.location.href='trackpants.html'">
-            <img src="images/Track pants.jpg" alt="Track Pants">
-            <h3>TRACKPANTS & JEANS</h3>
-            <p>Warm and stylish pants</p>
-        </div>
+    <img src="images/532daa7acf60562e09aba67620ff258b.jpg" alt="Graphic tee">
 
-        </div>
+    <div>
+    
+        <button onclick="window.location.href='fitted caps.html'">
+            GRAPHIC TEE
+        </button>
+    </div>
+
     </section>
+
+    <section class="article">
+
+    <img src="images/Track pants.jpg" alt="pants">
+
+    <div>
+    
+        <button onclick="window.location.href='#'">
+            PANTS AND JEANS
+        </button>
+    </div>
+
+    </section>
+
 
     <!--Request an item-->
     <section class="request" id="request">
