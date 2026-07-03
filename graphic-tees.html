@@ -1,284 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  <title>Graphic Tees | DripWebsite</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Graphic Tees | PLUGSA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-      * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-      }
+    :root { --bg:#050505; --surface:#111111; --accent:#f7ff00; --text:#ffffff; --muted:#b3b3b3; --border:rgba(255,255,255,.12); }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:clamp(14px,1.1vw,18px)}
+    body{font-family:'Montserrat',Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.4;overflow-x:hidden}
+    .hero{background:linear-gradient(90deg, rgba(5,5,5,.92), rgba(5,5,5,.75)), url('images/graphic-t-cover.jpg') center/cover no-repeat;padding:clamp(72px,9vw,110px) clamp(6%,4vw,8%) clamp(40px,5vw,48px);text-align:center;color:var(--accent)}
+    .hero h1{font-size:clamp(2.6rem, 5vw, 3.8rem);letter-spacing:.16em;margin-bottom:12px;text-transform:uppercase}
+    .hero p{color:var(--muted);max-width:min(760px,100%);margin:0 auto}
 
-      html {
-          min-height: 100%;
-          overflow-x: hidden;
-          text-size-adjust: 100%;
-          -webkit-text-size-adjust: 100%;
-      }
+    nav{background:rgba(5,5,5,.94);color:var(--text);padding:clamp(16px,2vw,26px) clamp(4%,3vw,8%);position:sticky;top:0;z-index:1000;backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+    nav .nav-inner{max-width:min(1200px,100%);margin:0 auto;display:flex;align-items:center;gap:clamp(12px,1.5vw,20px);flex-wrap:wrap}
+    nav a{color:var(--text);text-decoration:none;font-weight:500;transition:.25s ease;padding:clamp(8px,1vw,12px) clamp(10px,1.2vw,14px)}
+    nav a.logo{font-size:clamp(1.5rem,2.3vw,1.9rem);font-weight:800;letter-spacing:.36em;text-transform:uppercase;color:var(--accent)}
+    nav a:hover,nav a.active{color:var(--accent)}
 
-      body {
-          min-height: 100vh;
-          overflow-x: hidden;
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
-      }
+    .controls{padding:clamp(20px,2vw,28px) clamp(6%,4vw,8%) clamp(12px,1.2vw,16px);display:grid;gap:clamp(14px,1.4vw,18px);grid-template-columns:1fr .85fr .7fr;align-items:center}
+    .search-box,.filter-box,.sort-box{background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:clamp(12px,1vw,16px) clamp(14px,1.4vw,18px);color:var(--text)}
 
-      img, picture, video, canvas, svg, iframe {
-          max-width: 100%;
-          height: auto;
-          display: block;
-      }
+    .products{max-width:min(1200px,100%);margin:clamp(18px,2vw,24px) auto clamp(60px,6vw,70px);display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(20px,1.5vw,24px);padding:0 clamp(6%,4vw,8%)}
+    .product-card{background:var(--surface);border:1px solid var(--border);border-radius:24px;overflow:hidden;transition:transform .3s ease,box-shadow .3s ease;box-shadow:0 18px 45px rgba(0,0,0,.25)}
+    .product-card:hover{transform:translateY(-6px);border-color:rgba(247,255,0,.25)}
+    .product-card img{width:100%;height:clamp(260px,24vw,320px);object-fit:cover;display:block}
+    .badge{display:inline-block;padding:clamp(6px,0.9vw,10px) clamp(10px,1vw,14px);border-radius:999px;font-size:clamp(.72rem,0.9vw,.9rem);letter-spacing:.12em;margin:clamp(16px,1.5vw,18px) clamp(16px,1.5vw,18px) 0;background:rgba(247,255,0,.12);color:var(--accent);font-weight:700}
+    .inner{padding:clamp(18px,1.4vw,20px) clamp(16px,1.4vw,18px) clamp(18px,1.4vw,20px);display:flex;flex-direction:column;gap:clamp(10px,1vw,12px)}
+    .meta{color:var(--muted);font-size:clamp(.88rem, .95vw, .95rem)}
+    .row{display:flex;gap:clamp(10px,1vw,14px);flex-wrap:wrap}
+    .select,.qty{padding:clamp(10px,1vw,12px);border-radius:10px;border:1px solid var(--border);background:#171717;color:var(--text)}
+    .qty{width:clamp(72px,9vw,90px)}
+    .btn{border:none;border-radius:999px;padding:clamp(12px,1vw,14px) clamp(14px,1.4vw,18px);background:var(--accent);color:#050505;font-weight:700;cursor:pointer;transition:transform .2s ease}
+    .btn:hover{transform:translateY(-2px)}
+    .empty{padding:clamp(32px,3vw,40px);text-align:center;color:var(--muted)}
 
-      button, input, select, textarea {
-          max-width: 100%;
-      }
-
-      .container,
-      .products,
-      .product-grid,
-      .section,
-      .image-section,
-      .feature-card,
-      .product-card,
-      .cart-items,
-      .summary,
-      .request,
-      .card,
-      .content {
-          width: 100%;
-      }
-
-      body {
-          font-family: 'Arial', sans-serif;
-          background-color: #f9f9f9;
-          color: #222;
-          line-height: 1.6;
-      }
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            background-image: url('images/78f0cad318e2049f5730f15d43c1f6cb.jpg');
-            background-size: cover;
-            background-position: center;
-        }
-
-        header h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        header p {
-            font-size: 1.2em;
-            opacity: 0.9;
-        }
-
-        nav {
-            background-color: #333;
-            padding: 15px 20px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            display: inline-block;
-            transition: background-color 0.3s;
-        }
-
-        nav a:hover {
-            background-color: #667eea;
-            border-radius: 5px;
-        }
-      .page-hero {
-          background-image: url('images/graphic t cover.jpg');
-          background-size: cover;
-          background-position: center;
-          padding: 80px 20px;
-          text-align: center;
-          max-width: 1000px;
-          margin: 0 auto;
-      }
-
-      .page-hero h1 {
-          background-position: center;
-          font-size: clamp(2.4rem, 5vw, 4rem);
-          margin-bottom: 20px;
-          color: #111827;
-          letter-spacing: -0.02em;
-          line-height: 1.1;
-      }
-
-      .page-hero p {
-          font-size: 1.05rem;
-          color: #4b5563;
-          max-width: 780px;
-          margin: 0 auto;
-      }
-
-      .product-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-          gap: 24px;
-          padding: 40px 20px 60px;
-          max-width: 1200px;
-          margin: 0 auto;
-      }
-
-      .product-card {
-          background: white;
-          border-radius: 16px;
-          overflow: hidden;
-          box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-
-      .product-card:hover {
-          transform: translateY(-6px);
-          box-shadow: 0 24px 50px rgba(15, 23, 42, 0.14);
-      }
-
-      .product-image {
-          background: #f0f3ff;
-          min-height: 250px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 24px;
-      }
-
-      .product-image img {
-          max-width: 100%;
-          max-height: 100%;
-          object-fit: contain;
-          display: block;
-      }
-
-      .product-card h2 {
-          font-size: 1.35rem;
-          margin: 18px 20px 10px;
-          color: #111827;
-      }
-
-      .product-card p {
-          margin: 0 20px 20px;
-          color: #5b6470;
-          font-size: 0.98rem;
-      }
-
-        .whatsapp-btn {
-            width: 100%;
-            padding: 10px;
-            background-color: #25d366;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 14px;
-            transition: background-color 0.3s ease;
-        }
-
-        .whatsapp-btn:hover {
-            background-color: #20ba5a;
-        }
-
-      .site-footer {
-          text-align: center;
-          padding: 24px 20px;
-          background: #222;
-          color: white;
-      }
+    footer.site-footer{text-align:center;padding:28px 12px;background:#111;color:#fff;margin-top:24px}
+    @media(min-width:900px){ header.site-hero{padding:72px 16px 48px} }
   </style>
 </head>
 <body>
-  <header class="header">
-        <h1>Graphic Tees</h1>
-        <p>Premium Quality Graphic Tees for Every Style</p>
-    </header>
-
-    <nav>
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">PLUGSA</a>
+      <div style="margin-left:8px;display:flex;gap:6px;align-items:center">
         <a href="index.html">Home</a>
         <a href="hoodies.html">Hoodies</a>
+        <a class="active" href="graphic-tees.html">Graphic Tees</a>
         <a href="fitted caps.html">Caps</a>
-        <a href="sneakers.html">Sneakers</a>
-    </nav>
+        <a href="sneaker.html">Sneakers</a>
+      </div>
+      <div style="margin-left:auto">
+        <a href="cart.html">Cart <span data-cart-count>0</span></a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <h1>Graphic Tees</h1>
+    <p>Shop our curated collection of graphic tees — bold prints, premium cotton, everyday fit.</p>
   </header>
 
+  <div class="controls">
+    <input id="searchInput" class="search-box" placeholder="Search tees, e.g. 'Nasa'">
+    <select id="filterSelect" class="filter-box">
+      <option value="all">All</option>
+      <option value="new">New</option>
+      <option value="graphic">Graphic</option>
+      <option value="signature">Signature</option>
+    </select>
+    <select id="sortSelect" class="sort-box">
+      <option value="featured">Featured</option>
+      <option value="az">Name A–Z</option>
+      <option value="za">Name Z–A</option>
+    </select>
+  </div>
+
   <main>
-    <section class="page-hero">
-      <h1>Graphic Tees</h1>
-      <p>Browse our collection of premium graphic tees with clean styling and bold designs.</p>
-    </section>
-
-    <section class="product-grid">
-      <article class="product-card">
-        <div class="product-image">
-          <img src="images/532daa7acf60562e09aba67620ff258b.jpg" alt="Graphic tee 1">
-        </div>
-        <h2>Urban Script Tee</h2>
-        <p>Soft cotton tee with a classic streetwear graphic.</p>
-      </article>
-
-      <article class="product-card">
-        <div class="product-image">
-          <img src="images/6932e2556a3c399383bfffc789d4ffc3.jpg" alt="Graphic tee 2">
-        </div>
-        <h2>Gangstars Tee</h2>
-        <p>Minimalist design with premium fit.</p>
-        <button class="whatsapp-btn" onclick="sendToWhatsApp('Gangstar Tee - R249.99')">Order on WhatsApp</button>
-      </article>
-
-      <article class="product-card">
-        <div class="product-image">
-          <img src="images/e4e235cb-931e-4a7d-932e-8f234e8a7e00.jpg" alt="Graphic tee 2">
-        </div>
-        <h2>Tick Tock Boy Tee</h2>
-        <p>Minimalist design with premium fit.</p>
-        <button class="whatsapp-btn" onclick="sendToWhatsApp('Tick Tock Boy Tee - R249.99')">Order on WhatsApp</button>
-      </article>
-
-      <article class="product-card">
-        <div class="product-image">
-          <img src="images/caf8aaaccc89b5f7c5334756a68e08fa.jpg" alt="Graphic tee 3">
-        </div>
-        <h2>Nasa Tee</h2>
-        <p>Vibrant colors and comfortable styling.</p>
-        <button class="whatsapp-btn" onclick="sendToWhatsApp('Nasa Tee - R199.99')">Order on WhatsApp</button>
-      </article>
-
-      <article class="product-card">
-        <div class="product-image">
-          <img src="images/5878c6587ceff7ab0965a10b33247086.jpg" alt="Graphic tee 4">
-        </div>
-        <h2>Signature Print Tee</h2>
-        <p>Everyday essential with a bold front graphic.</p>
-        <button class="whatsapp-btn" onclick="sendToWhatsApp('Signature Print Tee - R299.99')">Order on WhatsApp</button>
-      </article>
-    </section>
+    <div id="productsGrid" class="products"></div>
   </main>
 
-      <script>
-        function sendToWhatsApp(product) {
-            const phone = '+27761872761';
-            const message = `Hi! I'm interested in: ${product}`;
-            const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-            window.open(url, '_https://wa.me/+27761872761?text=Hi!%20I%27m%20interested%20in%3A%20${encodeURIComponent(product)}');
-        }
-    </script>
+  <script>
+    const storageKey='plugsa-cart';
+    function readCart(){try{return JSON.parse(localStorage.getItem(storageKey))||[]}catch(e){return []}}
+    function writeCart(c){localStorage.setItem(storageKey,JSON.stringify(c))}
+    function updateCartCount(){const cart=readCart();document.querySelectorAll('[data-cart-count]').forEach(el=>el.textContent=cart.reduce((s,i)=>s+i.quantity,0))}
+    updateCartCount();window.addEventListener('storage',updateCartCount);window.addEventListener('focus',updateCartCount);
+
+    const tees=[
+      {name:'Urban Script Tee',image:'images/532daa7acf60562e09aba67620ff258b.jpg',price:249,category:'new',sizes:['S','M','L','XL'],colors:['Black','White']},
+      {name:'Retro Script Tee',image:'images/graphic-tee1.jpg',price:219,category:'graphic',sizes:['S','M','L','XL'],colors:['Black','Grey','White']},
+      {name:'Gangstars Tee',image:'images/graphic-tee2.jpg',price:249,category:'graphic',sizes:['S','M','L'],colors:['Black','White']},
+      {name:'Abstract Lines Tee',image:'images/graphic-tee3.png',price:249,category:'graphic',sizes:['S','M','L'],colors:['Black','White']},
+      {name:'Tick Tock Boy Tee',image:'images/tick-tock-boy-graphic-tee.png',price:249,category:'graphic',sizes:['S','M','L'],colors:['Black','White']},
+      {name:'Nasa Tee',image:'images/graphic-tee4.jpg',price:199,category:'signature',sizes:['S','M','L'],colors:['White','Black']},
+      {name:'Signature Print Tee',image:'images/graphic-tee5.jpg',price:299,category:'signature',sizes:['S','M','L'],colors:['Black','White']}
+    ];
+
+    const grid=document.getElementById('productsGrid');
+    const searchInput=document.getElementById('searchInput');
+    const filterSelect=document.getElementById('filterSelect');
+    const sortSelect=document.getElementById('sortSelect');
+
+    function render(){
+      const q=searchInput.value.trim().toLowerCase();
+      const f=filterSelect.value;
+      let list=tees.filter(t=>t.name.toLowerCase().includes(q) && (f==='all'||t.category===f));
+      if(sortSelect.value==='az') list=list.sort((a,b)=>a.name.localeCompare(b.name));
+      if(sortSelect.value==='za') list=list.sort((a,b)=>b.name.localeCompare(a.name));
+      if(list.length===0){grid.innerHTML='<div class="empty">No products found.</div>';return}
+      grid.innerHTML=list.map(p=>`
+        <article class="product-card">
+          <img src="${p.image}" alt="${p.name}">
+          <div style="padding:12px 16px">
+            <div class="badge">NEW</div>
+          </div>
+          <div class="inner">
+            <h3>${p.name}</h3>
+            <p class="meta">Premium cotton • bold print</p>
+            <div class="row">
+              <select class="select" aria-label="Size">${p.sizes.map(s=>`<option>${s}</option>`).join('')}</select>
+              <select class="select" aria-label="Color">${p.colors.map(c=>`<option>${c}</option>`).join('')}</select>
+            </div>
+            <div class="row" style="margin-top:8px;">
+              <div style="font-weight:800;color:#111827">R ${p.price}</div>
+              <input class="qty" type="number" min="1" max="9" value="1" aria-label="Quantity">
+              <button class="btn add-to-cart" data-name="${p.name}" data-price="${p.price}" data-image="${p.image}">Add to cart</button>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    render();[searchInput,filterSelect,sortSelect].forEach(i=>i.addEventListener('input',render));[searchInput,filterSelect,sortSelect].forEach(i=>i.addEventListener('change',render));
+
+    document.addEventListener('click',e=>{
+      if(e.target.classList.contains('add-to-cart')){
+        const btn=e.target; const card=btn.closest('.product-card'); const qty=Number(card.querySelector('.qty').value)||1; const size=card.querySelector('.select').value; const color=card.querySelectorAll('.select')[1].value;
+        const item={name:btn.dataset.name,price:Number(btn.dataset.price),image:btn.dataset.image,quantity:qty,size,color};
+        const cart=readCart(); const found=cart.find(i=>i.name===item.name && i.size===item.size && i.color===item.color);
+        if(found) found.quantity += item.quantity; else cart.push(item); writeCart(cart); updateCartCount(); btn.textContent='Added'; setTimeout(()=>btn.textContent='Add to cart',800);
+      }
+    });
+  </script>
 
   <footer class="site-footer">
-        <p>&copy; 2026 THE PLUGS. All rights reserved.</p>
-        <p>Designed and Developed by THE PLUGS Team</p>
+    <p>&copy; 2026 THE PLUGS. All rights reserved.</p>
   </footer>
 </body>
 </html>

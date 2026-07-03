@@ -22,6 +22,18 @@
 	</style>
 </head>
 <body>
+	<nav style="display:flex;justify-content:space-between;align-items:center;padding:12px 24px;position:sticky;top:0;background:#050505;color:#fff;z-index:999">
+		<a href="index.html" style="color:#f7ff00;font-weight:800;letter-spacing:4px;text-decoration:none">PLUGSA</a>
+		<div>
+			<a href="index.html" style="color:#fff;margin-right:12px;text-decoration:none">Home</a>
+			<a href="hoodies.html" style="color:#fff;margin-right:12px;text-decoration:none">Hoodies</a>
+			<a href="graphic-tees.html" style="color:#fff;margin-right:12px;text-decoration:none">Graphic Tees</a>
+			<a href="fitted caps.html" style="color:#fff;margin-right:12px;text-decoration:none">Caps</a>
+			<a href="sneaker.html" style="color:#fff;margin-right:12px;text-decoration:none">Sneakers</a>
+			<a href="cart.html" style="background:rgba(247,255,0,.14);padding:6px 10px;border-radius:999px;color:#000;text-decoration:none">Cart <span data-cart-count>0</span></a>
+		</div>
+	</nav>
+
 	<div class="container">
 		<h1>Refer a friend</h1>
 		<p class="muted">Recommend The Plugs website to a friend. If the person you refer purchases a service, you get one free cap.</p>
@@ -120,5 +132,17 @@
 			status.innerHTML = '<div class="card success">Purchase recorded. ' + found.yourName + ' is eligible for one free cap.</div>';
 		});
 	</script>
+
+	<script>
+	// Update cart count in navbar
+	(function(){
+		try{
+			const storageKey='plugsa-cart';
+			function readCart(){ try{return JSON.parse(localStorage.getItem(storageKey))||[]}catch(e){return []} }
+			function updateCartCount(){ const cart=readCart(); document.querySelectorAll('[data-cart-count]').forEach(el=>el.textContent=cart.reduce((t,i)=>t+i.quantity,0)); }
+			updateCartCount(); window.addEventListener('storage', updateCartCount); window.addEventListener('focus', updateCartCount);
+		}catch(e){}
+	})();
+</script>
 </body>
 </html>
