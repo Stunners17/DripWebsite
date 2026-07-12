@@ -877,13 +877,13 @@ document.getElementById("checkoutForm")
 
     }catch(error){
 
+    console.error("Full Error:", error);
+    console.error("Error Code:", error.code);
+    console.error("Error Message:", error.message);
 
-        console.error(error);
+    alert(error.message);
 
-
-        alert(
-        "There was a problem submitting your order. Please try again."
-        );
+}
 
 
     }
