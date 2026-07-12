@@ -11,6 +11,9 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 const ADMIN_EMAIL = "ntando.lawrance@gmail.com";
+if(!ADMIN_EMAIL){
+    console.log("Logged in as",user.email);
+}
 
 // Protect Admin Dashboard
 onAuthStateChanged(auth, (user) => {
