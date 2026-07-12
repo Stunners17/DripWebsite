@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PLUGSA Admin Dashboard</title>
+
+<link rel="stylesheet" href="admin.css">
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>PLUGSA</h2>
+
+<a href="#">Dashboard</a>
+
+<a href="#">Orders</a>
+
+<a href="#">Products</a>
+
+<a href="#">Customers</a>
+
+<a href="#" id="logoutBtn">Logout</a>
+
+</div>
+
+<div class="main">
+
+<h1>Admin Dashboard</h1>
+
+<div class="cards">
+
+<div class="card">
+<h3>Total Orders</h3>
+<p id="totalOrders">0</p>
+</div>
+
+<div class="card">
+<h3>Pending</h3>
+<p id="pendingOrders">0</p>
+</div>
+
+<div class="card">
+<h3>Revenue</h3>
+<p id="revenue">R0.00</p>
+</div>
+
+<div class="card">
+<h3>Customers</h3>
+<p id="customers">0</p>
+</div>
+
+</div>
+
+<h2>Recent Orders</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Customer</th>
+
+<th>Phone</th>
+
+<th>Total</th>
+
+<th>Status</th>
+
+<th>Date</th>
+
+</tr>
+
+</thead>
+
+<tbody id="ordersTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+<script type="module" src="admin.js"></script>
+
+</body>
+</html>
