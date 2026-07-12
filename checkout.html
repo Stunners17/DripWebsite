@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PLUGSA | Checkout</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#050505;
+    color:#fff;
+    min-height:100vh;
+}
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    background:#000;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    color:#fff;
+    text-decoration:none;
+    font-size:2rem;
+    font-weight:900;
+    letter-spacing:4px;
+}
+
+.nav-links{
+    display:flex;
+    gap:30px;
+}
+
+.nav-links a{
+    color:#ddd;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:#fff;
+}
+
+.checkout-page{
+    width:100%;
+    padding:60px 8%;
+}
+
+.checkout-container{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:40px;
+    align-items:start;
+}
+
+.checkout-left,
+.checkout-right{
+    background:#111;
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,.08);
+    padding:35px;
+}
+
+.checkout-left h1{
+    font-size:2.5rem;
+    margin-bottom:10px;
+}
+
+.checkout-left p{
+    color:#aaa;
+    margin-bottom:40px;
+}
+
+.section{
+    margin-bottom:40px;
+}
+
+.section h2{
+    margin-bottom:20px;
+    font-size:1.3rem;
+    border-bottom:1px solid #333;
+    padding-bottom:10px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.grid div{
+    display:flex;
+    flex-direction:column;
+}
+
+label{
+    margin-bottom:8px;
+    color:#ddd;
+    font-size:.95rem;
+}
+
+input,
+select{
+    padding:15px;
+    border-radius:12px;
+    border:1px solid #333;
+    background:#191919;
+    color:#fff;
+    outline:none;
+    transition:.3s;
+}
+
+input:focus,
+select:focus{
+    border-color:#fff;
+}
+
+.radio{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:18px;
+    cursor:pointer;
+}
+
+.place-order{
+    width:100%;
+    padding:18px;
+    border:none;
+    border-radius:14px;
+    background:#fff;
+    color:#000;
+    font-size:1rem;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.place-order:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 30px rgba(255,255,255,.15);
+}
+
+.checkout-right{
+    position:sticky;
+    top:100px;
+}
+
+.checkout-right h2{
+    margin-bottom:30px;
+}
+
+#orderItems{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    margin-bottom:30px;
+}
+
+.order-item{
+    display:flex;
+    gap:15px;
+    align-items:center;
+    border-bottom:1px solid #222;
+    padding-bottom:15px;
+}
+
+.order-item img{
+    width:90px;
+    height:90px;
+    object-fit:cover;
+    border-radius:12px;
+}
+
+.order-details{
+    flex:1;
+}
+
+.order-details h3{
+    font-size:1rem;
+    margin-bottom:6px;
+}
+
+.order-details p{
+    color:#aaa;
+    font-size:.9rem;
+    margin-bottom:4px;
+}
+
+.summary{
+    border-top:1px solid #333;
+    padding-top:25px;
+}
+
+.line,
+.total{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:18px;
+}
+
+.total{
+    font-size:1.3rem;
+    font-weight:bold;
+    border-top:1px solid #333;
+    padding-top:18px;
+}
+
+@media(max-width:1000px){
+
+.checkout-container{
+    grid-template-columns:1fr;
+}
+
+.checkout-right{
+    position:relative;
+    top:0;
+}
+
+}
+
+@media(max-width:700px){
+
+.navbar{
+    flex-direction:column;
+    gap:15px;
+}
+
+.nav-links{
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.grid{
+    grid-template-columns:1fr;
+}
+
+.checkout-page{
+    padding:30px 20px;
+}
+
+.checkout-left,
+.checkout-right{
+    padding:25px;
+}
+
+.checkout-left h1{
+    font-size:2rem;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<a href="index.html" class="logo">
+PLUGSA
+</a>
+
+<div class="nav-links">
+
+<a href="index.html">Home</a>
+
+<a href="cart.html">
+Back to Cart
+</a>
+
+</div>
+
+</nav>
+
+<section class="checkout-page">
+
+<div class="checkout-container">
+
+<div class="checkout-left">
+
+<h1>
+Checkout
+</h1>
+
+<p>
+Complete your delivery details below.
+</p>
+
+<form id="checkoutForm">
+
+<div class="section">
+
+<h2>
+Customer Information
+</h2>
+
+<div class="grid">
+
+<div>
+
+<label>
+Full Name
+</label>
+
+<input
+type="text"
+id="fullName"
+required>
+
+</div>
+
+<div>
+
+<label>
+Email
+</label>
+
+<input
+type="email"
+id="email"
+required>
+
+</div>
+
+<div>
+
+<label>
+Phone Number
+</label>
+
+<input
+type="tel"
+id="phone"
+required>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>
+Delivery Address
+</h2>
+
+<div class="grid">
+
+<div>
+
+<label>
+Street Address
+</label>
+
+<input
+type="text"
+id="street"
+required>
+
+</div>
+
+<div>
+
+<label>
+Suburb
+</label>
+
+<input
+type="text"
+id="suburb"
+required>
+
+</div>
+
+<div>
+
+<label>
+City
+</label>
+
+<input
+type="text"
+id="city"
+required>
+
+</div>
+
+<div>
+
+<label>
+Province
+</label>
+
+<select id="province" required>
+
+<option value="">
+Select Province
+</option>
+
+<option>
+Gauteng
+</option>
+
+<option>
+KwaZulu-Natal
+</option>
+
+<option>
+Western Cape
+</option>
+
+<option>
+Eastern Cape
+</option>
+
+<option>
+Free State
+</option>
+
+<option>
+Limpopo
+</option>
+
+<option>
+Mpumalanga
+</option>
+
+<option>
+North West
+</option>
+
+<option>
+Northern Cape
+</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label>
+Postal Code
+</label>
+
+<input
+type="text"
+id="postalCode"
+required>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>
+Delivery Method
+</h2>
+
+<label class="radio">
+
+<input
+type="radio"
+name="delivery"
+value="Standard Delivery"
+checked>
+
+Standard Delivery
+(3–5 Business Days)
+
+</label>
+
+<label class="radio">
+
+<input
+type="radio"
+name="delivery"
+value="Express Delivery">
+
+Express Delivery
+(1–2 Business Days)
+
+</label>
+
+</div>
+
+<button
+class="place-order"
+type="submit">
+
+Place Order
+
+</button>
+
+</form>
+
+</div>
+
+<div class="checkout-right">
+
+<h2>
+Order Summary
+</h2>
+
+<div
+id="orderItems">
+
+<!-- Products appear here -->
+
+</div>
+
+<div class="summary">
+
+<div class="line">
+
+<span>
+Items
+</span>
+
+<span
+id="itemCount">
+
+0
+
+</span>
+
+</div>
+
+<div class="line">
+
+<span>
+Subtotal
+</span>
+
+<span>
+
+R<span
+id="subtotal">
+
+0.00
+
+</span>
+
+</span>
+
+</div>
+
+<div class="line">
+
+<span>
+Delivery
+</span>
+
+<span>
+
+Calculated Later
+
+</span>
+
+</div>
+
+<div class="total">
+
+<span>
+Total
+</span>
+
+<span>
+
+R<span
+id="grandTotal">
+
+0.00
+
+</span>
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script type="module">
+import { auth, db } from "./firebase.js";
+
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+import {
+    collection,
+    addDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const storageKey = "plugsa-cart";
+
+function readCart(){
+    try{
+        return JSON.parse(localStorage.getItem(storageKey)) || [];
+    }catch{
+        return [];
+    }
+}
+
+const cart = readCart();
+
+const orderItems = document.getElementById("orderItems");
+const itemCount = document.getElementById("itemCount");
+const subtotal = document.getElementById("subtotal");
+const grandTotal = document.getElementById("grandTotal");
+
+function renderOrder(){
+
+    if(cart.length===0){
+
+        orderItems.innerHTML = `
+            <div style="text-align:center;padding:40px;">
+                <h3>Your cart is empty.</h3>
+                <br>
+                <a href="index.html" style="color:white;">
+                    Continue Shopping
+                </a>
+            </div>
+        `;
+
+        document.querySelector(".place-order").disabled = true;
+
+        return;
+
+    }
+
+
+    let total = 0;
+    let quantity = 0;
+
+    orderItems.innerHTML = "";
+
+    cart.forEach(item=>{
+
+        total += item.price * item.quantity;
+        quantity += item.quantity;
+
+        orderItems.innerHTML += `
+
+        <div class="order-item">
+
+            <img src="${item.image}" alt="${item.name}">
+
+            <div class="order-details">
+
+                <h3>${item.name}</h3>
+
+                <p>
+                    Colour:
+                    ${item.color}
+                </p>
+
+                <p>
+                    Size:
+                    ${item.size}
+                </p>
+
+                <p>
+                    Qty:
+                    ${item.quantity}
+                </p>
+
+                <strong>
+                    R${(item.price*item.quantity).toLocaleString("en-ZA")}
+                </strong>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+    emailjs.init({
+    publicKey: "fpdoLdWWwjxloa"
+});
+
+
+document.getElementById("checkoutForm")
+.addEventListener("submit", async (e)=>{
+
+    e.preventDefault();
+
+
+    const user = auth.currentUser;
+
+
+    if(!user){
+
+        window.location.href="login.html";
+        return;
+
+    }
+
+
+    const fullName =
+    document.getElementById("fullName").value;
+
+
+    const email =
+    document.getElementById("email").value;
+
+
+    const phone =
+    document.getElementById("phone").value;
+
+
+    const address = 
+    `
+    ${document.getElementById("street").value},
+    ${document.getElementById("suburb").value},
+    ${document.getElementById("city").value},
+    ${document.getElementById("province").value},
+    ${document.getElementById("postalCode").value}
+    `;
+
+
+    const delivery =
+    document.querySelector(
+    'input[name="delivery"]:checked'
+    ).value;
+
+
+
+    let total = 0;
+
+
+    let productsText = "";
+
+
+    cart.forEach(item=>{
+
+
+        let itemTotal =
+        item.price * item.quantity;
+
+
+        total += itemTotal;
+
+
+        productsText +=
+        `
+        ${item.quantity}x ${item.name}
+        | Size: ${item.size}
+        | Colour: ${item.color}
+        | R${itemTotal}
+        
+        `;
+
+
+    });
+
+
+
+    const orderData = {
+
+
+        userId:user.uid,
+
+        name:fullName,
+
+        email:email,
+
+        phone:phone,
+
+        address:address,
+
+        delivery:delivery,
+
+        products:cart,
+
+        total:total,
+
+        status:"Pending Confirmation",
+
+        createdAt:serverTimestamp()
+
+    };
+
+
+
+    try{
+
+
+        // Save order to Firebase
+
+        await addDoc(
+            collection(db,"orders"),
+            orderData
+        );
+
+
+
+        // Send email
+
+        await emailjs.send(
+
+            "service_gxcmx7k",
+
+            "template_gju3zjd",
+
+            {
+
+            name:fullName,
+
+            email:email,
+
+            phone:phone,
+
+            address:address,
+
+            delivery:delivery,
+
+            message:productsText,
+
+            total:
+            "R"+total.toLocaleString("en-ZA"),
+
+
+            time:
+            new Date().toLocaleString()
+
+            }
+
+        );
+
+
+
+        // Remove cart
+
+        localStorage.removeItem(
+            "plugsa-cart"
+        );
+
+
+        // Go success page
+
+        window.location.href=
+        "order-success.html";
+
+
+
+    }catch(error){
+
+
+        console.error(error);
+
+
+        alert(
+        "There was a problem submitting your order. Please try again."
+        );
+
+
+    }
+
+
+});
+
+    itemCount.textContent = quantity;
+
+    subtotal.textContent = total.toLocaleString("en-ZA",{
+        minimumFractionDigits:2
+    });
+
+    grandTotal.textContent = total.toLocaleString("en-ZA",{
+        minimumFractionDigits:2
+    });
+
+}
+
+renderOrder();
+
+onAuthStateChanged(auth,(user)=>{
+
+    if(!user){
+
+        window.location.href="login.html";
+        return;
+
+    }
+
+    document.getElementById("email").value = user.email;
+
+    if(user.displayName){
+
+        document.getElementById("fullName").value =
+        user.displayName;
+
+    }
+
+});
+
+</script>
+
+</body>
+
+</html>
