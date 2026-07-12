@@ -5,45 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#050505">
 <title>PLUGSA | Sneakers</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <style>
-:root { --bg:#050505; --surface:#111111; --accent:#f7ff00; --text:#ffffff; --muted:#b3b3b3; --border:rgba(255,255,255,.12); }
-* { box-sizing:border-box; margin:0; padding:0; }
-html { scroll-behavior:smooth; font-size:clamp(14px,1.1vw,18px); }
-body { font-family:'Montserrat',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; }
-a { color:inherit; text-decoration:none; }
-button,input,select { font:inherit; }
-.navbar { position:sticky; top:0; z-index:1000; display:flex; align-items:center; justify-content:space-between; padding:clamp(16px,2vw,28px) clamp(4%,3vw,8%); background:rgba(5,5,5,.94); backdrop-filter:blur(16px); border-bottom:1px solid var(--border); }
-.logo { font-size:1.7rem; font-weight:800; letter-spacing:.36em; text-transform:uppercase; color:var(--accent); }
-.nav-links { display:flex; gap:20px; align-items:center; }
-.nav-links a { color:var(--text); font-weight:500; transition:.25s ease; }
-.nav-links a:hover,.nav-links a.active { color:var(--accent); }
-.cart-pill { background:rgba(247,255,0,.14); padding:8px 12px; border-radius:999px; border:1px solid rgba(247,255,0,.18); display:inline-flex; align-items:center; gap:6px; }
-.hero { padding:clamp(90px,10vw,120px) clamp(6%,4vw,8%) clamp(40px,5vw,60px); text-align:center; background:linear-gradient(90deg, rgba(5,5,5,.92), rgba(5,5,5,.75)), url('images/Red And White J4 Cover.jpg') center/cover no-repeat; }
-.hero > div { max-width:min(860px,100%); margin:0 auto; }
-.hero h1 { font-size:clamp(2.6rem, 5vw, 3.8rem); color:var(--accent); margin-bottom:12px; letter-spacing:.16em; text-transform:uppercase; }
-.hero p { color:var(--muted); max-width:min(760px,100%); margin:0 auto; }
-.controls { padding:clamp(20px,2vw,28px) clamp(6%,4vw,8%) clamp(12px,1.2vw,16px); display:grid; gap:clamp(16px,1.5vw,20px); grid-template-columns:1fr .8fr .8fr; align-items:center; }
-.search-box, .filter-box, .sort-box { background:var(--surface); border:1px solid var(--border); border-radius:999px; padding:clamp(12px,1vw,16px) clamp(14px,1.4vw,18px); color:var(--text); }
-.products { padding:clamp(28px,3vw,38px) clamp(6%,4vw,8%) clamp(40px,5vw,70px); display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:clamp(20px,1.5vw,24px); }
-.product-card { background:var(--surface); border:1px solid var(--border); border-radius:24px; overflow:hidden; transition:transform .3s ease, border-color .3s ease; box-shadow:0 18px 45px rgba(0,0,0,.26); }
-.product-card:hover { transform:translateY(-6px); border-color:rgba(247,255,0,.35); }
-.product-card img { height:clamp(260px,24vw,320px); object-fit:cover; }
-.badge { display:inline-block; margin:clamp(16px,1.5vw,18px) clamp(16px,1.5vw,18px) 0; padding:clamp(6px,0.9vw,10px) clamp(10px,1vw,14px); border-radius:999px; font-size:clamp(.72rem,0.9vw,.9rem); letter-spacing:.16em; background:rgba(247,255,0,.12); color:var(--accent); }
-.inner { padding:clamp(18px,1.4vw,20px) clamp(16px,1.4vw,18px) clamp(18px,1.4vw,20px); display:flex; flex-direction:column; gap:clamp(12px,1vw,14px); }
-.inner h3 { font-size:1.15rem; }
-.meta { color:var(--muted); font-size:.94rem; }
-.row { display:flex; gap:10px; flex-wrap:wrap; }
-.select, .qty { padding:10px 12px; border-radius:10px; border:1px solid var(--border); background:#171717; color:var(--text); }
-.qty { width:80px; }
-.btn { border:none; border-radius:999px; padding:12px 14px; background:var(--accent); color:#050505; font-weight:700; cursor:pointer; transition:transform .2s ease; }
-.btn:hover { transform:translateY(-2px); }
-.btn-ghost { background:transparent; color:var(--text); border:1px solid var(--border); }
-.section { padding:0 8% 30px; }
-.panel { background:linear-gradient(145deg, rgba(17,17,17,.95), rgba(7,7,7,.96)); border:1px solid var(--border); border-radius:24px; padding:22px; margin-bottom:24px; }
-.panel h3 { margin-bottom:8px; color:var(--accent); }
-.empty { color:var(--muted); text-align:center; padding:36px 0 0; }
-@media (max-width:760px) { .navbar { flex-direction:column; gap:12px; padding:16px 6%; } .nav-links { flex-wrap:wrap; justify-content:center; } .hero, .controls, .products, .section { padding-left:6%; padding-right:6%; } .hero { padding:90px 6% 40px; } .controls { grid-template-columns:1fr; } }
+  .hero { background: linear-gradient(90deg, rgba(5,5,5,.92), rgba(5,5,5,.75)), url('images/Red And White J4 Cover.jpg') center/cover no-repeat; }
 </style>
 </head>
 <body>
@@ -95,23 +59,23 @@ window.addEventListener('storage', updateCartCount);
 window.addEventListener('focus', updateCartCount);
 const sneakers=[
   {name:'Jordan 1 Black & White', badge:'50% OFF', category:'trending', image:'images/Black And White J1.jpg', price:6000, salePrice:3000, discount:'50% OFF', colors:['White','Black'], sizes:['6','7','8','9','10']},
-  {name:'Jordan 1 Red & White', badge:'50% OFF', category:'trending', image:'images/Red And White J1.jpg', price:6000, salePrice:3000, discount:'50% OFF', colors:['White','Red'], sizes:['6','7','8','9','10']},
-  {name:'Nike Shox Classic', badge:'50% OFF', category:'limited', image:'images/Nike Shox.jpg', price:6000, salePrice:3000, discount:'50% OFF', colors:['Black','White'], sizes:['6','7','8','9']},
-  {name:'Nike Shox Black', badge:'50% OFF', category:'limited', image:'images/Black Nike Shox.jpg', price:6000, salePrice:3000, discount:'50% OFF', colors:['Black','Silver'], sizes:['6','7','8','9']},
-  {name:'Adidas Campus 00s', badge:'50% OFF', category:'classic', image:'images/Adidas Cumpus.jpg', price:1999.99, salePrice:999.99, discount:'50% OFF', colors:['Cream','Navy'], sizes:['6','7','8','9','10']},
-  {name:'Nike Dunk Red', badge:'SALE', category:'classic', image:'images/Red And White Dunk.jpg', price:1199.99, colors:['Red','White'], sizes:['6','7','8','9']},
-  {name:'Nike Dunk Black', badge:'SALE', category:'classic', image:'images/Black And white dunk.jpg', price:1199.99, colors:['Black','White'], sizes:['6','7','8','9']},
-  {name:'Air More Uptempo', badge:'10% OFF', category:'limited', image:'images/Black And White UpTempo.jpg', price:2222, salePrice:2000, discount:'10% OFF', colors:['Black','White'], sizes:['6','7','8','9']},
+  {name:'Jordan 1 Red & White', badge:'50% OFF', category:'trending', image:'images/Red And White J1.jpg', price:6000, salePrice:3000, discount:'50% OFF', colors:['White','Red'], sizes:['5.5','6','7','8','9','10']},
+  {name:'Nike Shox Classic', badge:'50% OFF', category:'limited', image:'images/Nike Shox.jpg', price:6000, salePrice:3000, discount:'50% OFF', colors:['Black','White'], sizes:['5.5','6','7','8','9']},
+  {name:'Nike Shox Black', badge:'50% OFF', category:'limited', image:'images/Black Nike Shox.jpg', price:6000, salePrice:3000, discount:'50% OFF', colors:['Black','Silver'], sizes:['5.5','6','7','8','9']},
+  {name:'Adidas Campus 00s', badge:'50% OFF', category:'classic', image:'images/Adidas Cumpus.jpg', price:1999.99, salePrice:999.99, discount:'50% OFF', colors:['Cream','Navy'], sizes:['5.5','6','7','8','9','10']},
+  {name:'Nike Dunk Red', badge:'SALE', category:'classic', image:'images/Red And White Dunk.jpg', price:1199.99, colors:['Red','White'], sizes:['5.5','6','7','8','9']},
+  {name:'Nike Dunk Black', badge:'SALE', category:'classic', image:'images/Black And white dunk.jpg', price:1199.99, colors:['Black','White'], sizes:['5.5','6','7','8','9']},
+  {name:'Air More Uptempo', badge:'10% OFF', category:'limited', image:'images/Black And White UpTempo.jpg', price:2222, salePrice:2000, discount:'10% OFF', colors:['Black','White'], sizes:['5.5','6','7','8','9']},
   {name:'Nike Airforce 1', badge:'30% OFF', category:'trending', image:'images/Airforce 1.jpg', price:2857, salePrice:2000, discount:'30% OFF', colors:['White','Black'], sizes:['7','8','9','10']},
   {name:'Jordan 4 Black & White', badge:'10% OFF', category:'trending', image:'images/Black And White J4.jpg', price:3333, salePrice:3000, discount:'10% OFF', colors:['Black','White'], sizes:['7','8','9','10']},
   {name:'Jordan 4 Red & White', badge:'10% OFF', category:'trending', image:'images/Red And White J4.jpg', price:3333, salePrice:3000, discount:'10% OFF', colors:['Red','White'], sizes:['7','8','9','10']},
-  {name:'Adidas Samba', badge:'NEW', category:'classic', image:'images/Adidas Cumpus (2).jpg', price:999.99, colors:['Black','White'], sizes:['6','7','8','9']},
-  {name:'New Balance', badge:'60% OFF', category:'classic', image:'images/cover.jpg', price:7500, salePrice:3000, discount:'60% OFF', colors:['Black','White'], sizes:['6','7','8','9']},
-  {name:'Black & White Diesel', badge:'109% OFF', category:'classic', image:'images/cover.jpg', price:6000, salePrice:3000, discount:'109% OFF', colors:['Black','White'], sizes:['6','7','8','9']},
-  {name:'Lacoste', badge:'NEW', category:'classic', image:'images/cover.jpg', price:2499.99, colors:['Green','White'], sizes:['6','7','8','9']},
-  {name:'Nike Air Max', badge:'NEW', category:'classic', image:'images/cover.jpg', price:2499.99, colors:['Black','White'], sizes:['6','7','8','9']},
-  {name:'Air More Uptempo Red', badge:'NEW', category:'limited', image:'images/Black And Red UpTempo.jpg', price:3199, colors:['Black','Red'], sizes:['6','7','8','9','10']},
-  {name:'Air More Uptempo Mono', badge:'NEW', category:'limited', image:'images/White And Black UpTempo.jpg', price:2999, colors:['White','Black'], sizes:['6','7','8','9','10']},
+  {name:'Adidas Samba', badge:'NEW', category:'classic', image:'images/Adidas Cumpus (2).jpg', price:999.99, colors:['Black','White'], sizes:['5.5','6','7','8','9']},
+  {name:'New Balance', badge:'60% OFF', category:'classic', image:'images/cover.jpg', price:7500, salePrice:3000, discount:'60% OFF', colors:['Black','White'], sizes:['5.5','6','7','8','9']},
+  {name:'Black & White Diesel', badge:'109% OFF', category:'classic', image:'images/cover.jpg', price:6000, salePrice:3000, discount:'109% OFF', colors:['Black','White'], sizes:['5.5','6','7','8','9']},
+  {name:'Lacoste', badge:'NEW', category:'classic', image:'images/cover.jpg', price:2499.99, colors:['Green','White'], sizes:['5.5','6','7','8','9']},
+  {name:'Nike Air Max', badge:'NEW', category:'classic', image:'images/cover.jpg', price:2499.99, colors:['Black','White'], sizes:['5.5','6','7','8','9']},
+  {name:'Air More Uptempo Red', badge:'NEW', category:'limited', image:'images/Black And Red UpTempo.jpg', price:3199, colors:['Black','Red'], sizes:['5.5','6','7','8','9','10']},
+  {name:'Air More Uptempo Mono', badge:'NEW', category:'limited', image:'images/White And Black UpTempo.jpg', price:2999, colors:['White','Black'], sizes:['5.5','6','7','8','9','10']},
   {name:'Nike Airforce 1 Green', badge:'NEW', category:'trending', image:'images/Green And White Airforce 1.jpg', price:2699, colors:['Green','White'], sizes:['7','8','9','10']},
   {name:'Jordan 1 Purple & White', badge:'NEW', category:'trending', image:'images/Purple And White J1.jpg', price:2999, colors:['Purple','White'], sizes:['6','7','8','9','10']},
   {name:'Jordan 4 Three Colour', badge:'NEW', category:'trending', image:'images/Three colour J4.jpg', price:3399, colors:['Red','Blue'], sizes:['7','8','9','10']}
@@ -163,5 +127,13 @@ document.addEventListener('click', (event)=>{
   if(event.target.classList.contains('wishlist-btn')){ event.target.textContent='♥ Saved'; setTimeout(()=>{ event.target.textContent='♡ Wishlist'; },900); }
 });
 </script>
+<footer class="site-footer">
+  <p>© 2026 PLUGSA. Premium sneakers and rare drops.</p>
+  <div class="footer-links">
+    <a href="refer.html">Refer a friend</a>
+    <a href="scan QR Code.html">QR scanner</a>
+    <a href="cart.html">Cart</a>
+  </div>
+</footer>
 </body>
 </html>

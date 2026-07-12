@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+<title>PLUGSA | Create Account</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#050505;
+    color:#fff;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+        radial-gradient(circle at top left, rgba(255,255,255,.06), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(255,255,255,.04), transparent 35%);
+    animation:bgMove 12s ease-in-out infinite alternate;
+}
+
+@keyframes bgMove{
+    from{transform:translateY(-15px);}
+    to{transform:translateY(15px);}
+}
+
+.card{
+    position:relative;
+    width:450px;
+    max-width:92%;
+    background:rgba(20,20,20,.95);
+    border:1px solid rgba(255,255,255,.08);
+    backdrop-filter:blur(20px);
+    border-radius:18px;
+    padding:40px;
+    box-shadow:0 20px 50px rgba(0,0,0,.5);
+    z-index:2;
+}
+
+.logo{
+    text-align:center;
+    font-size:2rem;
+    font-weight:900;
+    letter-spacing:4px;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#999;
+    margin-bottom:30px;
+}
+
+.input-group{
+    margin-bottom:18px;
+}
+
+.input-group label{
+    display:block;
+    margin-bottom:8px;
+}
+
+.input-group input{
+    width:100%;
+    padding:15px;
+    border-radius:12px;
+    border:1px solid #333;
+    background:#111;
+    color:#fff;
+    outline:none;
+}
+
+.input-group input:focus{
+    border-color:#fff;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    background:#fff;
+    color:#000;
+    font-size:1rem;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+}
+
+.bottom{
+    text-align:center;
+    margin-top:25px;
+    color:#999;
+}
+
+.bottom a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.message{
+    display:none;
+    text-align:center;
+    margin-bottom:18px;
+    color:#4CAF50;
+}
+
+.error{
+    display:none;
+    text-align:center;
+    margin-bottom:18px;
+    color:#ff5252;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="logo">PLUGSA</div>
+
+<p class="subtitle">
+Create your premium streetwear account.
+</p>
+
+<div class="message" id="success">
+Account created successfully.
+</div>
+
+<div class="error" id="error">
+Please complete all fields.
+</div>
+
+<form id="signupForm">
+
+<div class="input-group">
+<label>Full Name</label>
+<input type="text" id="name" required>
+</div>
+
+<div class="input-group">
+<label>Email</label>
+<input type="email" id="email" required>
+</div>
+
+<div class="input-group">
+<label>Password</label>
+<input type="password" id="password" required>
+</div>
+
+<div class="input-group">
+<label>Confirm Password</label>
+<input type="password" id="confirmPassword" required>
+</div>
+
+<button type="submit">
+Create Account
+</button>
+
+</form>
+
+<div class="bottom">
+Already have an account?
+<a href="login.html">Login</a>
+</div>
+
+</div>
+
+<script type="module">
+
+import { auth } from "./firebase.js";
+
+import {
+    createUserWithEmailAndPassword,
+    updateProfile
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+document.getElementById("signupForm").addEventListener("submit", async (e) => {
+
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const confirm = document.getElementById("confirmPassword").value;
+
+    const error = document.getElementById("error");
+
+    error.style.display = "none";
+
+    if (password !== confirm) {
+        error.style.display = "block";
+        error.innerHTML = "Passwords do not match.";
+        return;
+    }
+
+    try {
+
+        const userCredential = await createUserWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
+
+        await updateProfile(userCredential.user, {
+            displayName: name
+        });
+
+        window.location.href = "checkout.html";
+
+    } catch (err) {
+
+        error.style.display = "block";
+        error.innerHTML = err.message;
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
