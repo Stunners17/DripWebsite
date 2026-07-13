@@ -162,6 +162,8 @@ colors:["Black","White"]
 
 uploadBtn.onclick=async()=>{
 
+try{
+
 status.textContent="Uploading...";
 
 for(const product of products){
@@ -185,6 +187,16 @@ createdAt:serverTimestamp()
 }
 
 status.textContent="Upload Complete!";
+
+}
+
+catch(error){
+
+console.error(error);
+
+status.textContent="Error: "+error.message;
+
+}
 
 };
 
