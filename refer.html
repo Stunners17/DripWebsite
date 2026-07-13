@@ -4,10 +4,446 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#000000">
 
 <title>PLUGSA | Refer & Earn</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+background:#050505;
+color:#fff;
+overflow-x:hidden;
+
+}
+
+/* NAVBAR */
+
+.navbar{
+
+position:fixed;
+top:0;
+left:0;
+width:100%;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:18px 8%;
+
+background:rgba(0,0,0,.82);
+backdrop-filter:blur(15px);
+
+z-index:1000;
+
+border-bottom:1px solid rgba(255,255,255,.06);
+
+}
+
+.logo{
+
+font-size:2rem;
+font-weight:800;
+letter-spacing:3px;
+
+color:#fff;
+text-decoration:none;
+
+}
+
+.nav-links{
+
+display:flex;
+gap:28px;
+
+}
+
+.nav-links a{
+
+text-decoration:none;
+color:#d7d7d7;
+font-size:.95rem;
+transition:.3s;
+
+}
+
+.nav-links a:hover{
+
+color:#fff;
+
+}
+
+/* HERO */
+
+.hero{
+
+padding-top:140px;
+padding-bottom:90px;
+
+padding-left:8%;
+padding-right:8%;
+
+text-align:center;
+
+background:
+
+radial-gradient(circle at top,
+rgba(255,215,0,.08),
+transparent 60%),
+
+linear-gradient(
+180deg,
+#0d0d0d,
+#050505
+);
+
+}
+
+.hero h1{
+
+font-size:4rem;
+font-weight:800;
+
+margin-bottom:20px;
+
+}
+
+.hero p{
+
+max-width:850px;
+margin:auto;
+
+font-size:1.15rem;
+
+line-height:1.8;
+
+color:#bdbdbd;
+
+}
+
+/* CONTAINER */
+
+.refer-container{
+
+width:90%;
+max-width:1300px;
+
+margin:60px auto;
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+
+gap:30px;
+
+}
+
+/* CARD */
+
+.card{
+
+background:#101010;
+
+border:1px solid rgba(255,255,255,.06);
+
+border-radius:22px;
+
+padding:35px;
+
+transition:.35s;
+
+box-shadow:0 10px 35px rgba(0,0,0,.45);
+
+}
+
+.card:hover{
+
+transform:translateY(-8px);
+
+border-color:#FFD700;
+
+box-shadow:0 20px 60px rgba(255,215,0,.18);
+
+}
+
+.card h2{
+
+font-size:1.6rem;
+
+margin-bottom:18px;
+
+}
+
+.card p{
+
+color:#bdbdbd;
+
+line-height:1.8;
+
+margin-bottom:25px;
+
+}
+
+/* INPUTS */
+
+input{
+
+width:100%;
+
+padding:16px;
+
+margin-top:8px;
+margin-bottom:22px;
+
+background:#181818;
+
+border:1px solid rgba(255,255,255,.08);
+
+border-radius:12px;
+
+color:#fff;
+
+font-size:1rem;
+
+outline:none;
+
+transition:.3s;
+
+}
+
+input:focus{
+
+border-color:#FFD700;
+
+box-shadow:0 0 18px rgba(255,215,0,.2);
+
+}
+
+/* BUTTONS */
+
+button{
+
+width:100%;
+
+padding:16px;
+
+border:none;
+
+border-radius:12px;
+
+background:#FFD700;
+
+color:#000;
+
+font-weight:700;
+
+font-size:1rem;
+
+cursor:pointer;
+
+transition:.35s;
+
+}
+
+button:hover{
+
+transform:translateY(-3px);
+
+background:#fff;
+
+}
+
+.buttons{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:15px;
+
+margin-top:15px;
+
+}
+
+/* PROGRESS */
+
+.progress-box{
+
+display:flex;
+
+flex-direction:column;
+
+gap:20px;
+
+}
+
+.progress-item{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:18px;
+
+border-radius:15px;
+
+background:#181818;
+
+}
+
+.progress-item strong{
+
+font-size:1.4rem;
+
+color:#FFD700;
+
+}
+
+/* TABLE */
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+margin-top:15px;
+
+overflow:hidden;
+
+border-radius:15px;
+
+}
+
+thead{
+
+background:#FFD700;
+
+color:#000;
+
+}
+
+th{
+
+padding:18px;
+
+text-align:left;
+
+}
+
+td{
+
+padding:18px;
+
+border-bottom:1px solid rgba(255,255,255,.05);
+
+}
+
+/* STATUS */
+
+.status{
+
+padding:8px 18px;
+
+border-radius:50px;
+
+font-size:.82rem;
+
+font-weight:700;
+
+display:inline-block;
+
+}
+
+.pending{
+
+background:#ff9800;
+
+color:#000;
+
+}
+
+.completed{
+
+background:#28a745;
+
+}
+
+/* FOOTER */
+
+footer{
+
+margin-top:80px;
+
+padding:40px;
+
+text-align:center;
+
+color:#8e8e8e;
+
+border-top:1px solid rgba(255,255,255,.05);
+
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.hero h1{
+
+font-size:2.6rem;
+
+}
+
+.buttons{
+
+grid-template-columns:1fr;
+
+}
+
+.navbar{
+
+flex-direction:column;
+
+gap:15px;
+
+}
+
+.nav-links{
+
+flex-wrap:wrap;
+justify-content:center;
+
+}
+
+.refer-container{
+
+grid-template-columns:1fr;
+
+width:94%;
+
+}
+
+}
+
+</style>
 
 </head>
 
@@ -15,17 +451,21 @@
 
 <nav class="navbar">
 
-<a href="index.html" class="logo">
-PLUGSA
-</a>
+<a href="index.html" class="logo">PLUGSA</a>
 
 <div class="nav-links">
 
 <a href="index.html">Home</a>
 
-<a href="cart.html">Cart</a>
+<a href="hoodies.html">Hoodies</a>
 
-<a href="account.html">My Account</a>
+<a href="graphic-tees.html">Graphic Tees</a>
+
+<a href="fitted caps.html">Caps</a>
+
+<a href="sneaker.html">Sneakers</a>
+
+<a href="cart.html">Cart</a>
 
 </div>
 
@@ -33,15 +473,17 @@ PLUGSA
 
 <section class="hero">
 
-<h1>Refer a Friend</h1>
+<h1>Refer & Earn</h1>
 
 <p>
 
-Invite your friends to shop at PLUGSA.
+Invite your friends to shop at <strong>PLUGSA</strong>.
 
-When your friend places their first successful order using your referral link,
+When a referred friend completes their <strong>first successful purchase</strong>,
 
-you'll receive a FREE premium cap.
+you'll earn a <strong>FREE Premium PLUGSA Cap.</strong>
+
+The reward is only issued after the order has been confirmed.
 
 </p>
 
@@ -49,34 +491,37 @@ you'll receive a FREE premium cap.
 
 <div class="refer-container">
 
+<!-- Referral Link -->
+
 <div class="card">
 
 <h2>Your Referral Link</h2>
 
 <p>
 
-Share this link with your friends.
+Share your personal referral link with friends.
 
-The reward is only unlocked after they complete an order.
+Every completed purchase brings you one step closer to earning your reward.
 
 </p>
 
 <input
 type="text"
 id="referralLink"
-readonly>
+readonly
+placeholder="Generating your referral link...">
 
 <div class="buttons">
 
 <button id="copyBtn">
 
-Copy Link
+📋 Copy Link
 
 </button>
 
 <button id="whatsappBtn">
 
-Share on WhatsApp
+📲 WhatsApp
 
 </button>
 
@@ -84,36 +529,47 @@ Share on WhatsApp
 
 </div>
 
+<!-- Invite Friend -->
+
 <div class="card">
 
-<h2>Invite a Friend</h2>
+<h2>Invite Your Friend</h2>
+
+<p>
+
+We'll save your referral and track it automatically.
+
+Rewards are only unlocked after your friend places their first successful order.
+
+</p>
 
 <form id="referForm">
 
 <label>
 
-Friend's Name
+Friend's Full Name
 
 </label>
 
 <input
 type="text"
 id="friendName"
+placeholder="John Smith"
 required>
 
 <label>
 
-Friend's Email
+Friend's Email Address
 
 </label>
 
 <input
 type="email"
 id="friendEmail"
+placeholder="john@example.com"
 required>
 
-<button
-type="submit">
+<button type="submit">
 
 Send Invitation
 
@@ -123,9 +579,11 @@ Send Invitation
 
 </div>
 
+<!-- Referral Progress -->
+
 <div class="card">
 
-<h2>Your Referral Progress</h2>
+<h2>Your Progress</h2>
 
 <div class="progress-box">
 
@@ -169,7 +627,43 @@ Send Invitation
 
 </div>
 
+<!-- Reward Process -->
+
 <div class="card">
+
+<h2>How It Works</h2>
+
+<p>
+
+1️⃣ Share your referral link.
+
+</p>
+
+<p>
+
+2️⃣ Your friend creates an account.
+
+</p>
+
+<p>
+
+3️⃣ They purchase any PLUGSA product.
+
+</p>
+
+<p>
+
+4️⃣ Once their order is confirmed,
+
+your FREE Premium Cap becomes available.
+
+</p>
+
+</div>
+
+<!-- Referral History -->
+
+<div class="card" style="grid-column:1/-1;">
 
 <h2>Referral History</h2>
 
@@ -181,9 +675,13 @@ Send Invitation
 
 <th>Friend</th>
 
+<th>Email</th>
+
 <th>Status</th>
 
 <th>Reward</th>
+
+<th>Date</th>
 
 </tr>
 
@@ -193,9 +691,9 @@ Send Invitation
 
 <tr>
 
-<td colspan="3">
+<td colspan="5" style="text-align:center;color:#888;">
 
-No referrals yet.
+You haven't referred anyone yet.
 
 </td>
 
@@ -209,17 +707,79 @@ No referrals yet.
 
 </div>
 
-<footer class="site-footer">
+<footer>
 
 <p>
 
-© 2026 PLUGSA. Premium Streetwear.
+© 2026 PLUGSA.
+
+Premium Streetwear.
+
+Refer friends. Earn rewards.
 
 </p>
 
 </footer>
-
 <script type="module" src="refer.js"></script>
+
+<script>
+
+// Copy Referral Link
+
+document.getElementById("copyBtn").addEventListener("click",()=>{
+
+const input=document.getElementById("referralLink");
+
+input.select();
+
+input.setSelectionRange(0,99999);
+
+navigator.clipboard.writeText(input.value);
+
+const btn=document.getElementById("copyBtn");
+
+btn.innerHTML="✅ Copied!";
+
+setTimeout(()=>{
+
+btn.innerHTML="📋 Copy Link";
+
+},2000);
+
+});
+
+
+// Share on WhatsApp
+
+document.getElementById("whatsappBtn").addEventListener("click",()=>{
+
+const link=document.getElementById("referralLink").value;
+
+const message=encodeURIComponent(
+
+`🔥 Join PLUGSA and shop premium streetwear!
+
+Use my referral link below:
+
+${link}
+
+When you complete your first purchase, I'll earn a FREE PLUGSA Cap!
+
+Shop now 👇`
+
+);
+
+window.open(
+
+`https://wa.me/?text=${message}`,
+
+"_blank"
+
+);
+
+});
+
+</script>
 
 </body>
 </html>
