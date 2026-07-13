@@ -83,7 +83,16 @@
     <div id="productsGrid" class="products"></div>
   </main>
 
-  <script>
+  <script type="module">
+    import { db } from "./firebase.js";
+
+    import {
+    collection,
+    getDocs,
+    query,
+    where
+  }
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
     const storageKey='plugsa-cart';
     function readCart(){try{return JSON.parse(localStorage.getItem(storageKey))||[]}catch(e){return []}}
     function writeCart(c){localStorage.setItem(storageKey,JSON.stringify(c))}
