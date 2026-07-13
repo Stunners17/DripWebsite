@@ -132,31 +132,7 @@ from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
     const searchInput=document.getElementById('searchInput');
     const filterSelect=document.getElementById('filterSelect');
     const sortSelect=document.getElementById('sortSelect');
-
-    let tees = [];
-
-async function loadProducts(){
-
-    console.log("Loading products...");
-
-    const q = query(
-        collection(db,"products"),
-        where("category","==","graphic-tees")
-    );
-
-    const snapshot = await getDocs(q);
-
-    console.log("Products found:", snapshot.size);
-
-    snapshot.forEach((doc)=>{
-
-        tees.push(doc.data());
-
-    });
-
-    render();
-
-}
+    
 
     function render(){
       const q=searchInput.value.trim().toLowerCase();
