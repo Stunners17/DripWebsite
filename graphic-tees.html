@@ -102,7 +102,9 @@ from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
     let tees = [];
 
-async function loadProducts(){
+  async function loadProducts(){
+
+    console.log("Loading products...");
 
     tees = [];
 
@@ -113,35 +115,17 @@ async function loadProducts(){
 
     const snapshot = await getDocs(q);
 
-    snapshot.forEach(doc=>{
-
-        tees.push(doc.data());
-
-    });
-
-
-    loadProducts(async function loadProducts(){
-
-    tees = [];
-
-    const q = query(
-        collection(db,"products"),
-        where("category","==","graphic-tees")
-    );
-
-    const snapshot = await getDocs(q);
-
-    console.log("Products found:", snapshot.size);
+    console.log("Documents found:", snapshot.size);
 
     snapshot.forEach(doc=>{
         console.log(doc.data());
         tees.push(doc.data());
     });
 
-    console.log(tees);
+    console.log("tees array:", tees);
 
     render();
-});
+
 }
 
     const grid=document.getElementById('productsGrid');
