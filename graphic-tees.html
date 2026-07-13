@@ -99,7 +99,7 @@ from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
     function updateCartCount(){const cart=readCart();document.querySelectorAll('[data-cart-count]').forEach(el=>el.textContent=cart.reduce((s,i)=>s+i.quantity,0))}
     updateCartCount();window.addEventListener('storage',updateCartCount);window.addEventListener('focus',updateCartCount);
 
-    const tees=[
+
     let tees = [];
 
 async function loadProducts(){
