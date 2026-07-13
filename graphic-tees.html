@@ -100,14 +100,27 @@ from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
     updateCartCount();window.addEventListener('storage',updateCartCount);window.addEventListener('focus',updateCartCount);
 
     const tees=[
-      {name:'Urban Script Tee',image:'images/532daa7acf60562e09aba67620ff258b.jpg',price:249,category:'new',sizes:['S','M','L','XL'],colors:['Black','White']},
-      {name:'Retro Script Tee',image:'images/graphic-tee1.jpg',price:219,category:'graphic',sizes:['S','M','L','XL'],colors:['Black','Grey','White']},
-      {name:'Gangstars Tee',image:'images/graphic-tee2.jpg',price:249,category:'graphic',sizes:['S','M','L'],colors:['Black','White']},
-      {name:'Abstract Lines Tee',image:'images/graphic-tee3.jpg',price:249,category:'graphic',sizes:['S','M','L'],colors:['Black','White']},
-      {name:'Tick Tock Boy Tee',image:'images/tick-tock-boy-graphic-tee.png',price:249,category:'graphic',sizes:['S','M','L'],colors:['Black','White']},
-      {name:'Nasa Tee',image:'images/graphic-tee4.jpg',price:199,category:'signature',sizes:['S','M','L'],colors:['White','Black']},
-      {name:'Signature Print Tee',image:'images/graphic-tee5.jpg',price:299,category:'signature',sizes:['S','M','L'],colors:['Black','White']}
-    ];
+    let tees = [];
+
+async function loadProducts(){
+
+    tees = [];
+
+    const q = query(
+        collection(db,"products"),
+        where("category","==","graphic-tees")
+    );
+
+    const snapshot = await getDocs(q);
+
+    snapshot.forEach(doc=>{
+
+        tees.push(doc.data());
+
+    });
+
+    loadProducts();
+}
 
     const grid=document.getElementById('productsGrid');
     const searchInput=document.getElementById('searchInput');
