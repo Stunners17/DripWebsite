@@ -84,97 +84,383 @@
   </main>
 
   <script type="module">
-    import { db } from "./firebase.js";
 
-    import {
+import { db } from "./firebase.js";
+
+import {
     collection,
     getDocs,
     query,
     where
-  }
-from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-    const storageKey='plugsa-cart';
-    function readCart(){try{return JSON.parse(localStorage.getItem(storageKey))||[]}catch(e){return []}}
-    function writeCart(c){localStorage.setItem(storageKey,JSON.stringify(c))}
-    function updateCartCount(){const cart=readCart();document.querySelectorAll('[data-cart-count]').forEach(el=>el.textContent=cart.reduce((s,i)=>s+i.quantity,0))}
-    updateCartCount();window.addEventListener('storage',updateCartCount);window.addEventListener('focus',updateCartCount);
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
-    let tees = [];
+const storageKey = 'plugsa-cart';
 
-  async function loadProducts(){
+
+function readCart(){
+    try{
+        return JSON.parse(localStorage.getItem(storageKey)) || [];
+    }
+    catch(e){
+        return [];
+    }
+}
+
+
+function writeCart(c){
+    localStorage.setItem(storageKey, JSON.stringify(c));
+}
+
+
+function updateCartCount(){
+
+    const cart = readCart();
+
+    document.querySelectorAll('[data-cart-count]')
+    .forEach(el => {
+        el.textContent = cart.reduce((s,i)=>s+i.quantity,0);
+    });
+
+}
+
+
+updateCartCount();
+
+window.addEventListener('storage', updateCartCount);
+window.addEventListener('focus', updateCartCount);
+
+
+
+let tees = [];
+
+
+// LOAD PRODUCTS FROM FIRESTORE
+
+async function loadProducts(){
 
     console.log("Loading products...");
 
     tees = [];
+
 
     const q = query(
         collection(db,"products"),
         where("category","==","graphic-tees")
     );
 
+
     const snapshot = await getDocs(q);
 
-    console.log("Documents found:", snapshot.size);
 
-    snapshot.forEach(doc=>{
+    console.log("Products found:", snapshot.size);
+
+
+    snapshot.forEach(doc => {
+
         console.log(doc.data());
+
         tees.push(doc.data());
+
     });
 
-    console.log("tees array:", tees);
 
-    loadProducts();
+    console.log("Products array:", tees);
+
+
+    render();
 
 }
 
-    const grid=document.getElementById('productsGrid');
-    const searchInput=document.getElementById('searchInput');
-    const filterSelect=document.getElementById('filterSelect');
-    const sortSelect=document.getElementById('sortSelect');
-    
 
-    function render(){
-      const q=searchInput.value.trim().toLowerCase();
-      const f=filterSelect.value;
-      let list=tees.filter(t=>t.name.toLowerCase().includes(q) && (f==='all'||t.category===f));
-      if(sortSelect.value==='az') list=list.sort((a,b)=>a.name.localeCompare(b.name));
-      if(sortSelect.value==='za') list=list.sort((a,b)=>b.name.localeCompare(a.name));
-      if(list.length===0){grid.innerHTML='<div class="empty">No products found.</div>';return}
-      grid.innerHTML=list.map(p=>`
-        <article class="product-card">
-          <img src="${p.image}" alt="${p.name}">
-          <div style="padding:12px 16px">
-            <div class="badge">NEW</div>
-          </div>
-          <div class="inner">
-            <h3>${p.name}</h3>
-            <p class="meta">Premium cotton • bold print</p>
-            <div class="row">
-              <select class="select" aria-label="Size">${p.sizes.map(s=>`<option>${s}</option>`).join('')}</select>
-              <select class="select" aria-label="Color">${p.colors.map(c=>`<option>${c}</option>`).join('')}</select>
-            </div>
-            <div class="row" style="margin-top:8px;">
-              <div style="font-weight:800;color:#111827">R ${p.price}</div>
-              <input class="qty" type="number" min="1" max="9" value="1" aria-label="Quantity">
-              <button class="btn add-to-cart" data-name="${p.name}" data-price="${p.price}" data-image="${p.image}">Add to cart</button>
-            </div>
-          </div>
-        </article>
-      `).join('');
+
+const grid = document.getElementById('productsGrid');
+
+const searchInput = document.getElementById('searchInput');
+
+const filterSelect = document.getElementById('filterSelect');
+
+const sortSelect = document.getElementById('sortSelect');
+
+
+
+
+function render(){
+
+
+    const search = searchInput.value.trim().toLowerCase();
+
+    const filter = filterSelect.value;
+
+
+    let list = tees.filter(product => {
+
+        return product.name.toLowerCase().includes(search);
+
+    });
+
+
+
+    if(sortSelect.value === "az"){
+
+        list.sort((a,b)=>a.name.localeCompare(b.name));
+
     }
 
-    render();[searchInput,filterSelect,sortSelect].forEach(i=>i.addEventListener('input',render));[searchInput,filterSelect,sortSelect].forEach(i=>i.addEventListener('change',render));
 
-    document.addEventListener('click',e=>{
-      if(e.target.classList.contains('add-to-cart')){
-        const btn=e.target; const card=btn.closest('.product-card'); const qty=Number(card.querySelector('.qty').value)||1; const size=card.querySelector('.select').value; const color=card.querySelectorAll('.select')[1].value;
-        const item={name:btn.dataset.name,price:Number(btn.dataset.price),image:btn.dataset.image,quantity:qty,size,color};
-        const cart=readCart(); const found=cart.find(i=>i.name===item.name && i.size===item.size && i.color===item.color);
-        if(found) found.quantity += item.quantity; else cart.push(item); writeCart(cart); updateCartCount(); btn.textContent='Added'; setTimeout(()=>btn.textContent='Add to cart',800);
-      }
-    });
-  </script>
+    if(sortSelect.value === "za"){
+
+        list.sort((a,b)=>b.name.localeCompare(a.name));
+
+    }
+
+
+
+    if(list.length === 0){
+
+        grid.innerHTML = `
+        <div class="empty">
+        No products found.
+        </div>
+        `;
+
+        return;
+
+    }
+
+
+
+    grid.innerHTML = list.map(p => `
+
+
+<article class="product-card">
+
+
+<img src="${p.image}" alt="${p.name}">
+
+
+<div style="padding:12px 16px">
+
+<div class="badge">
+NEW
+</div>
+
+</div>
+
+
+
+<div class="inner">
+
+
+<h3>${p.name}</h3>
+
+
+<p class="meta">
+Premium cotton • bold print
+</p>
+
+
+
+<div class="row">
+
+
+<select class="select">
+
+${p.sizes.map(size=>`
+<option>${size}</option>
+`).join('')}
+
+</select>
+
+
+
+<select class="select">
+
+${p.colors.map(color=>`
+<option>${color}</option>
+`).join('')}
+
+</select>
+
+
+</div>
+
+
+
+<div class="row" style="margin-top:8px;">
+
+
+<div style="font-weight:800;color:#111827">
+
+R ${p.price}
+
+</div>
+
+
+
+<input 
+class="qty" 
+type="number" 
+min="1" 
+max="9" 
+value="1"
+>
+
+
+
+<button 
+class="btn add-to-cart"
+
+data-name="${p.name}"
+
+data-price="${p.price}"
+
+data-image="${p.image}"
+
+>
+
+Add to cart
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</article>
+
+
+`).join('');
+
+}
+
+
+
+
+// START FIRESTORE LOADING
+
+loadProducts();
+
+
+
+// SEARCH + FILTER + SORT
+
+[searchInput,filterSelect,sortSelect]
+
+.forEach(element => {
+
+element.addEventListener('input',render);
+
+element.addEventListener('change',render);
+
+});
+
+
+
+
+// CART FUNCTION
+
+document.addEventListener('click', e=>{
+
+
+if(e.target.classList.contains('add-to-cart')){
+
+
+const button = e.target;
+
+
+const card = button.closest('.product-card');
+
+
+const qty = Number(card.querySelector('.qty').value) || 1;
+
+
+const selects = card.querySelectorAll('.select');
+
+
+const size = selects[0].value;
+
+
+const color = selects[1].value;
+
+
+
+const item = {
+
+name: button.dataset.name,
+
+price: Number(button.dataset.price),
+
+image: button.dataset.image,
+
+quantity: qty,
+
+size,
+
+color
+
+};
+
+
+
+const cart = readCart();
+
+
+
+const existing = cart.find(i =>
+
+i.name === item.name &&
+
+i.size === item.size &&
+
+i.color === item.color
+
+);
+
+
+
+if(existing){
+
+existing.quantity += item.quantity;
+
+}
+
+else{
+
+cart.push(item);
+
+}
+
+
+
+writeCart(cart);
+
+
+updateCartCount();
+
+
+button.textContent = "Added";
+
+
+setTimeout(()=>{
+
+button.textContent="Add to cart";
+
+},800);
+
+
+
+}
+
+
+
+});
+
+
+</script>
 
   <footer class="site-footer">
     <p>&copy; 2026 PLUGSA. All rights reserved.</p>
