@@ -789,7 +789,52 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.2 });
 revealItems.forEach((item) => observer.observe(item));
 
+</script>
+<script>
+    import { auth } from "./firebase.js";
 
+import {
+    signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+document.getElementById("loginForm").addEventListener("submit", async (e) => {
+
+    e.preventDefault();
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
+    const error = document.getElementById("error");
+
+    error.style.display = "none";
+
+    try {
+
+        await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
+
+        window.location.href = "checkout.html";
+
+    } catch (err) {
+
+        error.style.display = "block";
+
+        if (err.code === "auth/invalid-credential") {
+            error.innerHTML = "Incorrect email or password.";
+        } 
+        else if (err.code === "auth/invalid-email") {
+            error.innerHTML = "Please enter a valid email.";
+        }
+        else {
+            error.innerHTML = err.message;
+        }
+
+    }
+
+});
 </script>
 </body>
 </html>
