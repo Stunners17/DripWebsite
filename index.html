@@ -593,6 +593,14 @@ footer .brand { color: var(--accent); font-size: 1.2rem; font-weight: 700; lette
       <p>From dropped silhouettes to clean everyday essentials, each piece is selected to speak with confidence and purpose.</p>
       <a class="btn btn-accent" href="sneaker.html">Discover the drop</a>
     </div>
+
+    <div class="newsletter-card reveal">
+      <h3 style="margin-bottom: 8px;">Join the inner circle</h3>
+      <p style="color: var(--muted);">Get first access to launches, exclusives, and curated drops.</p>
+      <form onsubmit="event.preventDefault(); this.reset(); alert('You are on the list.');">
+      </form>
+    </div>
+    
     <div class="login-card">
       <h2 style="margin-bottom: 12px; text-align:center;">Login</h2>
     <div class="error" id="error">
@@ -652,15 +660,6 @@ footer .brand { color: var(--accent); font-size: 1.2rem; font-weight: 700; lette
     </div>
 </div>
 
-
-    <div class="newsletter-card reveal">
-      <h3 style="margin-bottom: 8px;">Join the inner circle</h3>
-      <p style="color: var(--muted);">Get first access to launches, exclusives, and curated drops.</p>
-      <form onsubmit="event.preventDefault(); this.reset(); alert('You are on the list.');">
-        <input type="email" placeholder="Your email address" required>
-        <button class="btn btn-accent" type="submit">Subscribe</button>
-      </form>
-    </div>
   </div>
 </section>
 <section>
