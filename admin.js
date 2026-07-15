@@ -1,3 +1,11 @@
+import{
+    collection,
+    getDocs,
+    deleteDocs,
+    doc,
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js"
+
+
 import { auth, db } from "./firebase.js";
 
 import {
@@ -116,3 +124,80 @@ ${order.createdAt?.toDate().toLocaleDateString() || "-"}
     });
 
 }
+
+
+async function loadProducts(){
+    if (user.email !== ADMIN_EMAIL) 
+        loadOrders(),
+        loadProducts();
+
+    const productsTable = document.getElementById("productsTable");
+
+    if(!productsTable) return;
+
+
+    productsTable.innerHTML = "Loading products...";
+
+
+    const snapshot = await getDocs(collection(db,"products"));
+
+
+    productsTable.innerHTML = "";
+
+
+    snapshot.forEach((productDoc)=>{
+
+
+        const product = productDoc.data();
+
+
+        productsTable.innerHTML += `
+
+        <tr>
+
+        <td>
+        <img src="${product.image}" width="60">
+        </td>
+
+
+        <td>
+        ${product.name}
+        </td>
+
+
+        <td>
+        ${product.category || "N/A"}
+        </td>
+
+
+        <td>
+        R${product.price}
+        </td>
+
+
+        <td>
+        ${product.stock || 0}
+        </td>
+
+
+        <td>
+
+        <button class="delete-product"
+        data-id="${productDoc.id}">
+        Delete
+        </button>
+
+
+        </td>
+
+
+        </tr>
+
+        `;
+
+
+    });
+
+
+}
+
