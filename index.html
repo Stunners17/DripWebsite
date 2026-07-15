@@ -200,6 +200,117 @@ section { padding: clamp(80px, 7vw, 100px) clamp(6%, 4vw, 8%); }
   padding: clamp(22px, 2vw, 26px);
   box-shadow: 0 22px 55px rgba(0,0,0,0.28);
 }
+.login-card{
+    position:relative;
+    width:420px;
+    max-width:92%;
+    background:rgba(20,20,20,.9);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 20px 50px rgba(0,0,0,.6);
+    z-index:1;
+}
+.input-group{
+    margin-bottom:18px;
+}
+
+.input-group label{
+    display:block;
+    margin-bottom:8px;
+    font-size:.95rem;
+}
+
+.input-group input{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    background:#111;
+    color:#fff;
+    outline:none;
+    border:1px solid #333;
+    transition:.3s;
+}
+
+.input-group input:focus{
+    border-color:#fff;
+}
+
+.options{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:.9rem;
+    margin:20px 0;
+}
+
+.options a{
+    color:#fff;
+    text-decoration:none;
+}
+
+.login-btn{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    background:#fff;
+    color:#000;
+    font-weight:bold;
+    font-size:1rem;
+    transition:.3s;
+}
+
+.login-btn:hover{
+    transform:translateY(-2px);
+}
+
+.divider{
+    text-align:center;
+    margin:25px 0;
+    color:#777;
+}
+
+.social-login{
+    display:grid;
+    gap:12px;
+}
+
+.social-btn{
+    padding:13px;
+    border-radius:10px;
+    border:1px solid #333;
+    background:#111;
+    color:#fff;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.social-btn:hover{
+    background:#1a1a1a;
+}
+
+.signup{
+    margin-top:25px;
+    text-align:center;
+    color:#888;
+}
+
+.signup a{
+    color:#fff;
+    text-decoration:none;
+}
+
+.error{
+    color:#ff4d4d;
+    text-align:center;
+    margin-bottom:15px;
+    display:none;
+}
+
 .feature-box h3 { color: var(--accent); margin-bottom: 10px; }
 .story-panel p { color: var(--muted); line-height: 1.8; margin-bottom: 16px; }
 .newsletter-card form { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
@@ -212,6 +323,7 @@ section { padding: clamp(80px, 7vw, 100px) clamp(6%, 4vw, 8%); }
   border: 1px solid var(--border);
   border-radius: 999px;
 }
+
 .music-player {
   position: fixed;
   right: 20px;
@@ -481,6 +593,64 @@ footer .brand { color: var(--accent); font-size: 1.2rem; font-weight: 700; lette
       <p>From dropped silhouettes to clean everyday essentials, each piece is selected to speak with confidence and purpose.</p>
       <a class="btn btn-accent" href="sneaker.html">Discover the drop</a>
     </div>
+
+    <div class="error" id="error">
+      Invalid email or password.
+    </div>
+
+<form id="loginForm">
+
+<div class="input-group">
+<label>Email</label>
+<input
+type="email"
+id="email"
+placeholder="Enter your email"
+required>
+</div>
+
+<div class="input-group">
+<label>Password</label>
+<input
+type="password"
+id="password"
+placeholder="Enter your password"
+required>
+</div>
+
+<div class="options">
+<label>
+<input type="checkbox">
+ Remember me
+</label>
+
+<a href="#">Forgot Password?</a>
+</div>
+
+<button class="login-btn" type="submit">
+Login
+</button>
+
+</form>
+
+<div class="divider">
+OR
+</div>
+
+<div class="social-login">
+<button class="social-btn">
+Continue with Google
+</button>
+
+
+<div class="signup">
+Don't have an account?
+<a href="signup.html">Create Account</a>
+</div>
+
+</div>
+
+
     <div class="newsletter-card reveal">
       <h3 style="margin-bottom: 8px;">Join the inner circle</h3>
       <p style="color: var(--muted);">Get first access to launches, exclusives, and curated drops.</p>
@@ -620,8 +790,6 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.2 });
 revealItems.forEach((item) => observer.observe(item));
-
-
 
 
 </script>
