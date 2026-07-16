@@ -1,139 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>PLUGSA Admin Dashboard</title>
-
-<link rel="stylesheet" href="admin.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PLUGSA Admin Dashboard</title>
+  <link rel="stylesheet" href="admin.css">
 </head>
-
 <body>
-
-<div class="sidebar">
-
-<h2>PLUGSA</h2>
-
-<a href="#">Dashboard</a>
-
-<a href="#">Orders</a>
-
-<a href="upload-products.html">Products</a>
-
-<a href="#">Customers</a>
-
-<a href="#" id="logoutBtn">Logout</a>
-
-</div>
-
-<div class="main">
-
-<h1>Admin Dashboard</h1>
-
-<div class="cards">
-
-<div class="card">
-<h3>Total Orders</h3>
-<p id="totalOrders">0</p>
-</div>
-
-<div class="card">
-<h3>Pending</h3>
-<p id="pendingOrders">0</p>
-</div>
-
-<div class="card">
-<h3>Revenue</h3>
-<p id="revenue">R0.00</p>
-</div>
-
-<div class="card">
-<h3>Customers</h3>
-<p id="customers">0</p>
-</div>
-
-</div>
-
-<h2>Recent Orders</h2>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>Customer</th>
-
-<th>Phone</th>
-
-<th>Total</th>
-
-<th>Status</th>
-
-<th>Date</th>
-
-</tr>
-
-</thead>
-
-
-</table>
-
-<tbody id="ordersTable">
-
-</tbody>
-
-</table>
-
-<hr style="margin:40px 0;">
-
-<h2>Manage Products</h2>
-
-<input
-    type="text"
-    id="searchProducts"
-    placeholder="Search products..."
-    style="
-        width:100%;
-        padding:12px;
-        margin:15px 0;
-        border-radius:8px;
-        border:1px solid #ccc;
-    "
->
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>Image</th>
-
-<th>Name</th>
-
-<th>Category</th>
-
-<th>Price</th>
-
-<th>Stock</th>
-
-<th>Actions</th>
-
-</tr>
-
-</thead>
-
-<tbody id="productsTable">
-
-</tbody>
-
-</div>
-
-<script type="module" src="admin.js"></script>
-
+  <aside class="sidebar">
+    <h2>PLUGSA</h2>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#orders">Orders</a>
+    <a href="#products">Products</a>
+    <a href="#" id="logoutBtn">Logout</a>
+  </aside>
+  <main class="main" id="dashboard">
+    <div class="page-heading"><div><h1>Admin Dashboard</h1><p id="adminEmail"></p></div></div>
+    <p id="adminMessage" class="message" role="status"></p>
+    <section class="cards">
+      <div class="card"><h3>Total Orders</h3><p id="totalOrders">0</p></div>
+      <div class="card"><h3>Pending</h3><p id="pendingOrders">0</p></div>
+      <div class="card"><h3>Revenue</h3><p id="revenue">R0.00</p></div>
+      <div class="card"><h3>Customers</h3><p id="customers">0</p></div>
+    </section>
+    <section id="orders"><h2>Orders</h2><div class="table-wrap"><table><thead><tr><th>Customer</th><th>Phone</th><th>Email</th><th>Total</th><th>Status</th><th>Date</th></tr></thead><tbody id="ordersTable"></tbody></table></div></section>
+    <section id="products"><h2>Upload product</h2>
+      <form id="productForm" class="product-form">
+        <label>Product name<input name="name" required maxlength="120"></label>
+        <label>Category<input name="category" required placeholder="e.g. graphic-tees"></label>
+        <label>Price (R)<input name="price" type="number" min="0" step="0.01" required></label>
+        <label>Stock<input name="stock" type="number" min="0" step="1" required></label>
+        <label>Sizes (comma-separated)<input name="sizes" placeholder="S, M, L, XL"></label>
+        <label>Colours (comma-separated)<input name="colors" placeholder="Black, White"></label>
+        <label>Image file<input name="imageFile" type="file" accept="image/*"></label>
+        <label>Or image URL<input name="imageUrl" type="url" placeholder="https://..."></label>
+        <button type="submit">Upload product</button>
+      </form>
+      <h2>Manage products</h2>
+      <input type="search" id="searchProducts" placeholder="Search products..." aria-label="Search products">
+      <div class="table-wrap"><table><thead><tr><th>Image</th><th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th>Actions</th></tr></thead><tbody id="productsTable"></tbody></table></div>
+    </section>
+  </main>
+  <script type="module" src="admin.js"></script>
 </body>
 </html>
