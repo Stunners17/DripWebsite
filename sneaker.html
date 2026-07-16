@@ -49,7 +49,9 @@
   </select>
 </div>
 <div class="products" id="productsGrid"></div>
-<script>
+<script type="module">
+import { db } from "./firebase.js";
+import { collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 const storageKey='plugsa-cart';
 function readCart(){ try{return JSON.parse(localStorage.getItem(storageKey))||[]}catch(e){return [];} }
 function writeCart(cart){ localStorage.setItem(storageKey, JSON.stringify(cart)); }
@@ -114,7 +116,24 @@ function renderProducts(){
     </div>
   </article>`).join('');
 }
-renderProducts();
+async function loadUploadedProducts() {
+  try {
+    const snapshot = await getDocs(query(collection(db, "products"), where("category", "==", "sneakers")));
+    snapshot.forEach((productDoc) => {
+      const product = productDoc.data();
+      sneakers.push({
+        ...product,
+        sizes: product.sizes?.length ? product.sizes : ["One Size"],
+        colors: product.colors?.length ? product.colors : ["Default"],
+        badge: "NEW"
+      });
+    });
+  } catch (error) {
+    console.error("Could not load uploaded sneakers:", error);
+  }
+  renderProducts();
+}
+loadUploadedProducts();
 [searchInput,filterSelect,sortSelect].forEach((el)=>el.addEventListener('input', renderProducts));
 [searchInput,filterSelect,sortSelect].forEach((el)=>el.addEventListener('change', renderProducts));
 document.addEventListener('click', (event)=>{
