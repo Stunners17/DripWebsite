@@ -163,12 +163,15 @@ async function loadProducts(){
 
         console.log(doc.data());
 
-        tees.push(doc.data());
+        tees.push({
+        id: doc.id,
+        ...doc.data()
+      }); 
 
     });
 
 
-    console.log("Products array:", tees);
+    console.table(tees);
 
 
     render();
