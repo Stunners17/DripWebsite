@@ -1,4 +1,5 @@
 import { auth, db, storage } from "./firebase.js";
+import { protectPage } from "./auth-guard.js";
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 import {
   addDoc,
@@ -12,6 +13,8 @@ import { getDownloadURL, ref, uploadBytes } from "https://www.gstatic.com/fireba
 
 // Change this value if the store owner uses a different Firebase login.
 const ADMIN_EMAIL = "ntando.lawrance@gmail.com";
+
+await protectPage();
 
 const escapeHtml = (value = "") => String(value).replace(/[&<>'"]/g, char => ({
   "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;"

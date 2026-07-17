@@ -376,12 +376,12 @@ footer .brand { color: var(--accent); font-size: 1.2rem; font-weight: 700; lette
   <a href="index.html" class="logo">PLUGSA</a>
   <div class="nav-links">
     <a class="active" href="index.html">Home</a>
-    <a href="hoodies.html">Hoodies</a>
-    <a href="graphic-tees.html">Graphic Tees</a>
-    <a href="fitted caps.html">Caps</a>
-    <a href="sneaker.html">Sneakers</a>
-    <a href="admin.html">Admin</a>
-    <a href="cart.html" class="cart-pill">Cart <span data-cart-count>0</span></a>
+    <a href="hoodies.html" data-requires-auth>Hoodies</a>
+    <a href="graphic-tees.html" data-requires-auth>Graphic Tees</a>
+    <a href="fitted caps.html" data-requires-auth>Caps</a>
+    <a href="sneaker.html" data-requires-auth>Sneakers</a>
+    <a href="admin.html" data-requires-auth>Admin</a>
+    <a href="cart.html" class="cart-pill" data-requires-auth>Cart <span data-cart-count>0</span></a>
   </div>
 </nav>
 <section class="hero">
@@ -390,7 +390,7 @@ footer .brand { color: var(--accent); font-size: 1.2rem; font-weight: 700; lette
     <h1>PLUGSA</h1>
     <p class="strapline">FROM THE STREETS TO YOUR CLOSET</p>
     <div class="actions">
-      <a class="btn btn-accent" href="hoodies.html">Shop Now</a>
+      <a class="btn btn-accent" href="hoodies.html" data-requires-auth>Shop Now</a>
       <a class="btn btn-ghost" href="#collections">Explore Drops</a>
     </div>
   </div>
@@ -591,7 +591,7 @@ footer .brand { color: var(--accent); font-size: 1.2rem; font-weight: 700; lette
       <h2 style="margin-bottom: 12px;">Brand Story</h2>
       <p>PLUGSA was built for the culture that lives beyond trends. We merge street consciousness, luxury styling, and sneaker energy into a marketplace that feels bold, polished, and built to last.</p>
       <p>From dropped silhouettes to clean everyday essentials, each piece is selected to speak with confidence and purpose.</p>
-      <a class="btn btn-accent" href="sneaker.html">Discover the drop</a>
+      <a class="btn btn-accent" href="sneaker.html" data-requires-auth>Discover the drop</a>
     </div>
 
     <div class="newsletter-card reveal">
@@ -695,7 +695,8 @@ footer .brand { color: var(--accent); font-size: 1.2rem; font-weight: 700; lette
     <source src="song1.mp3" type="audio/mpeg">
   </audio>
 </div>
-<script>
+<script type="module">
+import { requireAuth } from "./auth-guard.js";
 const storageKey = 'plugsa-cart';
 function readCart() { try { return JSON.parse(localStorage.getItem(storageKey)) || []; } catch (e) { return []; } }
 function writeCart(cart) { localStorage.setItem(storageKey, JSON.stringify(cart)); }
@@ -763,6 +764,7 @@ document.addEventListener('keydown', enableAudioOnGesture, { once: true });
 // Simple Add to Cart wiring for buy buttons
 document.querySelectorAll('.buy-btn').forEach((btn) => {
   btn.addEventListener('click', (e) => {
+    if (!requireAuth(e)) return;
     const card = e.target.closest('.product-card');
     const title = card.querySelector('h3').textContent.trim();
     const img = card.querySelector('img').getAttribute('src');
@@ -793,6 +795,7 @@ revealItems.forEach((item) => observer.observe(item));
 
 <script type="module">
     import { auth } from "./firebase.js";
+    import { getPostLoginDestination } from "./auth-guard.js";
 
 import {
     signInWithEmailAndPassword
@@ -817,7 +820,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
             password
         );
 
-        window.location.href = "admin.html";
+        window.location.href = getPostLoginDestination();
 
     } catch (err) {
 

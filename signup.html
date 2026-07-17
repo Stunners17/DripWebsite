@@ -182,7 +182,7 @@ Create Account
 
 <div class="bottom">
 Already have an account?
-<a href="login.html">Login</a>
+<a id="loginLink" href="login.html">Login</a>
 </div>
 
 </div>
@@ -190,6 +190,7 @@ Already have an account?
 <script type="module">
 
 import { auth } from "./firebase.js";
+import { getPostLoginDestination, showLoginNotice } from "./auth-guard.js";
 
 import {
     createUserWithEmailAndPassword,
@@ -227,7 +228,7 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
             displayName: name
         });
 
-        window.location.href = "checkout.html";
+        window.location.href = getPostLoginDestination();
 
     } catch (err) {
 
@@ -245,6 +246,9 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
     error.innerHTML = message;
 }
 });
+
+showLoginNotice();
+document.getElementById("loginLink").href = `login.html${window.location.search}`;
 
 </script>
 

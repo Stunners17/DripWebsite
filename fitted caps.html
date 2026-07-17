@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-auth-required-page>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -79,7 +79,9 @@ button,input,select { font:inherit; }
 <div class="products" id="productsGrid"></div>
 <script type="module">
 import { db } from "./firebase.js";
+import { protectPage } from "./auth-guard.js";
 import { collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+await protectPage();
 const storageKey='plugsa-cart';
 function readCart(){ try{return JSON.parse(localStorage.getItem(storageKey))||[]}catch(e){return [];} }
 function writeCart(cart){ localStorage.setItem(storageKey, JSON.stringify(cart)); }

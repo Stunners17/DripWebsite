@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-auth-required-page>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -118,7 +118,9 @@
   </div>
 
   <script src="https://unpkg.com/html5-qrcode@2.3.9/minified/html5-qrcode.min.js"></script>
-  <script>
+  <script type="module">
+    import { protectPage } from "./auth-guard.js";
+    await protectPage();
     const resultEl = document.getElementById('result');
     const startButton = document.getElementById('start-scan');
     const stopButton = document.getElementById('stop-scan');

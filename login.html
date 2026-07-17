@@ -226,13 +226,14 @@ Continue with Google
 
 <div class="signup">
 Don't have an account?
-<a href="signup.html">Create Account</a>
+<a id="signupLink" href="signup.html">Create Account</a>
 </div>
 
 </div>
 
 <script type="module">
     import { auth } from "./firebase.js";
+    import { getPostLoginDestination, showLoginNotice } from "./auth-guard.js";
 
 import {
     signInWithEmailAndPassword
@@ -257,7 +258,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
             password
         );
 
-        window.location.href = "checkout.html";
+        window.location.href = getPostLoginDestination();
 
     } catch (err) {
 
@@ -276,6 +277,9 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
     }
 
 });
+
+showLoginNotice();
+document.getElementById("signupLink").href = `signup.html${window.location.search}`;
 </script>
 
 </body>

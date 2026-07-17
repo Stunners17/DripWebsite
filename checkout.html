@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-auth-required-page>
 <head>
 
 <meta charset="UTF-8">
@@ -610,6 +610,7 @@ id="grandTotal">
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script type="module">
 import { auth, db } from "./firebase.js";
+import { protectPage, requireAuth } from "./auth-guard.js";
 
 import {
     onAuthStateChanged
@@ -621,6 +622,8 @@ import {
     addDoc,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+await protectPage();
 
 const storageKey = "plugsa-cart";
 
@@ -721,8 +724,7 @@ document.getElementById("checkoutForm")
 
 
     if(!user){
-
-        window.location.href="login.html";
+        requireAuth(e);
         return;
 
     }
@@ -909,7 +911,7 @@ onAuthStateChanged(auth,(user)=>{
 
     if(!user){
 
-        window.location.href="login.html";
+        requireAuth();
         return;
 
     }

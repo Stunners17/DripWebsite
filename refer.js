@@ -1,4 +1,5 @@
 import { auth, db } from "./firebase.js";
+import { protectPage, requireAuth } from "./auth-guard.js";
 
 import {
     onAuthStateChanged
@@ -14,6 +15,8 @@ import {
     getDocs,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+await protectPage();
 
 let currentUser = null;
 let referralCode = "";
@@ -33,7 +36,7 @@ onAuthStateChanged(auth, async (user)=>{
 
     if(!user){
 
-        window.location.href="login.html";
+        requireAuth();
         return;
 
     }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-auth-required-page>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,7 +33,9 @@
     </aside>
   </div>
 </div>
-<script>
+<script type="module">
+import { protectPage } from "./auth-guard.js";
+await protectPage();
 const storageKey='plugsa-cart';
 function readCart(){ try{return JSON.parse(localStorage.getItem(storageKey))||[]}catch(e){return [];} }
 function writeCart(cart){ localStorage.setItem(storageKey, JSON.stringify(cart)); }
@@ -94,14 +96,7 @@ document.getElementById('checkoutBtn').addEventListener('click', () => {
         return;
     }
 
-    // Check login status
-    const isLoggedIn = localStorage.getItem("plugsaUserLoggedIn");
-
-    if (isLoggedIn === "true") {
-        window.location.href = "checkout.html";
-    } else {
-        window.location.href = "login.html";
-    }
+    window.location.href = "checkout.html";
 
 });
 window.addEventListener('storage', renderCart);
