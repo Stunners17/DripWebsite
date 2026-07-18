@@ -599,3 +599,58 @@ footer p{
         padding:70px 20px;
     }
 }
+
+/* PLUGSA PRODUCT FIX */
+
+.product-card {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    padding-bottom: 25px !important;
+}
+
+
+.product-card img {
+    width: 100% !important;
+    height: 280px !important;
+    object-fit: cover !important;
+}
+
+
+.product-card .inner {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 !important;
+}
+
+
+.product-card .btn {
+    margin-top: auto !important;
+    width: fit-content !important;
+}
+
+
+.products-grid {
+    display: grid !important;
+    row-gap: 50px !important;
+}
+
+
+.features,
+.features-section {
+    margin-top: 100px !important;
+    clear: both !important;
+}
+
+
+/* Mobile */
+
+@media(max-width:600px){
+
+    .product-card img {
+
+        height:220px !important;
+
+    }
+
+}
