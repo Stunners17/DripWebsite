@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" data-auth-required-page>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+<title>PLUGSA | Cart</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">PLUGSA</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="admin.html">Admin</a>
+    <a class="active cart-pill" href="cart.html">Cart <span data-cart-count>0</span></a>
+  </div>
+</nav>
+<div class="page">
+  <h1>Your Cart</h1>
+  <div class="layout">
+    <div id="cartItems" class="items"></div>
+    <aside class="summary">
+      <h2>Order Summary</h2>
+      <div class="line"><span>Items</span><span id="itemCount">0</span></div>
+      <div class="line"><span>Shipping</span><span>Calculated later</span></div>
+      <div class="line"><span>Tax</span><span>Included</span></div>
+      <div class="total"><span>Total</span><span>R<span id="grandTotal">0.00</span></span></div>
+      <button class="checkout-btn" id="checkoutBtn" type="button">Proceed to Checkout</button>
+    </aside>
+  </div>
+</div>
+<script type="module">
+import { protectPage } from "./auth-guard.js";
+await protectPage();
+const storageKey='plugsa-cart';
+function readCart(){ try{return JSON.parse(localStorage.getItem(storageKey))||[]}catch(e){return [];} }
+function writeCart(cart){ localStorage.setItem(storageKey, JSON.stringify(cart)); }
+function updateCartCount(){ const cart=readCart(); document.querySelectorAll('[data-cart-count]').forEach((el)=>{ el.textContent=cart.reduce((total,item)=>total+item.quantity,0); }); }
+function renderCart(){
+  const cart=readCart();
+  const cartItems=document.getElementById('cartItems');
+  const grandTotal=document.getElementById('grandTotal');
+  const itemCount=document.getElementById('itemCount');
+  updateCartCount();
+  if(cart.length===0){
+    cartItems.innerHTML='<div class="empty"><h2>Your cart is empty</h2><p>Add premium essentials from the store to begin your order.</p></div>';
+    grandTotal.textContent='0.00';
+    itemCount.textContent='0';
+    return;
+  }
+  let total=0;
+  cartItems.innerHTML=cart.map((item,index)=>{
+    total += item.price * item.quantity;
+    return `<article class="item-card">
+      <img src="${item.image}" alt="${item.name}">
+      <div class="details">
+        <h3>${item.name}</h3>
+        <p>${item.color} • ${item.size}</p>
+        <p>R${item.price.toLocaleString('en-ZA')} each</p>
+        <div class="controls">
+          <button class="qty-btn" data-index="${index}" data-action="minus" type="button">−</button>
+          <span>${item.quantity}</span>
+          <button class="qty-btn" data-index="${index}" data-action="plus" type="button">+</button>
+          <button class="remove-btn" data-index="${index}" data-action="remove" type="button">Remove</button>
+        </div>
+      </div>
+    </article>`;
+  }).join('');
+  grandTotal.textContent=total.toLocaleString('en-ZA', {minimumFractionDigits:2, maximumFractionDigits:2});
+  itemCount.textContent=cart.reduce((sum,item)=>sum+item.quantity,0);
+}
+renderCart();
+document.addEventListener('click', (event)=>{
+  const button=event.target.closest('button');
+  if(!button) return;
+  const action=button.dataset.action;
+  if(!action) return;
+  const cart=readCart();
+  const index=Number(button.dataset.index);
+  if(action==='plus'){ cart[index].quantity += 1; }
+  if(action==='minus'){ cart[index].quantity -= 1; if(cart[index].quantity<=0) cart.splice(index,1); }
+  if(action==='remove'){ cart.splice(index,1); }
+  writeCart(cart); renderCart();
+});
+document.getElementById('checkoutBtn').addEventListener('click', () => {
+
+    const cart = readCart();
+
+    // Prevent checkout if cart is empty
+    if (cart.length === 0) {
+        alert("Please add at least one product to your cart before checking out.");
+        return;
+    }
+
+    window.location.href = "checkout.html";
+
+});
+window.addEventListener('storage', renderCart);
+window.addEventListener('focus', renderCart);
+</script>
+<footer class="site-footer">
+  <p>© 2026 PLUGSA. Secure checkout and premium drops.</p>
+  <div class="footer-links">
+    <a href="refer.html">Refer a friend</a>
+    <a href="scan QR Code.html">QR scanner</a>
+    <a href="index.html">Home</a>
+  </div>
+</footer>
+</body>
+</html>
