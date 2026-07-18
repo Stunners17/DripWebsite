@@ -1,4 +1,4 @@
-import { auth, db, storage } from "./firebase.js";
+import { auth, db } from "./firebase.js";
 import { protectPage } from "./auth-guard.js";
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 import {
@@ -9,7 +9,6 @@ import {
   onSnapshot,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-import { getDownloadURL, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-storage.js";
 
 // Change this value if the store owner uses a different Firebase login.
 const ADMIN_EMAIL = "ntando.lawrance@gmail.com";
@@ -124,19 +123,12 @@ document.getElementById("productForm").addEventListener("submit", async event =>
   const form = event.currentTarget;
   const submitButton = form.querySelector("button[type=submit]");
   const data = new FormData(form);
-  const imageFile = data.get("imageFile");
-  let image = data.get("imageUrl").trim();
+  const image = data.get("imageUrl").trim();
 
   try {
     submitButton.disabled = true;
     submitButton.textContent = "Saving...";
-    if (imageFile?.size) {
-      const safeName = imageFile.name.replace(/[^a-zA-Z0-9._-]/g, "-");
-      const imageRef = ref(storage, `products/${Date.now()}-${safeName}`);
-      await uploadBytes(imageRef, imageFile);
-      image = await getDownloadURL(imageRef);
-    }
-    if (!image) throw new Error("Add an image file or image URL.");
+    if (!image) throw new Error("Add an image URL.");
 
     await addDoc(collection(db, "products"), {
       name: data.get("name").trim(),
