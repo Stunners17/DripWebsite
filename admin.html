@@ -40,8 +40,8 @@
         <label>Stock<input name="stock" type="number" min="0" step="1" required></label>
         <label>Sizes (comma-separated)<input name="sizes" placeholder="S, M, L, XL"></label>
         <label>Colours (comma-separated)<input name="colors" placeholder="Black, White"></label>
-        <input>Image file<input name="imageFile">
-        <input>Or image URL<input name="imageUrl">
+        <input>Image file<input name="imageFile" type="file" accept="image/*"></input>
+        <input>Or image URL<input name="imageUrl" type="url" placeholder="https://..."></input>
         <button type="submit">Upload product</button>
       </form>
       <h2>Manage products</h2>
