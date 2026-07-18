@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shop | PLUGSA</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f7f7f7;
+            color: #111;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .shop-header {
+            background: #111;
+            color: white;
+            padding: 18px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            color: white;
+            text-decoration: none;
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .cart-link {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .shop-hero {
+            min-height: 330px;
+            padding: 70px 6%;
+            display: flex;
+            align-items: center;
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(0,0,0,.85),
+                    rgba(0,0,0,.35),
+                    rgba(0,0,0,.05)
+                ),
+                url("images/shop-cover.jpg") center/cover;
+            color: white;
+        }
+
+        .shop-hero-content {
+            max-width: 650px;
+        }
+
+        .shop-hero h1 {
+            font-size: clamp(42px, 7vw, 86px);
+            line-height: .95;
+            margin: 0 0 20px;
+            font-weight: 900;
+            letter-spacing: -4px;
+        }
+
+        .shop-hero p {
+            font-size: 18px;
+            max-width: 500px;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           SHOP CONTROLS
+        ========================= */
+
+        .shop-controls {
+            max-width: 1400px;
+            margin: 35px auto 10px;
+            padding: 0 5%;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .search-box input,
+        .shop-controls select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: white;
+            font-size: 15px;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .filter-group select {
+            min-width: 160px;
+        }
+
+        /* =========================
+           SHOP TITLE
+        ========================= */
+
+        .shop-heading {
+            max-width: 1400px;
+            margin: 35px auto 20px;
+            padding: 0 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .shop-heading h2 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        #productCount {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* =========================
+           PRODUCT GRID
+        ========================= */
+
+        .products-grid {
+            max-width: 1400px;
+            margin: auto;
+            padding: 0 5% 60px;
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            position: relative;
+            transition: transform .25s ease, box-shadow .25s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,.12);
+        }
+
+        .product-image-wrapper {
+            position: relative;
+            aspect-ratio: 4 / 5;
+            overflow: hidden;
+            background: #eee;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .4s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.06);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #111;
+            color: white;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .wishlist-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 36px;
+            height: 36px;
+            border: none;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .product-info {
+            padding: 16px;
+        }
+
+        .product-category {
+            color: #777;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            margin-bottom: 7px;
+        }
+
+        .product-name {
+            font-size: 17px;
+            margin: 0 0 8px;
+            font-weight: 800;
+        }
+
+        .product-price {
+            font-size: 18px;
+            font-weight: 900;
+            margin-bottom: 12px;
+        }
+
+        .product-options {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .product-options select {
+            flex: 1;
+            padding: 9px 6px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: white;
+        }
+
+        .product-bottom {
+            display: flex;
+            gap: 8px;
+        }
+
+        .quantity {
+            width: 65px;
+            padding: 10px 5px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .add-cart-btn {
+            flex: 1;
+            border: none;
+            background: #111;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: .2s;
+        }
+
+        .add-cart-btn:hover {
+            background: #333;
+        }
+
+        .stock-warning {
+            color: #b45309;
+            font-size: 12px;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        /* =========================
+           EMPTY STATE
+        ========================= */
+
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 80px 20px;
+            color: #777;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+        }
+
+        @media (max-width: 700px) {
+
+            .shop-header {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a:not(.cart-link) {
+                display: none;
+            }
+
+            .shop-hero {
+                min-height: 400px;
+                padding: 50px 25px;
+            }
+
+            .shop-hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .shop-controls {
+                padding: 0 20px;
+            }
+
+            .shop-heading {
+                padding: 0 20px;
+            }
+
+            .products-grid {
+                padding: 0 15px 50px;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .product-info {
+                padding: 12px;
+            }
+
+            .product-name {
+                font-size: 14px;
+            }
+
+            .product-price {
+                font-size: 16px;
+            }
+
+            .product-options {
+                flex-direction: column;
+            }
+
+            .product-bottom {
+                flex-direction: column;
+            }
+
+            .quantity {
+                width: 100%;
+            }
+
+            .add-cart-btn {
+                padding: 12px;
+            }
+
+        }
+
+        @media (max-width: 400px) {
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header class="shop-header">
+
+    <a href="index.html" class="logo">
+        PLUGSA
+    </a>
+
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="hoodies.html">Hoodies</a>
+        <a href="graphic-tees.html">Tees</a>
+        <a href="sneakers.html">Sneakers</a>
+
+        <a href="cart.html" class="cart-link">
+            Cart (<span data-cart-count>0</span>)
+        </a>
+    </nav>
+
+</header>
+
+
+<section class="shop-hero">
+
+    <div class="shop-hero-content">
+
+        <h1>FIND YOUR NEXT LOOK.</h1>
+
+        <p>
+            Explore the latest drops, streetwear essentials,
+            sneakers, caps and unique finds from PLUGSA.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="shop-controls">
+
+    <div class="search-box">
+
+        <input
+            type="search"
+            id="searchInput"
+            placeholder="Search products..."
+        >
+
+    </div>
+
+    <div class="filter-group">
+
+        <select id="categoryFilter">
+
+            <option value="all">
+                All Categories
+            </option>
+
+            <option value="hoodies">
+                Hoodies
+            </option>
+
+            <option value="graphic-tees">
+                Graphic Tees
+            </option>
+
+            <option value="sneakers">
+                Sneakers
+            </option>
+
+            <option value="caps">
+                Caps
+            </option>
+
+            <option value="thrift">
+                Thrift
+            </option>
+
+        </select>
+
+
+        <select id="sortSelect">
+
+            <option value="newest">
+                Newest
+            </option>
+
+            <option value="low">
+                Price: Low to High
+            </option>
+
+            <option value="high">
+                Price: High to Low
+            </option>
+
+            <option value="az">
+                A-Z
+            </option>
+
+        </select>
+
+    </div>
+
+</section>
+
+
+<section class="shop-heading">
+
+    <h2>SHOP THE LATEST</h2>
+
+    <span id="productCount">
+        Loading products...
+    </span>
+
+</section>
+
+
+<main
+    id="productsGrid"
+    class="products-grid"
+>
+
+    <div class="empty-state">
+        Loading products...
+    </div>
+
+</main>
+
+
+<footer>
+
+    <p>
+        &copy; 2026 PLUGSA. All rights reserved.
+    </p>
+
+    <div>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="cart.html">
+            Cart
+        </a>
+
+        <a href="refer.html">
+            Refer a friend
+        </a>
+
+    </div>
+
+</footer>
+
+
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+    collection,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+const productsGrid =
+    document.getElementById("productsGrid");
+
+const searchInput =
+    document.getElementById("searchInput");
+
+const categoryFilter =
+    document.getElementById("categoryFilter");
+
+const sortSelect =
+    document.getElementById("sortSelect");
+
+const productCount =
+    document.getElementById("productCount");
+
+
+let products = [];
+
+const storageKey = "plugsa-cart";
+
+
+function readCart() {
+
+    try {
+
+        return JSON.parse(
+            localStorage.getItem(storageKey)
+        ) || [];
+
+    } catch {
+
+        return [];
+
+    }
+
+}
+
+
+function writeCart(cart) {
+
+    localStorage.setItem(
+        storageKey,
+        JSON.stringify(cart)
+    );
+
+}
+
+
+function updateCartCount() {
+
+    const cart = readCart();
+
+    const total = cart.reduce(
+        (sum, item) => sum + item.quantity,
+        0
+    );
+
+    document
+        .querySelectorAll("[data-cart-count]")
+        .forEach(element => {
+
+            element.textContent = total;
+
+        });
+
+}
+
+
+async function loadProducts() {
+
+    try {
+
+        const snapshot =
+            await getDocs(
+                collection(db, "products")
+            );
+
+        products = snapshot.docs.map(
+            productDoc => ({
+
+                id: productDoc.id,
+
+                ...productDoc.data()
+
+            })
+        );
+
+        renderProducts();
+
+    } catch (error) {
+
+        console.error(
+            "Could not load products:",
+            error
+        );
+
+        productsGrid.innerHTML = `
+
+            <div class="empty-state">
+
+                Could not load products.
+
+            </div>
+
+        `;
+
+        productCount.textContent =
+            "Unable to load products.";
+
+    }
+
+}
+
+
+function renderProducts() {
+
+    const search =
+        searchInput.value
+        .trim()
+        .toLowerCase();
+
+    const category =
+        categoryFilter.value;
+
+    let list =
+        products.filter(product => {
+
+            const matchesSearch =
+                (product.name || "")
+                .toLowerCase()
+                .includes(search);
+
+            const matchesCategory =
+                category === "all" ||
+                product.category === category;
+
+            return matchesSearch &&
+                   matchesCategory;
+
+        });
+
+
+    if (sortSelect.value === "low") {
+
+        list.sort(
+            (a, b) =>
+                Number(a.price || 0) -
+                Number(b.price || 0)
+        );
+
+    }
+
+
+    if (sortSelect.value === "high") {
+
+        list.sort(
+            (a, b) =>
+                Number(b.price || 0) -
+                Number(a.price || 0)
+        );
+
+    }
+
+
+    if (sortSelect.value === "az") {
+
+        list.sort(
+            (a, b) =>
+                (a.name || "")
+                .localeCompare(b.name || "")
+        );
+
+    }
+
+
+    if (sortSelect.value === "newest") {
+
+        list.sort(
+            (a, b) => {
+
+                const aTime =
+                    a.createdAt?.seconds || 0;
+
+                const bTime =
+                    b.createdAt?.seconds || 0;
+
+                return bTime - aTime;
+
+            }
+        );
+
+    }
+
+
+    productCount.textContent =
+        `${list.length} product${list.length === 1 ? "" : "s"}`;
+
+
+    if (!list.length) {
+
+        productsGrid.innerHTML = `
+
+            <div class="empty-state">
+
+                No products found.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    productsGrid.innerHTML = list.map(product => {
+
+        const sizes =
+            Array.isArray(product.sizes) &&
+            product.sizes.length
+
+            ? product.sizes
+
+            : ["One Size"];
+
+
+        const colors =
+            Array.isArray(product.colors) &&
+            product.colors.length
+
+            ? product.colors
+
+            : ["Default"];
+
+
+        const stock =
+            Number(product.stock || 0);
+
+
+        return `
+
+            <article
+                class="product-card"
+                data-id="${product.id}"
+            >
+
+                <div
+                    class="product-image-wrapper"
+                >
+
+                    <img
+
+                        class="product-image"
+
+                        src="${product.image || ""}"
+
+                        alt="${product.name || "Product"}"
+
+                        loading="lazy"
+
+                        onerror="this.style.display='none'"
+
+                    >
+
+                    ${
+                        product.status === "active"
+
+                        ? `<div class="product-badge">
+                                NEW
+                           </div>`
+
+                        : ""
+
+                    }
+
+
+                    <button
+
+                        class="wishlist-btn"
+
+                        type="button"
+
+                        aria-label="Add to wishlist"
+
+                    >
+
+                        ♡
+
+                    </button>
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <div class="product-category">
+
+                        ${product.category || "Fashion"}
+
+                    </div>
+
+
+                    <h3 class="product-name">
+
+                        ${product.name || "Unnamed Product"}
+
+                    </h3>
+
+
+                    <div class="product-price">
+
+                        R ${Number(product.price || 0).toLocaleString("en-ZA")}
+
+                    </div>
+
+
+                    ${
+                        stock > 0 && stock <= 5
+
+                        ? `<div class="stock-warning">
+                                Only ${stock} left
+                           </div>`
+
+                        : ""
+
+                    }
+
+
+                    <div class="product-options">
+
+                        <select class="size-select">
+
+                            ${sizes.map(size =>
+
+                                `<option value="${size}">
+                                    ${size}
+                                 </option>`
+
+                            ).join("")}
+
+                        </select>
+
+
+                        <select class="color-select">
+
+                            ${colors.map(color =>
+
+                                `<option value="${color}">
+                                    ${color}
+                                 </option>`
+
+                            ).join("")}
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="product-bottom">
+
+                        <input
+
+                            class="quantity"
+
+                            type="number"
+
+                            min="1"
+
+                            max="9"
+
+                            value="1"
+
+                        >
+
+
+                        <button
+
+                            class="add-cart-btn"
+
+                            type="button"
+
+                        >
+
+                            Add to Cart
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        `;
+
+    }).join("");
+
+}
+
+
+productsGrid.addEventListener(
+    "click",
+    event => {
+
+        const button =
+            event.target.closest(
+                ".add-cart-btn"
+            );
+
+
+        if (!button) return;
+
+
+        const card =
+            button.closest(
+                ".product-card"
+            );
+
+
+        const productId =
+            card.dataset.id;
+
+
+        const product =
+            products.find(
+                item =>
+                    item.id === productId
+            );
+
+
+        if (!product) return;
+
+
+        const size =
+            card.querySelector(
+                ".size-select"
+            ).value;
+
+
+        const color =
+            card.querySelector(
+                ".color-select"
+            ).value;
+
+
+        const quantity =
+            Number(
+                card.querySelector(
+                    ".quantity"
+                ).value
+            ) || 1;
+
+
+        const item = {
+
+            id: product.id,
+
+            name: product.name,
+
+            price: Number(product.price),
+
+            image: product.image,
+
+            quantity,
+
+            size,
+
+            color
+
+        };
+
+
+        const cart =
+            readCart();
+
+
+        const existing =
+            cart.find(
+                cartItem =>
+
+                    cartItem.id === item.id &&
+
+                    cartItem.size === item.size &&
+
+                    cartItem.color === item.color
+
+            );
+
+
+        if (existing) {
+
+            existing.quantity += quantity;
+
+        } else {
+
+            cart.push(item);
+
+        }
+
+
+        writeCart(cart);
+
+        updateCartCount();
+
+
+        button.textContent =
+            "Added ✓";
+
+
+        setTimeout(() => {
+
+            button.textContent =
+                "Add to Cart";
+
+        }, 1000);
+
+    }
+
+);
+
+
+[
+
+    searchInput,
+
+    categoryFilter,
+
+    sortSelect
+
+].forEach(element => {
+
+    element.addEventListener(
+        "input",
+        renderProducts
+    );
+
+    element.addEventListener(
+        "change",
+        renderProducts
+    );
+
+});
+
+
+updateCartCount();
+
+loadProducts();
+
+</script>
+
+</body>
+</html>
