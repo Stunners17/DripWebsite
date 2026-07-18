@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en" data-auth-required-page>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Graphic Tees | PLUGSA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root { --bg:#050505; --surface:#111111; --accent:#f7ff00; --text:#ffffff; --muted:#b3b3b3; --border:rgba(255,255,255,.12); }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:clamp(14px,1.1vw,18px)}
+    body{font-family:'Montserrat',Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.4;overflow-x:hidden}
+    .hero{background:linear-gradient(90deg, rgba(5,5,5,.92), rgba(5,5,5,.75)), url('images/graphic-t-cover.jpg') center/cover no-repeat;padding:clamp(72px,9vw,110px) clamp(6%,4vw,8%) clamp(40px,5vw,48px);text-align:center;color:var(--accent)}
+    .hero h1{font-size:clamp(2.6rem, 5vw, 3.8rem);letter-spacing:.16em;margin-bottom:12px;text-transform:uppercase}
+    .hero p{color:var(--muted);max-width:min(760px,100%);margin:0 auto}
+
+    nav{background:rgba(5,5,5,.94);color:var(--text);padding:clamp(16px,2vw,26px) clamp(4%,3vw,8%);position:sticky;top:0;z-index:1000;backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+    nav .nav-inner{max-width:min(1200px,100%);margin:0 auto;display:flex;align-items:center;gap:clamp(12px,1.5vw,20px);flex-wrap:wrap}
+    nav a{color:var(--text);text-decoration:none;font-weight:500;transition:.25s ease;padding:clamp(8px,1vw,12px) clamp(10px,1.2vw,14px)}
+    nav a.logo{font-size:clamp(1.5rem,2.3vw,1.9rem);font-weight:800;letter-spacing:.36em;text-transform:uppercase;color:var(--accent)}
+    nav a:hover,nav a.active{color:var(--accent)}
+
+    .controls{padding:clamp(20px,2vw,28px) clamp(6%,4vw,8%) clamp(12px,1.2vw,16px);display:grid;gap:clamp(14px,1.4vw,18px);grid-template-columns:1fr .85fr .7fr;align-items:center}
+    .search-box,.filter-box,.sort-box{background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:clamp(12px,1vw,16px) clamp(14px,1.4vw,18px);color:var(--text)}
+
+    .products{max-width:min(1200px,100%);margin:clamp(18px,2vw,24px) auto clamp(60px,6vw,70px);display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(20px,1.5vw,24px);padding:0 clamp(6%,4vw,8%)}
+    .product-card{background:var(--surface);border:1px solid var(--border);border-radius:24px;overflow:hidden;transition:transform .3s ease,box-shadow .3s ease;box-shadow:0 18px 45px rgba(0,0,0,.25)}
+    .product-card:hover{transform:translateY(-6px);border-color:rgba(247,255,0,.25)}
+    .product-card img{width:100%;height:clamp(260px,24vw,320px);object-fit:cover;display:block}
+    .badge{display:inline-block;padding:clamp(6px,0.9vw,10px) clamp(10px,1vw,14px);border-radius:999px;font-size:clamp(.72rem,0.9vw,.9rem);letter-spacing:.12em;margin:clamp(16px,1.5vw,18px) clamp(16px,1.5vw,18px) 0;background:rgba(247,255,0,.12);color:var(--accent);font-weight:700}
+    .inner{padding:clamp(18px,1.4vw,20px) clamp(16px,1.4vw,18px) clamp(18px,1.4vw,20px);display:flex;flex-direction:column;gap:clamp(10px,1vw,12px)}
+    .meta{color:var(--muted);font-size:clamp(.88rem, .95vw, .95rem)}
+    .row{display:flex;gap:clamp(10px,1vw,14px);flex-wrap:wrap}
+    .select,.qty{padding:clamp(10px,1vw,12px);border-radius:10px;border:1px solid var(--border);background:#171717;color:var(--text)}
+    .qty{width:clamp(72px,9vw,90px)}
+    .btn{border:none;border-radius:999px;padding:clamp(12px,1vw,14px) clamp(14px,1.4vw,18px);background:var(--accent);color:#050505;font-weight:700;cursor:pointer;transition:transform .2s ease}
+    .btn:hover{transform:translateY(-2px)}
+    .empty{padding:clamp(32px,3vw,40px);text-align:center;color:var(--muted)}
+
+    footer.site-footer{text-align:center;padding:28px 12px;background:#111;color:#fff;margin-top:24px}
+    @media(min-width:900px){ header.site-hero{padding:72px 16px 48px} }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">PLUGSA</a>
+      <div style="margin-left:8px;display:flex;gap:6px;align-items:center">
+        <a href="index.html">Home</a>
+        <a href="hoodies.html">Hoodies</a>
+        <a class="active" href="graphic-tees.html">Graphic Tees</a>
+        <a href="fitted caps.html">Caps</a>
+        <a href="sneaker.html">Sneakers</a>
+      </div>
+      <div style="margin-left:auto">
+        <a href="cart.html">Cart <span data-cart-count>0</span></a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <h1>Graphic Tees</h1>
+    <p>Shop our curated collection of graphic tees — bold prints, premium cotton, everyday fit.</p>
+  </header>
+
+  <div class="controls">
+    <input id="searchInput" class="search-box" placeholder="Search tees, e.g. 'Nasa'">
+    <select id="filterSelect" class="filter-box">
+      <option value="all">All</option>
+      <option value="new">New</option>
+      <option value="graphic">Graphic</option>
+      <option value="signature">Signature</option>
+    </select>
+    <select id="sortSelect" class="sort-box">
+      <option value="featured">Featured</option>
+      <option value="az">Name A–Z</option>
+      <option value="za">Name Z–A</option>
+    </select>
+  </div>
+
+  <main>
+    <div id="productsGrid" class="products"></div>
+  </main>
+
+  <script type="module">
+
+import { db } from "./firebase.js";
+import { protectPage } from "./auth-guard.js";
+
+import {
+    collection,
+    getDocs,
+    query,
+    where
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+await protectPage();
+
+
+const storageKey = 'plugsa-cart';
+
+
+function readCart(){
+    try{
+        return JSON.parse(localStorage.getItem(storageKey)) || [];
+    }
+    catch(e){
+        return [];
+    }
+}
+
+
+function writeCart(c){
+    localStorage.setItem(storageKey, JSON.stringify(c));
+}
+
+
+function updateCartCount(){
+
+    const cart = readCart();
+
+    document.querySelectorAll('[data-cart-count]')
+    .forEach(el => {
+        el.textContent = cart.reduce((s,i)=>s+i.quantity,0);
+    });
+
+}
+
+
+updateCartCount();
+
+window.addEventListener('storage', updateCartCount);
+window.addEventListener('focus', updateCartCount);
+
+
+
+let tees = [];
+
+
+// LOAD PRODUCTS FROM FIRESTORE
+
+async function loadProducts(){
+
+    console.log("Loading products...");
+
+    tees = [];
+
+
+    const q = query(
+        collection(db,"products"),
+        where("category","==","graphic-tees")
+    );
+
+
+    const snapshot = await getDocs(q);
+
+
+    console.log("Products found:", snapshot.size);
+
+
+    snapshot.forEach(doc => {
+
+        console.log(doc.data());
+
+        tees.push({
+        id: doc.id,
+        ...doc.data()
+      }); 
+
+    });
+
+
+    console.table(tees);
+
+
+    render();
+
+}
+
+
+
+const grid = document.getElementById('productsGrid');
+
+const searchInput = document.getElementById('searchInput');
+
+const filterSelect = document.getElementById('filterSelect');
+
+const sortSelect = document.getElementById('sortSelect');
+
+
+
+
+function render(){
+
+
+    const search = searchInput.value.trim().toLowerCase();
+
+    const filter = filterSelect.value;
+
+
+    let list = tees.filter(product => {
+
+        return product.name.toLowerCase().includes(search);
+
+    });
+
+
+
+    if(sortSelect.value === "az"){
+
+        list.sort((a,b)=>a.name.localeCompare(b.name));
+
+    }
+
+
+    if(sortSelect.value === "za"){
+
+        list.sort((a,b)=>b.name.localeCompare(a.name));
+
+    }
+
+
+
+    if(list.length === 0){
+
+        grid.innerHTML = `
+        <div class="empty">
+        No products found.
+        </div>
+        `;
+
+        return;
+
+    }
+
+
+
+    grid.innerHTML = list.map(p => `
+
+
+<article class="product-card">
+
+
+<img src="${p.image}" alt="${p.name}">
+
+
+<div style="padding:12px 16px">
+
+<div class="badge">
+NEW
+</div>
+
+</div>
+
+
+
+<div class="inner">
+
+
+<h3>${p.name}</h3>
+
+
+<p class="meta">
+Premium cotton • bold print
+</p>
+
+
+
+<div class="row">
+
+
+<select class="select">
+
+${p.sizes.map(size=>`
+<option>${size}</option>
+`).join('')}
+
+</select>
+
+
+
+<select class="select">
+
+${p.colors.map(color=>`
+<option>${color}</option>
+`).join('')}
+
+</select>
+
+
+</div>
+
+
+
+<div class="row" style="margin-top:8px;">
+
+
+<div style="font-weight:800;color:#111827">
+
+R ${p.price}
+
+</div>
+
+
+
+<input 
+class="qty" 
+type="number" 
+min="1" 
+max="9" 
+value="1"
+>
+
+
+
+<button 
+class="btn add-to-cart"
+
+data-name="${p.name}"
+
+data-price="${p.price}"
+
+data-image="${p.image}"
+
+>
+
+Add to cart
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</article>
+
+
+`).join('');
+
+}
+
+
+
+
+// START FIRESTORE LOADING
+
+loadProducts();
+
+
+
+// SEARCH + FILTER + SORT
+
+[searchInput,filterSelect,sortSelect]
+
+.forEach(element => {
+
+element.addEventListener('input',render);
+
+element.addEventListener('change',render);
+
+});
+
+
+
+
+// CART FUNCTION
+
+document.addEventListener('click', e=>{
+
+
+if(e.target.classList.contains('add-to-cart')){
+
+
+const button = e.target;
+
+
+const card = button.closest('.product-card');
+
+
+const qty = Number(card.querySelector('.qty').value) || 1;
+
+
+const selects = card.querySelectorAll('.select');
+
+
+const size = selects[0].value;
+
+
+const color = selects[1].value;
+
+
+
+const item = {
+
+name: button.dataset.name,
+
+price: Number(button.dataset.price),
+
+image: button.dataset.image,
+
+quantity: qty,
+
+size,
+
+color
+
+};
+
+
+
+const cart = readCart();
+
+
+
+const existing = cart.find(i =>
+
+i.name === item.name &&
+
+i.size === item.size &&
+
+i.color === item.color
+
+);
+
+
+
+if(existing){
+
+existing.quantity += item.quantity;
+
+}
+
+else{
+
+cart.push(item);
+
+}
+
+
+
+writeCart(cart);
+
+
+updateCartCount();
+
+
+button.textContent = "Added";
+
+
+setTimeout(()=>{
+
+button.textContent="Add to cart";
+
+},800);
+
+
+
+}
+
+
+
+});
+
+
+</script>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 PLUGSA. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="refer.html">Refer a friend</a>
+      <a href="scan QR Code.html">QR scanner</a>
+      <a href="cart.html">Cart</a>
+    </div>
+  </footer>
+</body>
+</html>

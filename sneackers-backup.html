@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" data-auth-required-page>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+<title>PLUGSA | Sneakers</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .hero { background: linear-gradient(90deg, rgba(5,5,5,.92), rgba(5,5,5,.75)), url('images/Red And White J4 Cover.jpg') center/cover no-repeat; }
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">PLUGSA</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="hoodies.html">Hoodies</a>
+    <a href="graphic-tees.html">Graphic Tees</a>
+    <a href="fitted caps.html">Caps</a>
+    <a class="active" href="sneaker.html">Sneakers</a>
+    <a href="cart.html" class="cart-pill">Cart <span data-cart-count>0</span></a>
+  </div>
+</nav>
+<header class="hero">
+  <div>
+    <h1>Sneakers</h1>
+    <p>Luxury performance, bold silhouettes, and rare drops in a polished marketplace setting.</p>
+  </div>
+</header>
+<div class="section">
+  <div class="panel">
+    <h3>Trending Sneaker Drop</h3>
+    <p>Fresh silhouettes with premium detailing landing now. Limited pairs are ready for the next rotation.</p>
+  </div>
+</div>
+<div class="controls">
+  <input id="searchInput" class="search-box" type="search" placeholder="Search sneakers" aria-label="Search sneakers">
+  <select id="filterSelect" class="filter-box" aria-label="Filter by category">
+    <option value="all">All Categories</option>
+    <option value="trending">Trending</option>
+    <option value="limited">Limited</option>
+    <option value="classic">Classic</option>
+  </select>
+  <select id="sortSelect" class="sort-box" aria-label="Sort sneakers">
+    <option value="featured">Featured</option>
+    <option value="az">Name A-Z</option>
+    <option value="za">Name Z-A</option>
+  </select>
+</div>
+<div class="products" id="productsGrid"></div>
+<script type="module">
+import { db } from "./firebase.js";
+import { protectPage } from "./auth-guard.js";
+import { collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+await protectPage();
+const storageKey='plugsa-cart';
+function readCart(){ try{return JSON.parse(localStorage.getItem(storageKey))||[]}catch(e){return [];} }
+function writeCart(cart){ localStorage.setItem(storageKey, JSON.stringify(cart)); }
+function updateCartCount(){ const cart=readCart(); document.querySelectorAll('[data-cart-count]').forEach((el)=>{ el.textContent=cart.reduce((total,item)=>total+item.quantity,0); }); }
+updateCartCount();
+window.addEventListener('storage', updateCartCount);
+window.addEventListener('focus', updateCartCount);
+const sneakers=[
+  {name:'Jordan 1 Black & White', badge:'50% OFF', category:'trending', image:'images/Black And White J1.jpg', price:6000, salePrice:3000, discount:'50% OFF', colors:['White','Black'], sizes:['6','7','8','9','10']},
+  
+  {name:'Nike Shox Classic', badge:'50% OFF', category:'limited', image:'images/Nike Shox.jpg', price:6000, salePrice:3000, discount:'50% OFF', colors:['Black','White'], sizes:['5.5','6','7','8','9']},
+  {name:'Nike Shox Black', badge:'50% OFF', category:'limited', image:'images/Black Nike Shox.jpg', price:6000, salePrice:3000, discount:'50% OFF', colors:['Black','Silver'], sizes:['5.5','6','7','8','9']},
+  {name:'Adidas Campus 00s', badge:'50% OFF', category:'classic', image:'images/Adidas Cumpus.jpg', price:1999.99, salePrice:999.99, discount:'50% OFF', colors:['Cream','Navy'], sizes:['5.5','6','7','8','9','10']},
+  {name:'Nike Dunk Red', badge:'SALE', category:'classic', image:'images/Red And White Dunk.jpg', price:1199.99, colors:['Red','White'], sizes:['5.5','6','7','8','9']},
+  {name:'Nike Dunk Black', badge:'SALE', category:'classic', image:'images/Black And white dunk.jpg', price:1199.99, colors:['Black','White'], sizes:['5.5','6','7','8','9']},
+  
+  {name:'Nike Airforce 1', badge:'30% OFF', category:'trending', image:'images/Airforce 1.jpg', price:2857, salePrice:2000, discount:'30% OFF', colors:['White','Black'], sizes:['7','8','9','10']},
+  {name:'Jordan 4 Black & White', badge:'10% OFF', category:'trending', image:'images/Black And White J4.jpg', price:3333, salePrice:3000, discount:'10% OFF', colors:['Black','White'], sizes:['7','8','9','10']},
+  {name:'Jordan 4 Red & White', badge:'10% OFF', category:'trending', image:'images/Red And White J4.jpg', price:3333, salePrice:3000, discount:'10% OFF', colors:['Red','White'], sizes:['7','8','9','10']},
+  
+  
+  {name:'Air More Uptempo Red', badge:'NEW', category:'limited', image:'images/Black And Red UpTempo.jpg', price:3199, colors:['Black','Red'], sizes:['5.5','6','7','8','9','10']},
+  {name:'Air More Uptempo Mono', badge:'NEW', category:'limited', image:'images/White And Black UpTempo.jpg', price:2999, colors:['White','Black'], sizes:['5.5','6','7','8','9','10']},
+  {name:'Nike Airforce 1 Green', badge:'NEW', category:'trending', image:'images/Green And White Airforce 1.jpg', price:2699, colors:['Green','White'], sizes:['7','8','9','10']},
+  {name:'Jordan 1 Purple & White', badge:'NEW', category:'trending', image:'images/Purple And White J1.jpg', price:2999, colors:['Purple','White'], sizes:['6','7','8','9','10']},
+  {name:'Jordan 4 Three Colour', badge:'NEW', category:'trending', image:'images/Three colour J4.jpg', price:3399, colors:['Red','Blue'], sizes:['7','8','9','10']}
+];
+const grid=document.getElementById('productsGrid');
+const searchInput=document.getElementById('searchInput');
+const filterSelect=document.getElementById('filterSelect');
+const sortSelect=document.getElementById('sortSelect');
+function renderProducts(){
+  const search=searchInput.value.toLowerCase();
+  const filter=filterSelect.value;
+  let filtered=[...sneakers].filter((item)=>item.name.toLowerCase().includes(search) && (filter==='all'||item.category===filter));
+  if(sortSelect.value==='az') filtered.sort((a,b)=>a.name.localeCompare(b.name));
+  if(sortSelect.value==='za') filtered.sort((a,b)=>b.name.localeCompare(a.name));
+  if(filtered.length===0){ grid.innerHTML='<div class="empty">No sneakers match your search.</div>'; return; }
+  grid.innerHTML=filtered.map((item)=>`<article class="product-card">
+    <img src="${item.image}" alt="${item.name}">
+    <div class="badge">${item.badge}</div>
+    <div class="inner">
+      <h3>${item.name}</h3>
+      <p class="meta">Premium street-runner • elevated comfort</p>
+      ${item.salePrice ? `<div class="price-row"><span class="price">R ${item.salePrice}</span><span class="original">R ${item.price}</span></div><div class="sale-tag">${item.discount}</div>` : `<div class="price-row"><span class="price">R ${item.price}</span></div>`}
+      <div class="row">
+        <select class="select" aria-label="Select size">
+          ${item.sizes.map((size)=>`<option>${size}</option>`).join('')}
+        </select>
+        <select class="select" aria-label="Select color">
+          ${item.colors.map((color)=>`<option>${color}</option>`).join('')}
+        </select>
+      </div>
+      <div class="row">
+        <input class="qty" type="number" min="1" max="9" value="1" aria-label="Quantity">
+        <button class="btn add-to-cart" data-name="${item.name}" data-price="${item.salePrice || item.price}" data-image="${item.image}" type="button">Add to cart</button>
+      </div>
+      <button class="btn btn-ghost wishlist-btn" type="button">♡ Wishlist</button>
+    </div>
+  </article>`).join('');
+}
+async function loadUploadedProducts() {
+  try {
+    const snapshot = await getDocs(query(collection(db, "products"), where("category", "==", "sneakers")));
+    snapshot.forEach((productDoc) => {
+      const product = productDoc.data();
+      sneakers.push({
+        ...product,
+        sizes: product.sizes?.length ? product.sizes : ["One Size"],
+        colors: product.colors?.length ? product.colors : ["Default"],
+        badge: "NEW"
+      });
+    });
+  } catch (error) {
+    console.error("Could not load uploaded sneakers:", error);
+  }
+  renderProducts();
+}
+loadUploadedProducts();
+[searchInput,filterSelect,sortSelect].forEach((el)=>el.addEventListener('input', renderProducts));
+[searchInput,filterSelect,sortSelect].forEach((el)=>el.addEventListener('change', renderProducts));
+document.addEventListener('click', (event)=>{
+  if(event.target.classList.contains('add-to-cart')){
+    const btn=event.target; const card=btn.closest('.product-card'); const qtyInput=card.querySelector('.qty'); const sizeSelect=card.querySelectorAll('.select')[0]; const colorSelect=card.querySelectorAll('.select')[1];
+    const product={ name:btn.dataset.name, price:Number(btn.dataset.price), image:btn.dataset.image, size:sizeSelect.value, color:colorSelect.value, quantity:Number(qtyInput.value)||1 };
+    const cart=readCart(); const existing=cart.find((entry)=>entry.name===product.name && entry.size===product.size && entry.color===product.color); if(existing){ existing.quantity += product.quantity; } else { cart.push(product); }
+    writeCart(cart); updateCartCount(); btn.textContent='Added'; setTimeout(()=>{ btn.textContent='Add to cart'; },900);
+  }
+  if(event.target.classList.contains('wishlist-btn')){ event.target.textContent='♥ Saved'; setTimeout(()=>{ event.target.textContent='♡ Wishlist'; },900); }
+});
+</script>
+<footer class="site-footer">
+  <p>© 2026 PLUGSA. Premium sneakers and rare drops.</p>
+  <div class="footer-links">
+    <a href="refer.html">Refer a friend</a>
+    <a href="scan QR Code.html">QR scanner</a>
+    <a href="cart.html">Cart</a>
+  </div>
+</footer>
+</body>
+</html>

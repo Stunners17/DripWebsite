@@ -1,157 +1,2030 @@
 <!DOCTYPE html>
-<html lang="en" data-auth-required-page>
+<html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#050505">
-<title>PLUGSA | Sneakers</title>
-<link rel="stylesheet" href="style.css">
-<style>
-  .hero { background: linear-gradient(90deg, rgba(5,5,5,.92), rgba(5,5,5,.75)), url('images/Red And White J4 Cover.jpg') center/cover no-repeat; }
-</style>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Sneakers | PLUGSA</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+
+            margin: 0;
+
+            background: #f7f7f7;
+
+            color: #111;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .shop-header {
+
+            background: #111;
+
+            color: white;
+
+            padding: 18px 5%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+
+        }
+
+
+        .logo {
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 28px;
+
+            font-weight: 900;
+
+            letter-spacing: -1px;
+
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 24px;
+
+        }
+
+
+        .nav-links a {
+
+            color: white;
+
+            text-decoration: none;
+
+            font-weight: 600;
+
+        }
+
+
+        .cart-link {
+
+            color: white;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .shop-hero {
+
+            min-height: 330px;
+
+            padding: 70px 6%;
+
+            display: flex;
+
+            align-items: center;
+
+            background:
+
+                linear-gradient(
+
+                    90deg,
+
+                    rgba(0,0,0,.85),
+
+                    rgba(0,0,0,.35),
+
+                    rgba(0,0,0,.05)
+
+                ),
+
+                url("images/sneakers-cover.jpg")
+
+                center/cover;
+
+            color: white;
+
+        }
+
+
+        .shop-hero-content {
+
+            max-width: 650px;
+
+        }
+
+
+        .shop-hero h1 {
+
+            font-size:
+
+                clamp(
+
+                    42px,
+
+                    7vw,
+
+                    86px
+
+                );
+
+            line-height: .95;
+
+            margin: 0 0 20px;
+
+            font-weight: 900;
+
+            letter-spacing: -4px;
+
+        }
+
+
+        .shop-hero p {
+
+            font-size: 18px;
+
+            max-width: 500px;
+
+            line-height: 1.6;
+
+        }
+
+
+        /* =========================
+           SHOP CONTROLS
+        ========================= */
+
+        .shop-controls {
+
+            max-width: 1400px;
+
+            margin: 35px auto 10px;
+
+            padding: 0 5%;
+
+            display: flex;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+            justify-content: space-between;
+
+        }
+
+
+        .search-box {
+
+            flex: 1;
+
+            min-width: 220px;
+
+        }
+
+
+        .search-box input,
+
+        .shop-controls select {
+
+            width: 100%;
+
+            padding: 14px 16px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 8px;
+
+            background: white;
+
+            font-size: 15px;
+
+        }
+
+
+        .filter-group {
+
+            display: flex;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .filter-group select {
+
+            min-width: 160px;
+
+        }
+
+
+        /* =========================
+           SHOP TITLE
+        ========================= */
+
+        .shop-heading {
+
+            max-width: 1400px;
+
+            margin: 35px auto 20px;
+
+            padding: 0 5%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+
+        }
+
+
+        .shop-heading h2 {
+
+            margin: 0;
+
+            font-size: 30px;
+
+        }
+
+
+        #productCount {
+
+            color: #666;
+
+            font-size: 14px;
+
+        }
+
+
+        /* =========================
+           PRODUCT GRID
+        ========================= */
+
+        .products-grid {
+
+            max-width: 1400px;
+
+            margin: auto;
+
+            padding: 0 5% 60px;
+
+            display: grid;
+
+            grid-template-columns:
+
+                repeat(
+
+                    4,
+
+                    1fr
+
+                );
+
+            gap: 22px;
+
+        }
+
+
+        .product-card {
+
+            background: white;
+
+            border-radius: 14px;
+
+            overflow: hidden;
+
+            position: relative;
+
+            transition:
+
+                transform .25s ease,
+
+                box-shadow .25s ease;
+
+        }
+
+
+        .product-card:hover {
+
+            transform:
+
+                translateY(-5px);
+
+            box-shadow:
+
+                0 12px 30px
+
+                rgba(
+
+                    0,
+
+                    0,
+
+                    0,
+
+                    .12
+
+                );
+
+        }
+
+
+        .product-image-wrapper {
+
+            position: relative;
+
+            aspect-ratio: 4 / 5;
+
+            overflow: hidden;
+
+            background: #eee;
+
+        }
+
+
+        .product-image {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition:
+
+                transform .4s ease;
+
+        }
+
+
+        .product-card:hover
+
+        .product-image {
+
+            transform:
+
+                scale(
+
+                    1.06
+
+                );
+
+        }
+
+
+        .product-badge {
+
+            position: absolute;
+
+            top: 12px;
+
+            left: 12px;
+
+            background: #111;
+
+            color: white;
+
+            padding: 6px 10px;
+
+            border-radius: 20px;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            text-transform: uppercase;
+
+        }
+
+
+        .wishlist-btn {
+
+            position: absolute;
+
+            top: 12px;
+
+            right: 12px;
+
+            width: 36px;
+
+            height: 36px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: white;
+
+            cursor: pointer;
+
+            font-size: 18px;
+
+        }
+
+
+        .product-info {
+
+            padding: 16px;
+
+        }
+
+
+        .product-category {
+
+            color: #777;
+
+            font-size: 12px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .5px;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .product-name {
+
+            font-size: 17px;
+
+            margin: 0 0 8px;
+
+            font-weight: 800;
+
+        }
+
+
+        .product-price {
+
+            font-size: 18px;
+
+            font-weight: 900;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .product-options {
+
+            display: flex;
+
+            gap: 8px;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .product-options select {
+
+            flex: 1;
+
+            padding: 9px 6px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 6px;
+
+            background: white;
+
+        }
+
+
+        .product-bottom {
+
+            display: flex;
+
+            gap: 8px;
+
+        }
+
+
+        .quantity {
+
+            width: 65px;
+
+            padding: 10px 5px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 6px;
+
+            text-align: center;
+
+        }
+
+
+        .add-cart-btn {
+
+            flex: 1;
+
+            border: none;
+
+            background: #111;
+
+            color: white;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            transition: .2s;
+
+        }
+
+
+        .add-cart-btn:hover {
+
+            background: #333;
+
+        }
+
+
+        .stock-warning {
+
+            color: #b45309;
+
+            font-size: 12px;
+
+            margin-bottom: 8px;
+
+            font-weight: bold;
+
+        }
+
+
+        /* =========================
+           EMPTY STATE
+        ========================= */
+
+        .empty-state {
+
+            grid-column: 1 / -1;
+
+            text-align: center;
+
+            padding: 80px 20px;
+
+            color: #777;
+
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+
+            background: #111;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 35px 20px;
+
+        }
+
+
+        footer a {
+
+            color: white;
+
+            text-decoration: none;
+
+            margin: 0 10px;
+
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .products-grid {
+
+                grid-template-columns:
+
+                    repeat(
+
+                        3,
+
+                        1fr
+
+                    );
+
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .shop-header {
+
+                padding: 15px 20px;
+
+            }
+
+
+            .nav-links {
+
+                gap: 12px;
+
+            }
+
+
+            .nav-links a:not(.cart-link) {
+
+                display: none;
+
+            }
+
+
+            .shop-hero {
+
+                min-height: 400px;
+
+                padding: 50px 25px;
+
+            }
+
+
+            .shop-hero h1 {
+
+                letter-spacing: -2px;
+
+            }
+
+
+            .shop-controls {
+
+                padding: 0 20px;
+
+            }
+
+
+            .shop-heading {
+
+                padding: 0 20px;
+
+            }
+
+
+            .products-grid {
+
+                padding: 0 15px 50px;
+
+                grid-template-columns:
+
+                    repeat(
+
+                        2,
+
+                        1fr
+
+                    );
+
+                gap: 12px;
+
+            }
+
+
+            .product-info {
+
+                padding: 12px;
+
+            }
+
+
+            .product-name {
+
+                font-size: 14px;
+
+            }
+
+
+            .product-price {
+
+                font-size: 16px;
+
+            }
+
+
+            .product-options {
+
+                flex-direction: column;
+
+            }
+
+
+            .product-bottom {
+
+                flex-direction: column;
+
+            }
+
+
+            .quantity {
+
+                width: 100%;
+
+            }
+
+
+            .add-cart-btn {
+
+                padding: 12px;
+
+            }
+
+        }
+
+
+        @media (max-width: 400px) {
+
+            .products-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+    </style>
+
 </head>
+
+
 <body>
-<nav class="navbar">
-  <a href="index.html" class="logo">PLUGSA</a>
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="hoodies.html">Hoodies</a>
-    <a href="graphic-tees.html">Graphic Tees</a>
-    <a href="fitted caps.html">Caps</a>
-    <a class="active" href="sneaker.html">Sneakers</a>
-    <a href="cart.html" class="cart-pill">Cart <span data-cart-count>0</span></a>
-  </div>
-</nav>
-<header class="hero">
-  <div>
-    <h1>Sneakers</h1>
-    <p>Luxury performance, bold silhouettes, and rare drops in a polished marketplace setting.</p>
-  </div>
+
+
+<header class="shop-header">
+
+    <a
+        href="index.html"
+        class="logo"
+    >
+
+        PLUGSA
+
+    </a>
+
+
+    <nav class="nav-links">
+
+        <a href="index.html">
+
+            Home
+
+        </a>
+
+
+        <a href="shop.html">
+
+            Shop
+
+        </a>
+
+
+        <a href="hoodies.html">
+
+            Hoodies
+
+        </a>
+
+
+        <a href="graphic-tees.html">
+
+            Tees
+
+        </a>
+
+
+        <a
+            href="cart.html"
+            class="cart-link"
+        >
+
+            Cart (
+
+            <span data-cart-count>
+
+                0
+
+            </span>
+
+            )
+
+        </a>
+
+    </nav>
+
 </header>
-<div class="section">
-  <div class="panel">
-    <h3>Trending Sneaker Drop</h3>
-    <p>Fresh silhouettes with premium detailing landing now. Limited pairs are ready for the next rotation.</p>
-  </div>
-</div>
-<div class="controls">
-  <input id="searchInput" class="search-box" type="search" placeholder="Search sneakers" aria-label="Search sneakers">
-  <select id="filterSelect" class="filter-box" aria-label="Filter by category">
-    <option value="all">All Categories</option>
-    <option value="trending">Trending</option>
-    <option value="limited">Limited</option>
-    <option value="classic">Classic</option>
-  </select>
-  <select id="sortSelect" class="sort-box" aria-label="Sort sneakers">
-    <option value="featured">Featured</option>
-    <option value="az">Name A-Z</option>
-    <option value="za">Name Z-A</option>
-  </select>
-</div>
-<div class="products" id="productsGrid"></div>
-<script type="module">
-import { db } from "./firebase.js";
-import { protectPage } from "./auth-guard.js";
-import { collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-await protectPage();
-const storageKey='plugsa-cart';
-function readCart(){ try{return JSON.parse(localStorage.getItem(storageKey))||[]}catch(e){return [];} }
-function writeCart(cart){ localStorage.setItem(storageKey, JSON.stringify(cart)); }
-function updateCartCount(){ const cart=readCart(); document.querySelectorAll('[data-cart-count]').forEach((el)=>{ el.textContent=cart.reduce((total,item)=>total+item.quantity,0); }); }
-updateCartCount();
-window.addEventListener('storage', updateCartCount);
-window.addEventListener('focus', updateCartCount);
-const sneakers=[
-  {name:'Jordan 1 Black & White', badge:'50% OFF', category:'trending', image:'images/Black And White J1.jpg', price:6000, salePrice:3000, discount:'50% OFF', colors:['White','Black'], sizes:['6','7','8','9','10']},
-  
-  {name:'Nike Shox Classic', badge:'50% OFF', category:'limited', image:'images/Nike Shox.jpg', price:6000, salePrice:3000, discount:'50% OFF', colors:['Black','White'], sizes:['5.5','6','7','8','9']},
-  {name:'Nike Shox Black', badge:'50% OFF', category:'limited', image:'images/Black Nike Shox.jpg', price:6000, salePrice:3000, discount:'50% OFF', colors:['Black','Silver'], sizes:['5.5','6','7','8','9']},
-  {name:'Adidas Campus 00s', badge:'50% OFF', category:'classic', image:'images/Adidas Cumpus.jpg', price:1999.99, salePrice:999.99, discount:'50% OFF', colors:['Cream','Navy'], sizes:['5.5','6','7','8','9','10']},
-  {name:'Nike Dunk Red', badge:'SALE', category:'classic', image:'images/Red And White Dunk.jpg', price:1199.99, colors:['Red','White'], sizes:['5.5','6','7','8','9']},
-  {name:'Nike Dunk Black', badge:'SALE', category:'classic', image:'images/Black And white dunk.jpg', price:1199.99, colors:['Black','White'], sizes:['5.5','6','7','8','9']},
-  
-  {name:'Nike Airforce 1', badge:'30% OFF', category:'trending', image:'images/Airforce 1.jpg', price:2857, salePrice:2000, discount:'30% OFF', colors:['White','Black'], sizes:['7','8','9','10']},
-  {name:'Jordan 4 Black & White', badge:'10% OFF', category:'trending', image:'images/Black And White J4.jpg', price:3333, salePrice:3000, discount:'10% OFF', colors:['Black','White'], sizes:['7','8','9','10']},
-  {name:'Jordan 4 Red & White', badge:'10% OFF', category:'trending', image:'images/Red And White J4.jpg', price:3333, salePrice:3000, discount:'10% OFF', colors:['Red','White'], sizes:['7','8','9','10']},
-  
-  
-  {name:'Air More Uptempo Red', badge:'NEW', category:'limited', image:'images/Black And Red UpTempo.jpg', price:3199, colors:['Black','Red'], sizes:['5.5','6','7','8','9','10']},
-  {name:'Air More Uptempo Mono', badge:'NEW', category:'limited', image:'images/White And Black UpTempo.jpg', price:2999, colors:['White','Black'], sizes:['5.5','6','7','8','9','10']},
-  {name:'Nike Airforce 1 Green', badge:'NEW', category:'trending', image:'images/Green And White Airforce 1.jpg', price:2699, colors:['Green','White'], sizes:['7','8','9','10']},
-  {name:'Jordan 1 Purple & White', badge:'NEW', category:'trending', image:'images/Purple And White J1.jpg', price:2999, colors:['Purple','White'], sizes:['6','7','8','9','10']},
-  {name:'Jordan 4 Three Colour', badge:'NEW', category:'trending', image:'images/Three colour J4.jpg', price:3399, colors:['Red','Blue'], sizes:['7','8','9','10']}
-];
-const grid=document.getElementById('productsGrid');
-const searchInput=document.getElementById('searchInput');
-const filterSelect=document.getElementById('filterSelect');
-const sortSelect=document.getElementById('sortSelect');
-function renderProducts(){
-  const search=searchInput.value.toLowerCase();
-  const filter=filterSelect.value;
-  let filtered=[...sneakers].filter((item)=>item.name.toLowerCase().includes(search) && (filter==='all'||item.category===filter));
-  if(sortSelect.value==='az') filtered.sort((a,b)=>a.name.localeCompare(b.name));
-  if(sortSelect.value==='za') filtered.sort((a,b)=>b.name.localeCompare(a.name));
-  if(filtered.length===0){ grid.innerHTML='<div class="empty">No sneakers match your search.</div>'; return; }
-  grid.innerHTML=filtered.map((item)=>`<article class="product-card">
-    <img src="${item.image}" alt="${item.name}">
-    <div class="badge">${item.badge}</div>
-    <div class="inner">
-      <h3>${item.name}</h3>
-      <p class="meta">Premium street-runner • elevated comfort</p>
-      ${item.salePrice ? `<div class="price-row"><span class="price">R ${item.salePrice}</span><span class="original">R ${item.price}</span></div><div class="sale-tag">${item.discount}</div>` : `<div class="price-row"><span class="price">R ${item.price}</span></div>`}
-      <div class="row">
-        <select class="select" aria-label="Select size">
-          ${item.sizes.map((size)=>`<option>${size}</option>`).join('')}
-        </select>
-        <select class="select" aria-label="Select color">
-          ${item.colors.map((color)=>`<option>${color}</option>`).join('')}
-        </select>
-      </div>
-      <div class="row">
-        <input class="qty" type="number" min="1" max="9" value="1" aria-label="Quantity">
-        <button class="btn add-to-cart" data-name="${item.name}" data-price="${item.salePrice || item.price}" data-image="${item.image}" type="button">Add to cart</button>
-      </div>
-      <button class="btn btn-ghost wishlist-btn" type="button">♡ Wishlist</button>
+
+
+<section class="shop-hero">
+
+    <div class="shop-hero-content">
+
+        <h1>
+
+            STEP INTO YOUR STYLE.
+
+        </h1>
+
+
+        <p>
+
+            Discover sneakers that complete
+            the fit and define your movement.
+
+        </p>
+
     </div>
-  </article>`).join('');
-}
-async function loadUploadedProducts() {
-  try {
-    const snapshot = await getDocs(query(collection(db, "products"), where("category", "==", "sneakers")));
-    snapshot.forEach((productDoc) => {
-      const product = productDoc.data();
-      sneakers.push({
-        ...product,
-        sizes: product.sizes?.length ? product.sizes : ["One Size"],
-        colors: product.colors?.length ? product.colors : ["Default"],
-        badge: "NEW"
-      });
-    });
-  } catch (error) {
-    console.error("Could not load uploaded sneakers:", error);
-  }
-  renderProducts();
-}
-loadUploadedProducts();
-[searchInput,filterSelect,sortSelect].forEach((el)=>el.addEventListener('input', renderProducts));
-[searchInput,filterSelect,sortSelect].forEach((el)=>el.addEventListener('change', renderProducts));
-document.addEventListener('click', (event)=>{
-  if(event.target.classList.contains('add-to-cart')){
-    const btn=event.target; const card=btn.closest('.product-card'); const qtyInput=card.querySelector('.qty'); const sizeSelect=card.querySelectorAll('.select')[0]; const colorSelect=card.querySelectorAll('.select')[1];
-    const product={ name:btn.dataset.name, price:Number(btn.dataset.price), image:btn.dataset.image, size:sizeSelect.value, color:colorSelect.value, quantity:Number(qtyInput.value)||1 };
-    const cart=readCart(); const existing=cart.find((entry)=>entry.name===product.name && entry.size===product.size && entry.color===product.color); if(existing){ existing.quantity += product.quantity; } else { cart.push(product); }
-    writeCart(cart); updateCartCount(); btn.textContent='Added'; setTimeout(()=>{ btn.textContent='Add to cart'; },900);
-  }
-  if(event.target.classList.contains('wishlist-btn')){ event.target.textContent='♥ Saved'; setTimeout(()=>{ event.target.textContent='♡ Wishlist'; },900); }
-});
-</script>
-<footer class="site-footer">
-  <p>© 2026 PLUGSA. Premium sneakers and rare drops.</p>
-  <div class="footer-links">
-    <a href="refer.html">Refer a friend</a>
-    <a href="scan QR Code.html">QR scanner</a>
-    <a href="cart.html">Cart</a>
-  </div>
+
+</section>
+
+
+<section class="shop-controls">
+
+    <div class="search-box">
+
+        <input
+
+            type="search"
+
+            id="searchInput"
+
+            placeholder="Search sneakers..."
+
+        >
+
+    </div>
+
+
+    <div class="filter-group">
+
+        <select id="sortSelect">
+
+            <option value="newest">
+
+                Newest
+
+            </option>
+
+
+            <option value="low">
+
+                Price: Low to High
+
+            </option>
+
+
+            <option value="high">
+
+                Price: High to Low
+
+            </option>
+
+
+            <option value="az">
+
+                A-Z
+
+            </option>
+
+        </select>
+
+    </div>
+
+</section>
+
+
+<section class="shop-heading">
+
+    <h2>
+
+        THE SNEAKER DROP
+
+    </h2>
+
+
+    <span id="productCount">
+
+        Loading products...
+
+    </span>
+
+</section>
+
+
+<main
+
+    id="productsGrid"
+
+    class="products-grid"
+
+>
+
+    <div class="empty-state">
+
+        Loading sneakers...
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    <p>
+
+        &copy; 2026 PLUGSA.
+
+        All rights reserved.
+
+    </p>
+
+
+    <div>
+
+        <a href="index.html">
+
+            Home
+
+        </a>
+
+
+        <a href="shop.html">
+
+            Shop
+
+        </a>
+
+
+        <a href="cart.html">
+
+            Cart
+
+        </a>
+
+
+        <a href="refer.html">
+
+            Refer a friend
+
+        </a>
+
+    </div>
+
 </footer>
+
+
+<script type="module">
+
+
+import { db }
+
+from "./firebase.js";
+
+
+import {
+
+    collection,
+
+    getDocs,
+
+    query,
+
+    where
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+const productsGrid =
+
+    document.getElementById(
+
+        "productsGrid"
+
+    );
+
+
+const searchInput =
+
+    document.getElementById(
+
+        "searchInput"
+
+    );
+
+
+const sortSelect =
+
+    document.getElementById(
+
+        "sortSelect"
+
+    );
+
+
+const productCount =
+
+    document.getElementById(
+
+        "productCount"
+
+    );
+
+
+let products = [];
+
+
+const storageKey =
+
+    "plugsa-cart";
+
+
+function readCart() {
+
+    try {
+
+        return JSON.parse(
+
+            localStorage.getItem(
+
+                storageKey
+
+            )
+
+        ) || [];
+
+    }
+
+    catch {
+
+        return [];
+
+    }
+
+}
+
+
+function writeCart(cart) {
+
+    localStorage.setItem(
+
+        storageKey,
+
+        JSON.stringify(cart)
+
+    );
+
+}
+
+
+function updateCartCount() {
+
+    const cart =
+
+        readCart();
+
+
+    const total =
+
+        cart.reduce(
+
+            (sum, item) =>
+
+                sum + item.quantity,
+
+            0
+
+        );
+
+
+    document
+
+        .querySelectorAll(
+
+            "[data-cart-count]"
+
+        )
+
+        .forEach(element => {
+
+            element.textContent =
+
+                total;
+
+        });
+
+}
+
+
+async function loadProducts() {
+
+    try {
+
+
+        const q = query(
+
+            collection(
+
+                db,
+
+                "products"
+
+            ),
+
+            where(
+
+                "category",
+
+                "==",
+
+                "sneakers"
+
+            )
+
+        );
+
+
+        const snapshot =
+
+            await getDocs(q);
+
+
+        products =
+
+            snapshot.docs.map(
+
+                productDoc => ({
+
+                    id:
+
+                        productDoc.id,
+
+                    ...productDoc.data()
+
+                })
+
+            );
+
+
+        renderProducts();
+
+
+    }
+
+    catch (error) {
+
+
+        console.error(
+
+            "Could not load sneakers:",
+
+            error
+
+        );
+
+
+        productsGrid.innerHTML = `
+
+            <div class="empty-state">
+
+                Could not load sneakers.
+
+            </div>
+
+        `;
+
+
+        productCount.textContent =
+
+            "Unable to load products.";
+
+    }
+
+}
+
+
+function renderProducts() {
+
+
+    const search =
+
+        searchInput.value
+
+        .trim()
+
+        .toLowerCase();
+
+
+    let list =
+
+        products.filter(
+
+            product =>
+
+                (
+
+                    product.name || ""
+
+                )
+
+                .toLowerCase()
+
+                .includes(search)
+
+        );
+
+
+    if (
+
+        sortSelect.value ===
+
+        "low"
+
+    ) {
+
+        list.sort(
+
+            (a, b) =>
+
+                Number(
+
+                    a.price || 0
+
+                ) -
+
+                Number(
+
+                    b.price || 0
+
+                )
+
+        );
+
+    }
+
+
+    if (
+
+        sortSelect.value ===
+
+        "high"
+
+    ) {
+
+        list.sort(
+
+            (a, b) =>
+
+                Number(
+
+                    b.price || 0
+
+                ) -
+
+                Number(
+
+                    a.price || 0
+
+                )
+
+        );
+
+    }
+
+
+    if (
+
+        sortSelect.value ===
+
+        "az"
+
+    ) {
+
+        list.sort(
+
+            (a, b) =>
+
+                (
+
+                    a.name || ""
+
+                )
+
+                .localeCompare(
+
+                    b.name || ""
+
+                )
+
+        );
+
+    }
+
+
+    if (
+
+        sortSelect.value ===
+
+        "newest"
+
+    ) {
+
+        list.sort(
+
+            (a, b) => {
+
+
+                const aTime =
+
+                    a.createdAt
+
+                    ?.seconds || 0;
+
+
+                const bTime =
+
+                    b.createdAt
+
+                    ?.seconds || 0;
+
+
+                return bTime - aTime;
+
+            }
+
+        );
+
+    }
+
+
+    productCount.textContent =
+
+        `${list.length} product${
+
+            list.length === 1
+
+                ? ""
+
+                : "s"
+
+        }`;
+
+
+    if (!list.length) {
+
+        productsGrid.innerHTML = `
+
+            <div class="empty-state">
+
+                No sneakers found.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    productsGrid.innerHTML =
+
+        list.map(product => {
+
+
+            const sizes =
+
+                Array.isArray(
+
+                    product.sizes
+
+                )
+
+                && product.sizes.length
+
+                    ? product.sizes
+
+                    : ["One Size"];
+
+
+            const colors =
+
+                Array.isArray(
+
+                    product.colors
+
+                )
+
+                && product.colors.length
+
+                    ? product.colors
+
+                    : ["Default"];
+
+
+            const stock =
+
+                Number(
+
+                    product.stock || 0
+
+                );
+
+
+            return `
+
+                <article
+
+                    class="product-card"
+
+                    data-id="${
+
+                        product.id
+
+                    }"
+
+                >
+
+
+                    <div
+
+                        class="product-image-wrapper"
+
+                    >
+
+
+                        <img
+
+                            class="product-image"
+
+                            src="${
+
+                                product.image || ""
+
+                            }"
+
+                            alt="${
+
+                                product.name ||
+
+                                "Sneaker"
+
+                            }"
+
+                            loading="lazy"
+
+                            onerror="
+
+                                this.style.display='none'
+
+                            "
+
+                        >
+
+
+                        <div
+
+                            class="product-badge"
+
+                        >
+
+                            NEW
+
+                        </div>
+
+
+                        <button
+
+                            class="wishlist-btn"
+
+                            type="button"
+
+                            aria-label="Add to wishlist"
+
+                        >
+
+                            ♡
+
+                        </button>
+
+
+                    </div>
+
+
+                    <div
+
+                        class="product-info"
+
+                    >
+
+
+                        <div
+
+                            class="product-category"
+
+                        >
+
+                            SNEAKERS
+
+                        </div>
+
+
+                        <h3
+
+                            class="product-name"
+
+                        >
+
+                            ${
+
+                                product.name ||
+
+                                "Unnamed Sneaker"
+
+                            }
+
+                        </h3>
+
+
+                        <div
+
+                            class="product-price"
+
+                        >
+
+                            R ${
+
+                                Number(
+
+                                    product.price ||
+
+                                    0
+
+                                )
+
+                                .toLocaleString(
+
+                                    "en-ZA"
+
+                                )
+
+                            }
+
+                        </div>
+
+
+                        ${
+
+                            stock > 0 &&
+
+                            stock <= 5
+
+                                ? `
+
+                                    <div
+
+                                        class="stock-warning"
+
+                                    >
+
+                                        Only ${
+
+                                            stock
+
+                                        }
+
+                                        left
+
+                                    </div>
+
+                                `
+
+                                : ""
+
+                        }
+
+
+                        <div
+
+                            class="product-options"
+
+                        >
+
+
+                            <select
+
+                                class="size-select"
+
+                            >
+
+                                ${
+
+                                    sizes
+
+                                    .map(
+
+                                        size =>
+
+                                            `
+
+                                            <option>
+
+                                                ${
+
+                                                    size
+
+                                                }
+
+                                            </option>
+
+                                            `
+
+                                    )
+
+                                    .join("")
+
+                                }
+
+                            </select>
+
+
+                            <select
+
+                                class="color-select"
+
+                            >
+
+                                ${
+
+                                    colors
+
+                                    .map(
+
+                                        color =>
+
+                                            `
+
+                                            <option>
+
+                                                ${
+
+                                                    color
+
+                                                }
+
+                                            </option>
+
+                                            `
+
+                                    )
+
+                                    .join("")
+
+                                }
+
+                            </select>
+
+
+                        </div>
+
+
+                        <div
+
+                            class="product-bottom"
+
+                        >
+
+
+                            <input
+
+                                class="quantity"
+
+                                type="number"
+
+                                min="1"
+
+                                max="9"
+
+                                value="1"
+
+                            >
+
+
+                            <button
+
+                                class="add-cart-btn"
+
+                                type="button"
+
+                            >
+
+                                Add to Cart
+
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </article>
+
+            `;
+
+        })
+
+        .join("");
+
+}
+
+
+productsGrid.addEventListener(
+
+    "click",
+
+    event => {
+
+
+        const button =
+
+            event.target.closest(
+
+                ".add-cart-btn"
+
+            );
+
+
+        if (!button)
+
+            return;
+
+
+        const card =
+
+            button.closest(
+
+                ".product-card"
+
+            );
+
+
+        const product =
+
+            products.find(
+
+                item =>
+
+                    item.id ===
+
+                    card.dataset.id
+
+            );
+
+
+        if (!product)
+
+            return;
+
+
+        const size =
+
+            card.querySelector(
+
+                ".size-select"
+
+            ).value;
+
+
+        const color =
+
+            card.querySelector(
+
+                ".color-select"
+
+            ).value;
+
+
+        const quantity =
+
+            Number(
+
+                card.querySelector(
+
+                    ".quantity"
+
+                ).value
+
+            ) || 1;
+
+
+        const item = {
+
+
+            id:
+
+                product.id,
+
+
+            name:
+
+                product.name,
+
+
+            price:
+
+                Number(
+
+                    product.price
+
+                ),
+
+
+            image:
+
+                product.image,
+
+
+            quantity,
+
+
+            size,
+
+
+            color
+
+        };
+
+
+        const cart =
+
+            readCart();
+
+
+        const existing =
+
+            cart.find(
+
+                cartItem =>
+
+                    cartItem.id ===
+
+                        item.id &&
+
+                    cartItem.size ===
+
+                        item.size &&
+
+                    cartItem.color ===
+
+                        item.color
+
+            );
+
+
+        if (existing) {
+
+            existing.quantity +=
+
+                item.quantity;
+
+        }
+
+        else {
+
+            cart.push(item);
+
+        }
+
+
+        writeCart(cart);
+
+
+        updateCartCount();
+
+
+        button.textContent =
+
+            "Added ✓";
+
+
+        setTimeout(
+
+            () => {
+
+                button.textContent =
+
+                    "Add to Cart";
+
+            },
+
+            1000
+
+        );
+
+    }
+
+);
+
+
+searchInput.addEventListener(
+
+    "input",
+
+    renderProducts
+
+);
+
+
+sortSelect.addEventListener(
+
+    "change",
+
+    renderProducts
+
+);
+
+
+updateCartCount();
+
+
+loadProducts();
+
+
+</script>
+
+
 </body>
+
 </html>

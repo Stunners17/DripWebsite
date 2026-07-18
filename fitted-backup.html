@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" data-auth-required-page>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+<title>PLUGSA | Fitted Caps</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+:root { --bg:#050505; --surface:#111111; --accent:#f7ff00; --text:#ffffff; --muted:#b3b3b3; --border:rgba(255,255,255,.12); }
+* { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; font-size:clamp(14px,1.1vw,18px); }
+body { font-family:'Montserrat',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; }
+a { color:inherit; text-decoration:none; }
+button,input,select { font:inherit; }
+.navbar { position:sticky; top:0; z-index:1000; display:flex; align-items:center; justify-content:space-between; padding:clamp(16px,2vw,28px) clamp(4%,3vw,8%); background:rgba(5,5,5,.94); backdrop-filter:blur(16px); border-bottom:1px solid var(--border); }
+.logo { font-size:1.7rem; font-weight:800; letter-spacing:.36em; text-transform:uppercase; color:var(--accent); }
+.nav-links { display:flex; gap:20px; align-items:center; }
+.nav-links a { color:var(--text); font-weight:500; transition:.25s ease; }
+.nav-links a:hover,.nav-links a.active { color:var(--accent); }
+.cart-pill { background:rgba(247,255,0,.14); padding:8px 12px; border-radius:999px; border:1px solid rgba(247,255,0,.18); display:inline-flex; align-items:center; gap:6px; }
+.hero { padding:clamp(90px,10vw,120px) clamp(6%,4vw,8%) clamp(40px,5vw,60px); text-align:center; background:linear-gradient(90deg, rgba(5,5,5,.92), rgba(5,5,5,.75)), url('images/New York cap.jpg') center/cover no-repeat; }
+.hero > div { max-width:min(860px,100%); margin:0 auto; }
+.hero h1 { font-size:clamp(2.6rem, 5vw, 3.8rem); color:var(--accent); margin-bottom:12px; letter-spacing:.16em; text-transform:uppercase; }
+.hero p { color:var(--muted); max-width:min(760px,100%); margin:0 auto; }
+.controls { padding:clamp(20px,2vw,28px) clamp(6%,4vw,8%) clamp(12px,1.2vw,16px); display:grid; gap:clamp(16px,1.5vw,20px); grid-template-columns:1fr .8fr .8fr; align-items:center; }
+.search-box, .filter-box, .sort-box { background:var(--surface); border:1px solid var(--border); border-radius:999px; padding:clamp(12px,1vw,16px) clamp(14px,1.4vw,18px); color:var(--text); }
+.products { padding:clamp(28px,3vw,38px) clamp(6%,4vw,8%) clamp(40px,5vw,70px); display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:clamp(20px,1.5vw,24px); }
+.product-card { background:var(--surface); border:1px solid var(--border); border-radius:24px; overflow:hidden; transition:transform .3s ease, border-color .3s ease; box-shadow:0 18px 45px rgba(0,0,0,.26); }
+.product-card:hover { transform:translateY(-6px); border-color:rgba(247,255,0,.35); }
+.product-card img { height:clamp(260px,24vw,320px); object-fit:cover; }
+.badge { display:inline-block; margin:clamp(16px,1.5vw,18px) clamp(16px,1.5vw,18px) 0; padding:clamp(6px,0.9vw,10px) clamp(10px,1vw,14px); border-radius:999px; font-size:clamp(.72rem,0.9vw,.9rem); letter-spacing:.16em; background:rgba(247,255,0,.12); color:var(--accent); }
+.inner { padding:clamp(18px,1.4vw,20px) clamp(16px,1.4vw,18px) clamp(18px,1.4vw,20px); display:flex; flex-direction:column; gap:clamp(12px,1vw,14px); }
+.inner h3 { font-size:1.15rem; }
+.meta { color:var(--muted); font-size:.94rem; }
+.row { display:flex; gap:10px; flex-wrap:wrap; }
+.select, .qty { padding:10px 12px; border-radius:10px; border:1px solid var(--border); background:#171717; color:var(--text); }
+.qty { width:80px; }
+.btn { border:none; border-radius:999px; padding:12px 14px; background:var(--accent); color:#050505; font-weight:700; cursor:pointer; transition:transform .2s ease; }
+.btn:hover { transform:translateY(-2px); }
+.btn-ghost { background:transparent; color:var(--text); border:1px solid var(--border); }
+.empty { color:var(--muted); text-align:center; padding:36px 0 0; }
+@media (max-width:760px) { .navbar { flex-direction:column; gap:12px; padding:16px 6%; } .nav-links { flex-wrap:wrap; justify-content:center; } .hero, .controls, .products { padding-left:6%; padding-right:6%; } .hero { padding:90px 6% 40px; } .controls { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">PLUGSA</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="hoodies.html">Hoodies</a>
+    <a href="graphic-tees.html">Graphic Tees</a>
+    <a class="active" href="fitted caps.html">Caps</a>
+    <a href="sneaker.html">Sneakers</a>
+    <a href="cart.html" class="cart-pill">Cart <span data-cart-count>0</span></a>
+  </div>
+</nav>
+<header class="hero">
+  <div>
+    <h1>Fitted Caps</h1>
+    <p>Structured silhouettes, clean detailing, and premium textures built for the modern set.</p>
+  </div>
+</header>
+<div class="controls">
+  <input id="searchInput" class="search-box" type="search" placeholder="Search caps" aria-label="Search caps">
+  <select id="filterSelect" class="filter-box" aria-label="Filter by category">
+    <option value="all">All Categories</option>
+    <option value="new">New</option>
+    <option value="classic">Classic</option>
+    <option value="limited">Limited</option>
+  </select>
+  <select id="sortSelect" class="sort-box" aria-label="Sort caps">
+    <option value="featured">Featured</option>
+    <option value="az">Name A-Z</option>
+    <option value="za">Name Z-A</option>
+  </select>
+</div>
+<div class="products" id="productsGrid"></div>
+<script type="module">
+import { db } from "./firebase.js";
+import { protectPage } from "./auth-guard.js";
+import { collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+await protectPage();
+const storageKey='plugsa-cart';
+function readCart(){ try{return JSON.parse(localStorage.getItem(storageKey))||[]}catch(e){return [];} }
+function writeCart(cart){ localStorage.setItem(storageKey, JSON.stringify(cart)); }
+function updateCartCount(){ const cart=readCart(); document.querySelectorAll('[data-cart-count]').forEach((el)=>{ el.textContent=cart.reduce((total,item)=>total+item.quantity,0); }); }
+updateCartCount();
+window.addEventListener('storage', updateCartCount);
+window.addEventListener('focus', updateCartCount);
+const caps=[
+  {name:'New York Cap', badge:'NEW', category:'new', image:'images/New York cap.jpg', price:950, colors:['Black','Cream'], sizes:['S','M','L']},
+  {name:'Monarch Structured Cap', badge:'CLASSIC', category:'classic', image:'images/cap1.jpg', price:850, colors:['Navy','White'], sizes:['M','L','XL']},
+  {name:'Limited Night Cap', badge:'LIMITED', category:'limited', image:'images/cap2.jpg', price:1100, colors:['Grey','Black'], sizes:['S','M','L']},
+  {name:'Urban Shadow Cap', badge:'CLASSIC', category:'classic', image:'images/cap3.jpg', price:900, colors:['Sand','Brown'], sizes:['M','L']},
+  {name:'Rally Snapback', badge:'TRENDING', category:'new', image:'images/cap4.jpg', price:999, colors:['Black','Red'], sizes:['S','M','L']},
+  {name:'Classic Premium Cap', badge:'TOPSELLER', category:'classic', image:'images/cap5.jpg', price:950, colors:['Black','White'], sizes:['S','M','L']}
+];
+const grid=document.getElementById('productsGrid');
+const searchInput=document.getElementById('searchInput');
+const filterSelect=document.getElementById('filterSelect');
+const sortSelect=document.getElementById('sortSelect');
+function renderProducts(){
+  const search=searchInput.value.toLowerCase();
+  const filter=filterSelect.value;
+  let filtered=[...caps].filter((item)=>item.name.toLowerCase().includes(search) && (filter==='all'||item.category===filter));
+  if(sortSelect.value==='az') filtered.sort((a,b)=>a.name.localeCompare(b.name));
+  if(sortSelect.value==='za') filtered.sort((a,b)=>b.name.localeCompare(a.name));
+  if(filtered.length===0){ grid.innerHTML='<div class="empty">No caps match your search.</div>'; return; }
+  grid.innerHTML=filtered.map((item)=>`<article class="product-card">
+    <img src="${item.image}" alt="${item.name}">
+    <div class="badge">${item.badge}</div>
+    <div class="inner">
+      <h3>${item.name}</h3>
+      <p class="meta">Premium fabric • luxury finish</p>
+      <div class="row">
+        <select class="select" aria-label="Select size">
+          ${item.sizes.map((size)=>`<option>${size}</option>`).join('')}
+        </select>
+        <select class="select" aria-label="Select color">
+          ${item.colors.map((color)=>`<option>${color}</option>`).join('')}
+        </select>
+      </div>
+      <div class="row">
+        <input class="qty" type="number" min="1" max="9" value="1" aria-label="Quantity">
+        <button class="btn add-to-cart" data-name="${item.name}" data-price="${item.price}" data-image="${item.image}" type="button">Add to cart</button>
+      </div>
+      <button class="btn btn-ghost wishlist-btn" type="button">♡ Wishlist</button>
+    </div>
+  </article>`).join('');
+}
+async function loadUploadedProducts() {
+  try {
+    const snapshot = await getDocs(query(collection(db, "products"), where("category", "==", "caps")));
+    snapshot.forEach((productDoc) => {
+      const product = productDoc.data();
+      caps.push({
+        ...product,
+        sizes: product.sizes?.length ? product.sizes : ["One Size"],
+        colors: product.colors?.length ? product.colors : ["Default"],
+        badge: "NEW"
+      });
+    });
+  } catch (error) {
+    console.error("Could not load uploaded caps:", error);
+  }
+  renderProducts();
+}
+loadUploadedProducts();
+[searchInput,filterSelect,sortSelect].forEach((el)=>el.addEventListener('input', renderProducts));
+[searchInput,filterSelect,sortSelect].forEach((el)=>el.addEventListener('change', renderProducts));
+document.addEventListener('click', (event)=>{
+  if(event.target.classList.contains('add-to-cart')){
+    const btn=event.target; const card=btn.closest('.product-card'); const qtyInput=card.querySelector('.qty'); const sizeSelect=card.querySelectorAll('.select')[0]; const colorSelect=card.querySelectorAll('.select')[1];
+    const product={ name:btn.dataset.name, price:Number(btn.dataset.price), image:btn.dataset.image, size:sizeSelect.value, color:colorSelect.value, quantity:Number(qtyInput.value)||1 };
+    const cart=readCart(); const existing=cart.find((entry)=>entry.name===product.name && entry.size===product.size && entry.color===product.color); if(existing){ existing.quantity += product.quantity; } else { cart.push(product); }
+    writeCart(cart); updateCartCount(); btn.textContent='Added'; setTimeout(()=>{ btn.textContent='Add to cart'; },900);
+  }
+  if(event.target.classList.contains('wishlist-btn')){ event.target.textContent='♥ Saved'; setTimeout(()=>{ event.target.textContent='♡ Wishlist'; },900); }
+});
+</script>
+<footer class="site-footer">
+  <p>© 2026 PLUGSA. Premium caps and polished streetwear.</p>
+  <div class="footer-links">
+    <a href="refer.html">Refer a friend</a>
+    <a href="scan QR Code.html">QR scanner</a>
+    <a href="cart.html">Cart</a>
+  </div>
+</footer>
+</body>
+</html>
