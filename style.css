@@ -131,6 +131,7 @@ nav,
 
 .hero button:hover{
     transform:translateY(-5px);
+    color: chartreuse;
 }
 
 /* SECTION */
