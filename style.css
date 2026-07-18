@@ -515,6 +515,13 @@ height:240px;
     margin-bottom:20px;
 }
 
+.feature-section {
+
+margin-top:80px;
+
+}
+
+
 /* MUSIC BUTTON */
 
 .music-player{
@@ -534,11 +541,6 @@ height:240px;
     cursor:pointer;
 }
 
-.features-section {
-
-margin-top:80px;
-
-}
 
 /* FOOTER */
 
