@@ -1,15 +1,12 @@
-import { auth, db, storage } from "./firebase.js";
+import { auth, db } from "./firebase.js";
 import { protectPage } from "./auth-guard.js";
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 import {
-  addDoc,
   collection,
   deleteDoc,
   doc,
-  onSnapshot,
-  serverTimestamp
+  onSnapshot
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-import { getDownloadURL, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-storage.js";
 
 // Change this value if the store owner uses a different Firebase login.
 const ADMIN_EMAIL = "ntando.lawrance@gmail.com";
@@ -119,6 +116,9 @@ document.getElementById("productsTable").addEventListener("click", async event =
   }
 });
 
+/*
+ * Firebase Storage is paused. Restore this handler with the Upload Product form in
+ * admin.html after Storage is configured, and restore the Storage/Firebase imports.
 document.getElementById("productForm").addEventListener("submit", async event => {
   event.preventDefault();
   const form = event.currentTarget;
@@ -159,6 +159,7 @@ document.getElementById("productForm").addEventListener("submit", async event =>
     submitButton.textContent = "Upload product";
   }
 });
+*/
 
 function showMessage(message, isError = false) {
   const element = document.getElementById("adminMessage");

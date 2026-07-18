@@ -24,7 +24,11 @@
       <div class="card"><h3>Customers</h3><p id="customers">0</p></div>
     </section>
     <section id="orders"><h2>Orders</h2><div class="table-wrap"><table><thead><tr><th>Customer</th><th>Phone</th><th>Email</th><th>Total</th><th>Status</th><th>Date</th></tr></thead><tbody id="ordersTable"></tbody></table></div></section>
-    <section id="products"><h2>Upload product</h2>
+    <section id="products">
+      <!--
+        Firebase Storage is paused. Re-enable this Upload Product section once Storage
+        is configured by restoring this form and the matching handler in admin.js.
+      <h2>Upload product</h2>
       <form id="productForm" class="product-form">
         <label>Product name<input name="name" required maxlength="120"></label>
         <label>Category
@@ -44,6 +48,7 @@
         <label>Or image URL<input name="imageUrl" type="url" placeholder="https://..."></label>
         <button type="submit">Upload product</button>
       </form>
+      -->
       <h2>Manage products</h2>
       <input type="search" id="searchProducts" placeholder="Search products..." aria-label="Search products">
       <div class="table-wrap"><table><thead><tr><th>Image</th><th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th>Actions</th></tr></thead><tbody id="productsTable"></tbody></table></div>
