@@ -1,7 +1,146 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#121212"><title>PLUGSA | Streetwear & Sneakers</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="storefront.css"></head><body class="storefront">
-<header class="store-nav"><a class="wordmark" href="index.html">PLUGSA</a><nav><a href="shop.html">Shop all</a><a href="hoodies.html">Hoodies</a><a href="graphic-tees.html">Graphic tees</a><a href="sneaker.html">Sneakers</a><a href="fitted caps.html">Caps</a></nav><a class="cart-link" href="cart.html" data-requires-auth>Bag <span data-cart-count>0</span></a></header>
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="theme-color" content="#121212">
+
+        <title>PLUGSA | Streetwear & Sneakers</title>
+
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="storefront.css">
+
+
+    <style>
+    .refer-cta {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: fit-content;
+    margin: 30px auto;
+    padding: 16px 22px;
+    color: #fff;
+    text-decoration: none;
+    background: linear-gradient(135deg, #111, #242424);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: referFloat 3s ease-in-out infinite;
+}
+
+.refer-cta::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.18),
+        transparent
+    );
+    transform: skewX(-20deg);
+    animation: referShine 3.5s infinite;
+}
+
+.refer-cta:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(255, 255, 255, 0.15);
+}
+
+.refer-icon {
+    font-size: 25px;
+    animation: giftBounce 2s infinite;
+}
+
+.refer-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.refer-text strong {
+    font-size: 14px;
+    letter-spacing: 1.5px;
+}
+
+.refer-text small {
+    color: #aaa;
+    font-size: 12px;
+}
+
+.refer-arrow {
+    font-size: 24px;
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+.refer-cta:hover .refer-arrow {
+    transform: translateX(6px);
+}
+
+@keyframes referFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+@keyframes referShine {
+    0% {
+        left: -120%;
+    }
+
+    45%, 100% {
+        left: 140%;
+    }
+}
+
+@keyframes giftBounce {
+    0%, 100% {
+        transform: rotate(0deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(-8deg) scale(1.12);
+    }
+}
+
+@media (max-width: 600px) {
+
+    .refer-cta {
+        width: calc(100% - 32px);
+        justify-content: center;
+    }
+
+}</style>
+</head>
+<body class="storefront">
+<header class="store-nav"><a class="wordmark" href="index.html">PLUGSA</a><nav>
+<a href="hoodies.html">Hoodies</a><a href="graphic-tees.html">Graphic tees</a><a href="sneaker.html">Sneakers</a><a href="fitted caps.html">Caps</a></nav><a class="cart-link" href="cart.html" data-requires-auth>Bag <span data-cart-count>0</span></a></header>
 <main><section class="hero-new"><div class="hero-copy"><span class="eyebrow">The new PLUGSA marketplace</span><h1>Find your next favourite look.</h1><p>Streetwear, sneakers and standout essentials — carefully selected for the rotation you are building.</p><a class="button lime" href="shop.html" data-requires-auth>Shop the drop</a></div><div class="hero-image" aria-label="PLUGSA streetwear collection"></div></section>
-<section class="section-wrap"><div class="section-title"><h2>Shop the edit.</h2><p>Start with the pieces that make the fit.</p></div><div class="category-grid"><a class="category-tile" href="hoodies.html"><img loading="lazy" src="images/hellstar%20black%20hoodie.jpg" alt="Hoodies"><span>Hoodies</span></a><a class="category-tile" href="graphic-tees.html"><img loading="lazy" src="images/graphic-tee1.jpg" alt="Graphic tees"><span>Graphic Tees</span></a><a class="category-tile" href="sneaker.html"><img loading="lazy" src="images/Red%20And%20White%20J4%20Cover.jpg" alt="Sneakers"><span>Sneakers</span></a><a class="category-tile" href="fitted%20caps.html"><img loading="lazy" src="images/New%20York%20cap.jpg" alt="Caps"><span>Caps</span></a><a class="category-tile" href="#thrift"><img loading="lazy" src="images/jeans%202.jpg" alt="PLUGSA Thrift"><span>Thrift</span></a></div></section>
+<section class="section-wrap"><div class="section-title"><h2>Shop the edit.</h2>  
+    <a href="refer.html" class="refer-cta">
+
+    <span class="refer-icon">🎁</span>
+
+    <span class="refer-text">
+        <strong>REFER & EARN</strong>
+        <small>Unlock exclusive PLUGSA rewards</small>
+    </span>
+
+    <span class="refer-arrow">→</span>
+
+</a><p>Start with the pieces that make the fit.</p></div><div class="category-grid"><a class="category-tile" href="hoodies.html"><img loading="lazy" src="images/hellstar%20black%20hoodie.jpg" alt="Hoodies"><span>Hoodies</span></a><a class="category-tile" href="graphic-tees.html"><img loading="lazy" src="images/graphic-tee1.jpg" alt="Graphic tees"><span>Graphic Tees</span></a><a class="category-tile" href="sneaker.html"><img loading="lazy" src="images/Red%20And%20White%20J4%20Cover.jpg" alt="Sneakers"><span>Sneakers</span></a><a class="category-tile" href="fitted%20caps.html"><img loading="lazy" src="images/New%20York%20cap.jpg" alt="Caps"><span>Caps</span></a><a class="category-tile" href="#thrift"><img loading="lazy" src="images/jeans%202.jpg" alt="PLUGSA Thrift"><span>Thrift</span></a></div></section>
 <section class="section-wrap" style="padding-top:0"><div class="section-title"><h2>Featured now.</h2><p>Selected products from the latest PLUGSA inventory.</p></div><div class="product-grid" id="featured"><div class="empty-state">Loading the latest products…</div></div></section>
 
 
