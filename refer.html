@@ -1,443 +1,261 @@
 <!DOCTYPE html>
-<html lang="en" data-auth-required-page>
+<html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#000000">
 
-<title>PLUGSA | Refer & Earn</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<title>PLUGSA Refer & Earn</title>
 
 <style>
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial, sans-serif;
 }
 
-html{
-scroll-behavior:smooth;
-}
 
 body{
-
-background:#050505;
-color:#fff;
-overflow-x:hidden;
-
+    background:#050505;
+    color:white;
 }
 
-/* NAVBAR */
 
-.navbar{
+/* HEADER */
 
-position:fixed;
-top:0;
-left:0;
-width:100%;
-
-display:flex;
-justify-content:space-between;
-align-items:center;
-
-padding:18px 8%;
-
-background:rgba(0,0,0,.82);
-backdrop-filter:blur(15px);
-
-z-index:1000;
-
-border-bottom:1px solid rgba(255,255,255,.06);
-
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 7%;
+    background:#000;
 }
+
 
 .logo{
-
-font-size:2rem;
-font-weight:800;
-letter-spacing:3px;
-
-color:#fff;
-text-decoration:none;
-
+    font-size:28px;
+    font-weight:900;
+    letter-spacing:2px;
 }
 
-.nav-links{
 
-display:flex;
-gap:28px;
-
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
 }
 
-.nav-links a{
 
-text-decoration:none;
-color:#d7d7d7;
-font-size:.95rem;
-transition:.3s;
-
-}
-
-.nav-links a:hover{
-
-color:#fff;
-
-}
 
 /* HERO */
 
 .hero{
 
-padding-top:140px;
-padding-bottom:90px;
+    text-align:center;
+    padding:80px 20px;
 
-padding-left:8%;
-padding-right:8%;
+    background:
+    linear-gradient(
+    rgba(0,0,0,.7),
+    rgba(0,0,0,.9)
+    ),
+    url("images/streetwear.jpg");
 
-text-align:center;
-
-background:
-
-radial-gradient(circle at top,
-rgba(255,215,0,.08),
-transparent 60%),
-
-linear-gradient(
-180deg,
-#0d0d0d,
-#050505
-);
-
+    background-size:cover;
 }
+
+
 
 .hero h1{
 
-font-size:4rem;
-font-weight:800;
-
-margin-bottom:20px;
+    font-size:45px;
 
 }
+
+
+.hero span{
+
+    color:#d4af37;
+
+}
+
 
 .hero p{
 
-max-width:850px;
-margin:auto;
-
-font-size:1.15rem;
-
-line-height:1.8;
-
-color:#bdbdbd;
+    margin-top:20px;
+    color:#ccc;
 
 }
 
-/* CONTAINER */
 
-.refer-container{
 
-width:90%;
-max-width:1300px;
+/* CARDS */
 
-margin:60px auto;
 
-display:grid;
+.section{
 
-grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
-
-gap:30px;
+    padding:50px 7%;
 
 }
 
-/* CARD */
 
 .card{
 
-background:#101010;
+    background:#111;
 
-border:1px solid rgba(255,255,255,.06);
+    border:1px solid #222;
 
-border-radius:22px;
+    border-radius:15px;
 
-padding:35px;
+    padding:30px;
 
-transition:.35s;
-
-box-shadow:0 10px 35px rgba(0,0,0,.45);
+    margin-bottom:30px;
 
 }
 
-.card:hover{
 
-transform:translateY(-8px);
-
-border-color:#FFD700;
-
-box-shadow:0 20px 60px rgba(255,215,0,.18);
-
-}
 
 .card h2{
 
-font-size:1.6rem;
-
-margin-bottom:18px;
+    margin-bottom:20px;
 
 }
 
-.card p{
 
-color:#bdbdbd;
-
-line-height:1.8;
-
-margin-bottom:25px;
-
-}
-
-/* INPUTS */
 
 input{
 
-width:100%;
+    width:100%;
 
-padding:16px;
+    padding:15px;
 
-margin-top:8px;
-margin-bottom:22px;
+    margin:10px 0;
 
-background:#181818;
+    background:#000;
 
-border:1px solid rgba(255,255,255,.08);
+    color:white;
 
-border-radius:12px;
+    border:1px solid #333;
 
-color:#fff;
-
-font-size:1rem;
-
-outline:none;
-
-transition:.3s;
+    border-radius:8px;
 
 }
 
-input:focus{
 
-border-color:#FFD700;
-
-box-shadow:0 0 18px rgba(255,215,0,.2);
-
-}
-
-/* BUTTONS */
 
 button{
 
-width:100%;
+    background:#d4af37;
 
-padding:16px;
+    color:black;
 
-border:none;
+    padding:15px 25px;
 
-border-radius:12px;
+    border:none;
 
-background:#FFD700;
+    border-radius:8px;
 
-color:#000;
+    font-weight:bold;
 
-font-weight:700;
-
-font-size:1rem;
-
-cursor:pointer;
-
-transition:.35s;
+    cursor:pointer;
 
 }
+
+
 
 button:hover{
 
-transform:translateY(-3px);
-
-background:#fff;
+    opacity:.8;
 
 }
 
-.buttons{
 
-display:grid;
 
-grid-template-columns:1fr 1fr;
+/* REWARDS */
 
-gap:15px;
 
-margin-top:15px;
+.reward{
 
-}
+    background:#0c0c0c;
 
-/* PROGRESS */
+    padding:20px;
 
-.progress-box{
+    border-radius:12px;
 
-display:flex;
+    margin:15px 0;
 
-flex-direction:column;
-
-gap:20px;
+    border-left:4px solid #d4af37;
 
 }
 
-.progress-item{
 
-display:flex;
 
-justify-content:space-between;
+.reward h3{
 
-align-items:center;
+    color:#d4af37;
 
-padding:18px;
+}
+
+
+
+/* POPUP */
+
+
+.popup{
+
+display:none;
+
+position:fixed;
+
+top:50%;
+
+left:50%;
+
+transform:translate(-50%,-50%);
+
+background:#111;
+
+padding:30px;
 
 border-radius:15px;
-
-background:#181818;
-
-}
-
-.progress-item strong{
-
-font-size:1.4rem;
-
-color:#FFD700;
-
-}
-
-/* TABLE */
-
-table{
-
-width:100%;
-
-border-collapse:collapse;
-
-margin-top:15px;
-
-overflow:hidden;
-
-border-radius:15px;
-
-}
-
-thead{
-
-background:#FFD700;
-
-color:#000;
-
-}
-
-th{
-
-padding:18px;
-
-text-align:left;
-
-}
-
-td{
-
-padding:18px;
-
-border-bottom:1px solid rgba(255,255,255,.05);
-
-}
-
-/* STATUS */
-
-.status{
-
-padding:8px 18px;
-
-border-radius:50px;
-
-font-size:.82rem;
-
-font-weight:700;
-
-display:inline-block;
-
-}
-
-.pending{
-
-background:#ff9800;
-
-color:#000;
-
-}
-
-.completed{
-
-background:#28a745;
-
-}
-
-/* FOOTER */
-
-footer{
-
-margin-top:80px;
-
-padding:40px;
 
 text-align:center;
 
-color:#8e8e8e;
-
-border-top:1px solid rgba(255,255,255,.05);
+border:1px solid #d4af37;
 
 }
 
-/* MOBILE */
 
-@media(max-width:768px){
+
+footer{
+
+text-align:center;
+
+padding:30px;
+
+background:#000;
+
+color:#777;
+
+}
+
+
+
+@media(max-width:600px){
 
 .hero h1{
 
-font-size:2.6rem;
+font-size:32px;
 
 }
 
-.buttons{
 
-grid-template-columns:1fr;
-
-}
-
-.navbar{
+header{
 
 flex-direction:column;
 
 gap:15px;
-
-}
-
-.nav-links{
-
-flex-wrap:wrap;
-justify-content:center;
-
-}
-
-.refer-container{
-
-grid-template-columns:1fr;
-
-width:94%;
 
 }
 
@@ -445,341 +263,387 @@ width:94%;
 
 </style>
 
+
 </head>
+
 
 <body>
 
-<nav class="navbar">
 
-<a href="index.html" class="logo">PLUGSA</a>
+<header>
 
-<div class="nav-links">
-
-<a href="index.html">Home</a>
-
-<a href="hoodies.html">Hoodies</a>
-
-<a href="graphic-tees.html">Graphic Tees</a>
-
-<a href="fitted caps.html">Caps</a>
-
-<a href="sneaker.html">Sneakers</a>
-
-<a href="cart.html">Cart</a>
-
+<div class="logo">
+PLUGSA
 </div>
+
+
+<nav>
+
+<a href="index.html">
+Home
+</a>
+
+<a href="shop.html">
+Shop
+</a>
+
+<a href="cart.html">
+Cart
+</a>
 
 </nav>
 
+</header>
+
+
+
+
 <section class="hero">
 
-<h1>Refer & Earn</h1>
+<h1>
+REFER.
+<span>
+EARN.
+</span>
+REPEAT.
+</h1>
+
 
 <p>
-
-Invite your friends to shop at <strong>PLUGSA</strong>.
-
-When a referred friend completes their <strong>first successful purchase</strong>,
-
-you'll earn a <strong>FREE Premium PLUGSA Cap.</strong>
-
-The reward is only issued after the order has been confirmed.
-
+Invite friends to PLUGSA and unlock exclusive streetwear rewards.
 </p>
 
 </section>
 
-<div class="refer-container">
 
-<!-- Referral Link -->
+
+
+<section class="section">
+
 
 <div class="card">
 
-<h2>Your Referral Link</h2>
 
-<p>
+<h2>
+Refer A Friend
+</h2>
 
-Share your personal referral link with friends.
 
-Every completed purchase brings you one step closer to earning your reward.
+<input id="yourName" placeholder="Your Name">
 
-</p>
 
-<input
-type="text"
-id="referralLink"
-readonly
-placeholder="Generating your referral link...">
+<input id="yourEmail" placeholder="Your Email">
 
-<div class="buttons">
 
-<button id="copyBtn">
+<input id="friendName" placeholder="Friend Name">
 
-📋 Copy Link
 
+<input id="friendEmail" placeholder="Friend Email">
+
+
+
+<button id="referBtn">
+Submit Referral
 </button>
 
-<button id="whatsappBtn">
 
-📲 WhatsApp
+</div>
 
+
+
+
+
+<div class="card">
+
+
+<h2>
+Check Reward Status
+</h2>
+
+
+<p>
+Enter your referral code to see if your reward is ready.
+</p>
+
+
+<input id="rewardCode" placeholder="Enter referral code">
+
+
+<button id="checkBtn">
+Check Status
 </button>
 
-</div>
+
+<div id="status">
 
 </div>
 
-<!-- Invite Friend -->
+
+</div>
+
+
+
+
 
 <div class="card">
 
-<h2>Invite Your Friend</h2>
+
+<h2>
+PLUGSA Rewards
+</h2>
+
+
+<div class="reward">
+
+<h3>
+1 Referral
+</h3>
 
 <p>
-
-We'll save your referral and track it automatically.
-
-Rewards are only unlocked after your friend places their first successful order.
-
+New York Yankees 39THIRTY MLB League Basic Cap
 </p>
 
-<form id="referForm">
+</div>
 
-<label>
 
-Friend's Full Name
 
-</label>
+<div class="reward">
 
-<input
-type="text"
-id="friendName"
-placeholder="John Smith"
-required>
+<h3>
+15 Referrals
+</h3>
 
-<label>
+<p>
+2 T-Shirts below R300
+</p>
 
-Friend's Email Address
+</div>
 
-</label>
 
-<input
-type="email"
-id="friendEmail"
-placeholder="john@example.com"
-required>
 
-<button type="submit">
+<div class="reward">
 
-Send Invitation
+<h3>
+25 Referrals
+</h3>
 
+<p>
+Puma Suede Sneakers
+</p>
+
+<p>
+Requirement:
+5 referred friends must purchase sneakers.
+</p>
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<div class="popup" id="popup">
+
+
+<h2>
+Your Referral Code
+</h2>
+
+
+<h1 id="code">
+
+</h1>
+
+
+<button onclick="copyCode()">
+Copy Code
 </button>
 
-</form>
 
 </div>
 
-<!-- Referral Progress -->
 
-<div class="card">
 
-<h2>Your Progress</h2>
 
-<div class="progress-box">
-
-<div class="progress-item">
-
-<span>Pending Referrals</span>
-
-<strong id="pendingCount">
-
-0
-
-</strong>
-
-</div>
-
-<div class="progress-item">
-
-<span>Successful Purchases</span>
-
-<strong id="completedCount">
-
-0
-
-</strong>
-
-</div>
-
-<div class="progress-item">
-
-<span>Free Caps Earned</span>
-
-<strong id="rewardCount">
-
-0
-
-</strong>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- Reward Process -->
-
-<div class="card">
-
-<h2>How It Works</h2>
-
-<p>
-
-1️⃣ Share your referral link.
-
-</p>
-
-<p>
-
-2️⃣ Your friend creates an account.
-
-</p>
-
-<p>
-
-3️⃣ They purchase any PLUGSA product.
-
-</p>
-
-<p>
-
-4️⃣ Once their order is confirmed,
-
-your FREE Premium Cap becomes available.
-
-</p>
-
-</div>
-
-<!-- Referral History -->
-
-<div class="card" style="grid-column:1/-1;">
-
-<h2>Referral History</h2>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>Friend</th>
-
-<th>Email</th>
-
-<th>Status</th>
-
-<th>Reward</th>
-
-<th>Date</th>
-
-</tr>
-
-</thead>
-
-<tbody id="historyTable">
-
-<tr>
-
-<td colspan="5" style="text-align:center;color:#888;">
-
-You haven't referred anyone yet.
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
 
 <footer>
 
-<p>
-
-© 2026 PLUGSA.
-
-Premium Streetwear.
-
-Refer friends. Earn rewards.
-
-</p>
+© 2026 PLUGSA. All Rights Reserved.
 
 </footer>
-<script type="module" src="refer.js"></script>
-
-<script>
-
-// Copy Referral Link
-
-document.getElementById("copyBtn").addEventListener("click",()=>{
-
-const input=document.getElementById("referralLink");
-
-input.select();
-
-input.setSelectionRange(0,99999);
-
-navigator.clipboard.writeText(input.value);
-
-const btn=document.getElementById("copyBtn");
-
-btn.innerHTML="✅ Copied!";
-
-setTimeout(()=>{
-
-btn.innerHTML="📋 Copy Link";
-
-},2000);
-
-});
 
 
-// Share on WhatsApp
 
-document.getElementById("whatsappBtn").addEventListener("click",()=>{
 
-const link=document.getElementById("referralLink").value;
 
-const message=encodeURIComponent(
+<script type="module">
 
-`🔥 Join PLUGSA and shop premium streetwear!
+import { db } from "./firebase.js";
 
-Use my referral link below:
+import {
+    addDoc,
+    collection,
+    getDocs,
+    query,
+    where
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-${link}
+document.getElementById("referBtn").onclick = async function(){
 
-When you complete your first purchase, I'll earn a FREE PLUGSA Cap!
+    const yourName =
+        document.getElementById("yourName").value.trim();
 
-Shop now 👇`
+    const yourEmail =
+        document.getElementById("yourEmail").value.trim();
 
-);
+    const friendName =
+        document.getElementById("friendName").value.trim();
 
-window.open(
+    const friendEmail =
+        document.getElementById("friendEmail").value.trim();
 
-`https://wa.me/?text=${message}`,
 
-"_blank"
+    if(
+        !yourName ||
+        !yourEmail ||
+        !friendName ||
+        !friendEmail
+    ){
 
-);
+        alert("Please complete all fields.");
 
-});
+        return;
+
+    }
+
+
+    const code =
+        "PLUGSA" +
+        Math.random()
+        .toString(36)
+        .substring(2,8)
+        .toUpperCase();
+
+
+    try{
+
+        await addDoc(
+            collection(db,"referrals"),
+            {
+
+                referrerName: yourName,
+
+                referrerEmail: yourEmail,
+
+                friendName: friendName,
+
+                friendEmail: friendEmail,
+
+                referralCode: code,
+
+                status: "pending",
+
+                rewardStatus: "pending",
+
+                friendPurchased: false,
+
+                createdAt: new Date()
+
+            }
+
+        );
+
+
+        document.getElementById("code")
+        .innerText = code;
+
+
+        document.getElementById("popup")
+        .style.display = "block";
+
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert(
+            "Could not create referral: "
+            + error.message
+        );
+
+    }
+
+};
+
+
+
+
+function copyCode(){
+
+
+let code=document.getElementById("code").innerText;
+
+
+navigator.clipboard.writeText(code);
+
+
+alert("Referral code copied");
+
+}
+
+
+
+
+
+document.getElementById("checkBtn")
+.onclick=function(){
+
+
+let code =
+document.getElementById("rewardCode").value;
+
+
+if(code===""){
+
+alert("Enter your code");
+
+return;
+
+}
+
+
+
+document.getElementById("status").innerHTML=
+
+`
+<br>
+
+<h3>
+⏳ Pending Review
+</h3>
+
+<p>
+PLUGSA is checking your referral progress.
+</p>
+
+`;
+
+}
+
+
 
 </script>
+
+
 
 </body>
 </html>
