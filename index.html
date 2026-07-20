@@ -128,7 +128,12 @@
 <header class="store-nav"><a class="wordmark" href="index.html">PLUGSA</a><nav>
 <a href="hoodies.html">Hoodies</a><a href="graphic-tees.html">Graphic tees</a><a href="sneaker.html">Sneakers</a><a href="fitted caps.html">Caps</a></nav><a class="cart-link" href="cart.html" data-requires-auth>Bag <span data-cart-count>0</span></a></header>
 <main><section class="hero-new"><div class="hero-copy"><span class="eyebrow">The new PLUGSA marketplace</span><h1>Find your next favourite look.</h1><p>Streetwear, sneakers and standout essentials — carefully selected for the rotation you are building.</p><a class="button lime" href="shop.html" data-requires-auth>Shop the drop</a></div><div class="hero-image" aria-label="PLUGSA streetwear collection"></div></section>
-<section class="section-wrap"><div class="section-title"><h2>Shop the edit.</h2>  
+<section class="section-wrap"><div class="section-title"><h2>Shop the edit.</h2> <p>Start with the pieces that make the fit.</p></div><div class="category-grid"><a class="category-tile" href="hoodies.html"><img loading="lazy" src="images/hellstar%20black%20hoodie.jpg" alt="Hoodies"><span>Hoodies</span></a><a class="category-tile" href="graphic-tees.html"><img loading="lazy" src="images/graphic-tee1.jpg" alt="Graphic tees"><span>Graphic Tees</span></a><a class="category-tile" href="sneaker.html"><img loading="lazy" src="images/Red%20And%20White%20J4%20Cover.jpg" alt="Sneakers"><span>Sneakers</span></a><a class="category-tile" href="fitted%20caps.html"><img loading="lazy" src="images/New%20York%20cap.jpg" alt="Caps"><span>Caps</span></a><a class="category-tile" href="#thrift"><img loading="lazy" src="images/jeans%202.jpg" alt="PLUGSA Thrift"><span>Thrift</span></a></div></section>
+<section class="section-wrap" style="padding-top:0"><div class="section-title"><h2>Featured now.</h2><p>Selected products from the latest PLUGSA inventory.</p></div><div class="product-grid" id="featured"><div class="empty-state">Loading the latest products…</div></div></section>
+
+
+<section class="section-wrap"><div class="future-proof">
+    
     <a href="refer.html" class="refer-cta">
 
     <span class="refer-icon">🎁</span>
@@ -138,12 +143,14 @@
         <small>Unlock exclusive PLUGSA rewards</small>
     </span>
 
-    <span class="refer-arrow">→</span>
+    <span class="refer-arrow">→</span></a>
+</section>
+</main>
+<footer class="store-footer">
+    <span>
+        © 2026 PLUGSA</span><span>Streetwear. Sneakers. Style.
 
-</a><p>Start with the pieces that make the fit.</p></div><div class="category-grid"><a class="category-tile" href="hoodies.html"><img loading="lazy" src="images/hellstar%20black%20hoodie.jpg" alt="Hoodies"><span>Hoodies</span></a><a class="category-tile" href="graphic-tees.html"><img loading="lazy" src="images/graphic-tee1.jpg" alt="Graphic tees"><span>Graphic Tees</span></a><a class="category-tile" href="sneaker.html"><img loading="lazy" src="images/Red%20And%20White%20J4%20Cover.jpg" alt="Sneakers"><span>Sneakers</span></a><a class="category-tile" href="fitted%20caps.html"><img loading="lazy" src="images/New%20York%20cap.jpg" alt="Caps"><span>Caps</span></a><a class="category-tile" href="#thrift"><img loading="lazy" src="images/jeans%202.jpg" alt="PLUGSA Thrift"><span>Thrift</span></a></div></section>
-<section class="section-wrap" style="padding-top:0"><div class="section-title"><h2>Featured now.</h2><p>Selected products from the latest PLUGSA inventory.</p></div><div class="product-grid" id="featured"><div class="empty-state">Loading the latest products…</div></div></section>
-
-
-<section class="section-wrap"><div class="future-proof"><div><strong>Reviews</strong>A dedicated, verified reviews area will appear when customer feedback is available.</div><div><strong>Stock clarity</strong>Low-stock messaging appears only when the product record reports actual inventory.</div><div><strong>Easy discovery</strong>Search, filters and product recommendations are available throughout the shop.</div></div></section></main><footer class="store-footer"><span>© 2026 PLUGSA</span><span>Streetwear. Sneakers. Style.</span></footer>
+    </span>
+</footer>
 
 <script type="module">import{products,card,bindCards,isNew}from'./storefront.js';import'./auth-guard.js';const all=await products();const featured=all.filter(p=>p.featured);document.querySelector('#featured').innerHTML=(featured.length?featured:all).slice(0,4).map(card).join('')||'<div class="empty-state">Products will appear here as they are added.</div>';const recent=[...all].filter(isNew).sort((a,b)=>new Date(b.createdAt?.toDate?.()||b.createdAt||0)-new Date(a.createdAt?.toDate?.()||a.createdAt||0));document.querySelector('#new-arrivals').innerHTML=(recent.length?recent:all).slice(0,4).map(card).join('')||'<div class="empty-state">New arrivals are on their way.</div>';bindCards();</script></body></html>
