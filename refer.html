@@ -603,42 +603,198 @@ alert("Referral code copied");
 
 
 
-
-document.getElementById("checkBtn")
-.onclick=function(){
-
-
-let code =
-document.getElementById("rewardCode").value;
-
-
-if(code===""){
-
-alert("Enter your code");
-
-return;
-
-}
+import {
+    collection,
+    query,
+    where,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 
+document.getElementById("checkBtn").onclick = async function(){
 
-document.getElementById("status").innerHTML=
+    const code =
+    document.getElementById("rewardCode").value.trim();
 
-`
-<br>
 
-<h3>
-⏳ Pending Review
-</h3>
+    const statusBox =
+    document.getElementById("status");
 
-<p>
-PLUGSA is checking your referral progress.
-</p>
 
-`;
+    if(!code){
 
-}
+        alert("Enter your referral code");
 
+        return;
+
+    }
+
+
+    try{
+
+
+        const q = query(
+
+            collection(db,"referrals"),
+
+            where(
+                "referralCode",
+                "==",
+                code
+            )
+
+        );
+
+
+        const snapshot = await getDocs(q);
+
+
+
+        if(snapshot.empty){
+
+
+            statusBox.innerHTML = `
+
+            <br>
+
+            <h3 style="color:red;">
+            ❌ Code not found
+            </h3>
+
+            <p>
+            Check your referral code and try again.
+            </p>
+
+            `;
+
+
+            return;
+
+        }
+
+
+
+        let referralData;
+
+
+        snapshot.forEach(doc=>{
+
+            referralData = doc.data();
+
+        });
+
+
+
+        if(
+            referralData.rewardStatus === "approved"
+            ||
+            referralData.approved === true
+        ){
+
+
+
+            statusBox.innerHTML = `
+
+
+            <br>
+
+            <div style="
+            background:#062e16;
+            padding:20px;
+            border-radius:12px;
+            border:1px solid #22c55e;
+            ">
+
+
+            <h3 style="color:#22c55e;">
+            🎉 Reward Ready!
+            </h3>
+
+
+            <p>
+            Congratulations! Your reward has been approved by PLUGSA.
+            </p>
+
+
+            <button 
+            id="claimReward"
+            style="
+            background:#22c55e;
+            color:white;
+            margin-top:15px;
+            ">
+
+            CLAIM REWARD
+
+            </button>
+
+
+            </div>
+
+
+            `;
+
+
+
+            document
+            .getElementById("claimReward")
+            .onclick=function(){
+
+
+                alert(
+                "Claim request sent to PLUGSA."
+                );
+
+
+            };
+
+
+
+        }
+
+        else{
+
+
+            statusBox.innerHTML = `
+
+
+            <br>
+
+
+            <h3 style="color:#facc15;">
+            ⏳ Pending Review
+            </h3>
+
+
+            <p>
+            PLUGSA is verifying your referral.
+            </p>
+
+
+            `;
+
+
+        }
+
+
+
+    }
+
+    catch(error){
+
+
+        console.error(error);
+
+
+        alert(
+        "Error checking reward."
+        );
+
+
+    }
+
+
+};
 
 
 </script>
